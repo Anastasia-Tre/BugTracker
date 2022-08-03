@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementation
 {
-    public class EFGenericRepository<T, TKey> : IRepository<T, TKey> where T : BaseEntity<TKey>
+    public class EFRepository<T, TKey> : IRepository<T, TKey> where T : BaseEntity<TKey>
     {
         protected readonly BugTrackerDbContext<TKey> _dbContext;
         protected readonly DbSet<T> _entities;
 
-        public EFGenericRepository(BugTrackerDbContext<TKey> dbContext, DbSet<T> dbSet)
+        public EFRepository(BugTrackerDbContext<TKey> dbContext, DbSet<T> dbSet)
         {
             _dbContext = dbContext;
             _entities = dbSet;

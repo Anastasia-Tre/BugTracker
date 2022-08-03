@@ -5,7 +5,7 @@ using BugTracker.DataAccessLayer.Repositories.Abstraction;
 
 namespace BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementation
 {
-    public class EFBugRepository<TKey> : EFGenericRepository<BugEntity<TKey>, TKey>, IBugRepository<TKey>
+    public class EFBugRepository<TKey> : EFRepository<BugEntity<TKey>, TKey>, IBugRepository<TKey>
     {
         public EFBugRepository(BugTrackerDbContext<TKey> dbContext) : base(dbContext, dbContext.Bugs)
         {
