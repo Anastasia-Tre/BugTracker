@@ -2,7 +2,7 @@
 
 namespace BugTracker.DataAccessLayer.Entities
 {
-    internal class BaseEntity<TKey>
+    public abstract class BaseEntity<TKey>
     {
         [Key]
         public TKey Id { get; set; }

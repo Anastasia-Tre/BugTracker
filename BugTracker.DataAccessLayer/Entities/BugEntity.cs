@@ -1,11 +1,11 @@
-﻿using BugTracker.DataAccessLayer.Entities.Enums;
+﻿using System;
+using BugTracker.DataAccessLayer.Entities.Enums;
+using BugTracker.Models;
 
 namespace BugTracker.DataAccessLayer.Entities
 {
-    public class BugEntity
+    public class BugEntity<TKey> : BaseEntity<TKey>
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
         public string Description { get; set; }
 
@@ -13,16 +13,16 @@ namespace BugTracker.DataAccessLayer.Entities
         public BugType Type { get; set; }
         public BugPriority Priority { get; set; }
 
-        public int AuthorId { get; set; }
+        public TKey AuthorId { get; set; }
+        public UserEntity Author { get; set; }
 
-        //public List<User> AssignToIds { get; set; }
-        public int ProjectId { get; set; }
+        public TKey AssignToId { get; set; }
+        public UserEntity AssignTo { get; set; }
+        
+        public TKey ProjectId { get; set; }
+        public ProjectEntity Project { get; set; }
 
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public float Estimate { get; set; }
-    }
-
-    public class BugUser
-    {
     }
 }
