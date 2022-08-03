@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Implementation\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BugTracker.DataAccessLayer\BugTracker.DataAccessLayer.csproj" />
     <ProjectReference Include="..\BugTracker.DataModel\BugTracker.DataModel.csproj" />
   </ItemGroup>
