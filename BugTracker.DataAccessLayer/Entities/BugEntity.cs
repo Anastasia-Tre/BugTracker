@@ -1,6 +1,5 @@
 ﻿using System;
 using BugTracker.DataAccessLayer.Entities.Enums;
-using BugTracker.Models;
 
 namespace BugTracker.DataAccessLayer.Entities
 {
@@ -14,10 +13,10 @@ namespace BugTracker.DataAccessLayer.Entities
         public BugPriority Priority { get; set; }
 
         public TKey AuthorId { get; set; }
-        public UserEntity Author { get; set; }
+        public UserEntity<TKey> Author { get; set; }
 
         public TKey AssignToId { get; set; }
-        public UserEntity AssignTo { get; set; }
+        public UserEntity<TKey> AssignTo { get; set; }
         
         public TKey ProjectId { get; set; }
         public ProjectEntity Project { get; set; }
