@@ -2,7 +2,7 @@
 {
     public enum BugType
     {
-        Issue = 1,
+        Issue,
         Bug,
         Unknown
     }

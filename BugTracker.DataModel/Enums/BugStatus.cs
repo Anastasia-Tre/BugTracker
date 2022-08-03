@@ -2,7 +2,7 @@
 {
     public enum BugStatus
     {
-        Open = 1,
+        Open,
         Fixed,
         Closed,
         NotGoingToFix,
