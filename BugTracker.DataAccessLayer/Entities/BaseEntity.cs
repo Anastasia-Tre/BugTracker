@@ -1,4 +1,6 @@
-﻿namespace BugTracker.DataAccessLayer.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BugTracker.DataAccessLayer.Entities
 {
     internal class BaseEntity<TKey>
     {
