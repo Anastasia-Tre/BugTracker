@@ -1,10 +1,11 @@
-﻿using BugTracker.DataModel.Enums;
+﻿using System;
+using BugTracker.DataModel.Enums;
 
-namespace BugTracker.Models
+namespace BugTracker.DataModel
 {
-    public class Bug
+    public class Bug<TKey>
     {
-        public int Id { get; set; }
+        public TKey Id { get; set; }
 
         public string Name { get; set; }
         public string Description { get; set; }
@@ -13,16 +14,11 @@ namespace BugTracker.Models
         public BugType Type { get; set; }
         public BugPriority Priority { get; set; }
 
-        public int AuthorId { get; set; }
+        public TKey AuthorId { get; set; }
+        public TKey AssignToId { get; set; }
+        public TKey ProjectId { get; set; }
 
-        //public List<User> AssignToIds { get; set; }
-        public int ProjectId { get; set; }
-
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public float Estimate { get; set; }
-    }
-
-    public class BugUser
-    {
     }
 }
