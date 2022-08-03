@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BugTracker.Models
+namespace BugTracker.DataAccessLayer.Entities
 {
-    public class Project
+    public class ProjectEntity
     {
         [Key] public int Id { get; set; }
 
