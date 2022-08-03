@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstraction\" />
     <Folder Include="Implementation\" />
     <Folder Include="Mapper\" />
   </ItemGroup>
