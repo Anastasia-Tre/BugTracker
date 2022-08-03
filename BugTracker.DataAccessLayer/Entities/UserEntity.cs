@@ -1,6 +1,6 @@
 ﻿namespace BugTracker.Models
 {
-    public class User
+    public class UserEntity
     {
         public int Id { get; set; }
 
