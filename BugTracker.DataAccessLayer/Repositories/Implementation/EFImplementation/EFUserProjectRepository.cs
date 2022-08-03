@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.Repositories.Abstraction;
 
@@ -13,12 +13,16 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementatio
 
         public IEnumerable<UserEntity<TKey>> GetUsersForProject(TKey projectId)
         {
-            throw new NotImplementedException();
+            return GetAll()
+                .Where(userproject => userproject.ProjectId.Equals(projectId))
+                .Select(userproject => userproject.UserEntity);
         }
 
         public IEnumerable<ProjectEntity<TKey>> GetProjectsForUser(TKey userId)
         {
-            throw new NotImplementedException();
+            return GetAll()
+                .Where(userproject => userproject.UserId.Equals(userId))
+                .Select(userproject => userproject.ProjectEntity);
         }
     }
 }

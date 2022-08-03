@@ -9,8 +9,7 @@ namespace BugTracker.DataAccessLayer
         {
             Database.EnsureCreated();
         }
-
-        // ????? TKey ??????
+        
         public DbSet<BugEntity<TKey>> Bugs { get; set; }
         public DbSet<UserEntity<TKey>> Users { get; set; }
         public DbSet<ProjectEntity<TKey>> Projects { get; set; }
