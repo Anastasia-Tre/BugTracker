@@ -1,14 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 
 namespace BugTracker.DataModel
 {
-    public class Project
+    public class Project<TKey>
     {
-        [Key] public int Id { get; set; }
+        public TKey Id { get; set; }
 
         public string Name { get; set; }
         public string Description { get; set; }
 
-        //public List<User> UsersId { get; set; }
+        public List<TKey> UsersId { get; set; }
     }
 }
