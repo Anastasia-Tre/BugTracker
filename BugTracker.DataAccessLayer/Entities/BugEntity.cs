@@ -1,4 +1,6 @@
-﻿namespace BugTracker.DataAccessLayer.Entities
+﻿using BugTracker.DataAccessLayer.Entities.Enums;
+
+namespace BugTracker.DataAccessLayer.Entities
 {
     public class BugEntity
     {
