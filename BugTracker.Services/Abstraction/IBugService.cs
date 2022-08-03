@@ -11,6 +11,6 @@ namespace BugTracker.Services.Abstraction
         public IEnumerable<Bug<TKey>> GetBugsForProject(TKey projectId);
         public IEnumerable<Bug<TKey>> GetBugsForUser(TKey userId);
 
-        public bool AssignBugToUser(Bug<TKey> bug, TKey userId);
+        public void AssignBugToUser(Bug<TKey> bug, TKey userId);
     }
 }

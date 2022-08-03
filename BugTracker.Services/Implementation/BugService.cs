@@ -1,38 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
+using BugTracker.Services.Mapper;
 
 namespace BugTracker.Services.Implementation
 {
     public class BugService<TKey> : IBugService<TKey>
     {
+        private readonly IUnitOfWork<TKey> _unitOfWork;
+
+        public BugService(IUnitOfWork<TKey> unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         public Bug<TKey> GetBugById(TKey id)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.BugRepository
+                .GetById(id)
+                .ToModelEntity();
         }
 
         public IEnumerable<Bug<TKey>> SearchBugs(string searchString)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.BugRepository
+                .Search(searchString)
+                .Select(bug => bug.ToModelEntity());
         }
 
         public IEnumerable<Bug<TKey>> GetBugsForProject(TKey projectId)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.BugRepository
+                .GetBugsForProject(projectId)
+                .Select(bug => bug.ToModelEntity());
         }
 
         public IEnumerable<Bug<TKey>> GetBugsForUser(TKey userId)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.BugRepository
+                .GetBugsForUser(userId)
+                .Select(bug => bug.ToModelEntity());
         }
 
-        public bool AssignBugToUser(Bug<TKey> bug, TKey userId)
+        public void AssignBugToUser(Bug<TKey> bug, TKey userId)
         {
-            throw new NotImplementedException();
+            bug.AssignToId = userId;
+            _unitOfWork.BugRepository.Update(bug.ToDbEntity());
         }
     }
 }
