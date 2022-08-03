@@ -1,35 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.Repositories.Abstraction;
+using Microsoft.EntityFrameworkCore;
 
 namespace BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementation
 {
     public class EFGenericRepository<T, TKey> : IRepository<T, TKey> where T : BaseEntity<TKey>
     {
-        public void Create(T item)
+        protected readonly BugTrackerDbContext _dbContext;
+        protected readonly DbSet<T> _entities;
+
+        public EFGenericRepository(BugTrackerDbContext dbContext, DbSet<T> dbSet)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
+            _entities = dbSet;
         }
 
-        public void Delete(T item)
+        public void Create(T entity)
         {
-            throw new NotImplementedException();
+            _entities.Add(entity);
         }
 
-        public IEnumerable<T> GetAll()
+        public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Entry(entity).State = EntityState.Modified;
+        }
+
+        public void Delete(T entity)
+        {
+            _entities.Remove(entity);
         }
 
         public T GetById(TKey id)
         {
-            throw new NotImplementedException();
+            return _entities.Find(id);
         }
 
-        public void Update(T item)
+        public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _entities.AsNoTracking();
         }
     }
 }
