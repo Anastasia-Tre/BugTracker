@@ -19,7 +19,7 @@ namespace BugTracker.DataAccessLayer.Entities
         public UserEntity<TKey> AssignTo { get; set; }
         
         public TKey ProjectId { get; set; }
-        public ProjectEntity Project { get; set; }
+        public ProjectEntity<TKey> Project { get; set; }
 
         public DateTime Date { get; set; }
         public float Estimate { get; set; }
