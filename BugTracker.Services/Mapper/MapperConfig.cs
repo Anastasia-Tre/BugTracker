@@ -6,12 +6,14 @@ namespace BugTracker.Services.Mapper
 {
     public static class MapperConfig
     {
-        public static IServiceCollection SetMapperConfig<TKey>(this IServiceCollection services)
+        public static IServiceCollection SetMapperConfig<TKey>(
+            this IServiceCollection services)
         {
             services.AddAutoMapper(cfg =>
                 cfg.CreateMap<Bug<TKey>, BugEntity<TKey>>().ReverseMap());
             services.AddAutoMapper(cfg =>
-                cfg.CreateMap<Project<TKey>, ProjectEntity<TKey>>().ReverseMap());
+                cfg.CreateMap<Project<TKey>, ProjectEntity<TKey>>()
+                    .ReverseMap());
             services.AddAutoMapper(cfg =>
                 cfg.CreateMap<User<TKey>, UserEntity<TKey>>().ReverseMap());
 

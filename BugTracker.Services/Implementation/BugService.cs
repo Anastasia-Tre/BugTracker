@@ -9,8 +9,8 @@ namespace BugTracker.Services.Implementation
 {
     public class BugService<TKey> : IBugService<TKey>
     {
-        private readonly IUnitOfWork<TKey> _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork<TKey> _unitOfWork;
 
         public BugService(IUnitOfWork<TKey> unitOfWork, IMapper mapper)
         {

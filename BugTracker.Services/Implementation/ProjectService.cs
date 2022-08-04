@@ -8,8 +8,8 @@ namespace BugTracker.Services.Implementation
 {
     internal class ProjectService<TKey> : IProjectService<TKey>
     {
-        private readonly IUnitOfWork<TKey> _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork<TKey> _unitOfWork;
 
         public ProjectService(IUnitOfWork<TKey> unitOfWork, IMapper mapper)
         {

@@ -8,8 +8,8 @@ namespace BugTracker.Services.Implementation
 {
     internal class UserService<TKey> : IUserService<TKey>
     {
-        private readonly IUnitOfWork<TKey> _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork<TKey> _unitOfWork;
 
         public UserService(IUnitOfWork<TKey> unitOfWork, IMapper mapper)
         {
