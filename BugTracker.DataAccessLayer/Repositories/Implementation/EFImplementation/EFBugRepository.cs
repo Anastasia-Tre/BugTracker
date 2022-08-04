@@ -11,7 +11,7 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementatio
         {
         }
 
-        public IEnumerable<BugEntity<TKey>> Search(string searchString = "")
+        public IEnumerable<BugEntity<TKey>> Search(string searchString)
         {
             var result = GetAll();
             var isSearchStringEmpty = string.IsNullOrEmpty(searchString);
