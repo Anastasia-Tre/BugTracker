@@ -66,7 +66,7 @@ namespace BugTracker.WebAPI.Controllers
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
         public IActionResult AssignBugToUser([FromQuery] AssignBugToUserCommand command)
         {
-            var result = _bugService.AssignBugToUser(command.BugId, command.UserId);
+            //var result = _bugService.AssignBugToUser(command.BugId, command.UserId);
             return Ok();
         }
     }
