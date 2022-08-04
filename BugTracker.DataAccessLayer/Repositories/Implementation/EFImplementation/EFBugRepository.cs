@@ -5,13 +5,13 @@ using BugTracker.DataAccessLayer.Repositories.Abstraction;
 
 namespace BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementation
 {
-    public class EFBugRepository<TKey> : EFRepository<BugEntity<TKey>, TKey>, IBugRepository<TKey>
+    public class EFBugRepository : EFRepository<BugEntity<int>>, IBugRepository<int>
     {
-        public EFBugRepository(BugTrackerDbContext<TKey> dbContext) : base(dbContext, dbContext.Bugs)
+        public EFBugRepository(BugTrackerDbContext dbContext) : base(dbContext, dbContext.Bugs)
         {
         }
 
-        public IEnumerable<BugEntity<TKey>> Search(string searchString)
+        public IEnumerable<BugEntity<int>> Search(string searchString)
         {
             var result = GetAll();
             var isSearchStringEmpty = string.IsNullOrEmpty(searchString);
@@ -27,14 +27,14 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementatio
             return result.OrderBy(bug => bug.Date);
         }
 
-        public IEnumerable<BugEntity<TKey>> GetBugsForProject(TKey projectId)
+        public IEnumerable<BugEntity<int>> GetBugsForProject(int projectId)
         {
             return GetAll()
                 .Where(bug => bug.ProjectId.Equals(projectId))
                 .OrderBy(bug => bug.Date);
         }
 
-        public IEnumerable<BugEntity<TKey>> GetBugsForUser(TKey userId)
+        public IEnumerable<BugEntity<int>> GetBugsForUser(int userId)
         {
             return GetAll()
                 .Where(bug => bug.AssignToId.Equals(userId))

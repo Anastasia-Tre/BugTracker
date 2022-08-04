@@ -3,20 +3,20 @@ using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 
 namespace BugTracker.DataAccessLayer.UnitOfWork.Implementation
 {
-    public class EFUnitOfWork<TKey> : IUnitOfWork<TKey>
+    public class EFUnitOfWork : IUnitOfWork<int>
     {
-        private BugTrackerDbContext<TKey> _dbContext;
+        private BugTrackerDbContext _dbContext;
 
-        public IBugRepository<TKey> BugRepository { get; set; }
-        public IUserRepository<TKey> UserRepository { get; set; }
-        public IProjectRepository<TKey> ProjectRepository { get; set; }
-        public IUserProjectRepository<TKey> UserProjectRepository { get; set; }
+        public IBugRepository<int> BugRepository { get; set; }
+        public IUserRepository<int> UserRepository { get; set; }
+        public IProjectRepository<int> ProjectRepository { get; set; }
+        public IUserProjectRepository<int> UserProjectRepository { get; set; }
 
-        public EFUnitOfWork(BugTrackerDbContext<TKey> dbContext,
-            IBugRepository<TKey> bugRepository,
-            IUserRepository<TKey> userRepository,
-            IProjectRepository<TKey> projectRepository,
-            IUserProjectRepository<TKey> userProjectRepository)
+        public EFUnitOfWork(BugTrackerDbContext dbContext,
+            IBugRepository<int> bugRepository,
+            IUserRepository<int> userRepository,
+            IProjectRepository<int> projectRepository,
+            IUserProjectRepository<int> userProjectRepository)
         {
             _dbContext = dbContext;
             BugRepository = bugRepository;

@@ -5,13 +5,13 @@ using BugTracker.DataAccessLayer.Repositories.Abstraction;
 
 namespace BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementation
 {
-    public class EFProjectRepository<TKey> : EFRepository<ProjectEntity<TKey>, TKey>, IProjectRepository<TKey>
+    public class EFProjectRepository : EFRepository<ProjectEntity<int>>, IProjectRepository<int>
     {
-        public EFProjectRepository(BugTrackerDbContext<TKey> dbContext) : base(dbContext, dbContext.Projects)
+        public EFProjectRepository(BugTrackerDbContext dbContext) : base(dbContext, dbContext.Projects)
         {
         }
 
-        public IEnumerable<ProjectEntity<TKey>> Search(string searchString)
+        public IEnumerable<ProjectEntity<int>> Search(string searchString)
         {
             var result = GetAll();
             var isSearchStringEmpty = string.IsNullOrEmpty(searchString);

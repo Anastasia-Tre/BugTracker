@@ -6,12 +6,12 @@ namespace BugTracker.Services
 {
     public static class DependenciesServices
     {
-        public static IServiceCollection SetServices<TKey>(
+        public static IServiceCollection SetServices(
             this IServiceCollection services)
         {
-            services.AddScoped<IBugService<TKey>, BugService<TKey>>();
-            services.AddScoped<IUserService<TKey>, UserService<TKey>>();
-            services.AddScoped<IProjectService<TKey>, ProjectService<TKey>>();
+            services.AddScoped<IBugService<int>, BugService>();
+            services.AddScoped<IUserService<int>, UserService>();
+            services.AddScoped<IProjectService<int>, ProjectService>();
 
             return services;
         }

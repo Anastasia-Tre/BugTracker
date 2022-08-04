@@ -6,26 +6,26 @@ using BugTracker.Services.Abstraction;
 
 namespace BugTracker.Services.Implementation
 {
-    internal class ProjectService<TKey> : IProjectService<TKey>
+    public class ProjectService : IProjectService<int>
     {
         private readonly IMapper _mapper;
-        private readonly IUnitOfWork<TKey> _unitOfWork;
+        private readonly IUnitOfWork<int> _unitOfWork;
 
-        public ProjectService(IUnitOfWork<TKey> unitOfWork, IMapper mapper)
+        public ProjectService(IUnitOfWork<int> unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
-        public Project<TKey> GetProjectById(TKey id)
+        public Project<int> GetProjectById(int id)
         {
-            return _mapper.Map<Project<TKey>>(
+            return _mapper.Map<Project<int>>(
                 _unitOfWork.BugRepository.GetById(id));
         }
 
-        public IEnumerable<Project<TKey>> SearchProjects(string searchString)
+        public IEnumerable<Project<int>> SearchProjects(string searchString)
         {
-            return _mapper.Map<IEnumerable<Project<TKey>>>(
+            return _mapper.Map<IEnumerable<Project<int>>>(
                 _unitOfWork.BugRepository.Search(searchString));
         }
     }

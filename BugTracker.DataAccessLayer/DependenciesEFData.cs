@@ -6,14 +6,14 @@ namespace BugTracker.DataAccessLayer
 {
     public static class DependenciesEFData
     {
-        public static IServiceCollection SetEFDataDependencies<TKey>(
+        public static IServiceCollection SetEFDataDependencies(
             this IServiceCollection services)
         {
-            services.AddScoped<BugTrackerDbContext<TKey>>();
-            services.AddScoped<IBugRepository<TKey>, EFBugRepository<TKey>>();
-            services.AddScoped<IUserRepository<TKey>, EFUserRepository<TKey>>();
-            services.AddScoped<IProjectRepository<TKey>, EFProjectRepository<TKey>>();
-            services.AddScoped<IUserProjectRepository<TKey>, EFUserProjectRepository<TKey>>();
+            services.AddScoped<BugTrackerDbContext>();
+            services.AddScoped<IBugRepository<int>, EFBugRepository>();
+            services.AddScoped<IUserRepository<int>, EFUserRepository>();
+            services.AddScoped<IProjectRepository<int>, EFProjectRepository>();
+            services.AddScoped<IUserProjectRepository<int>, EFUserProjectRepository>();
             
             return services;
         }

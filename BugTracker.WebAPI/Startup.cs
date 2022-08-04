@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using BugTracker.DataAccessLayer;
 using BugTracker.Services;
+using BugTracker.Services.Mapper;
 
 namespace BugTracker.WebAPI
 {
@@ -22,8 +23,9 @@ namespace BugTracker.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             //fix TKey
-            services.SetEFDataDependencies<int>();
-            services.SetServices<int>();
+            services.SetEFDataDependencies();
+            services.SetMapperConfig();
+            services.SetServices();
 
             services.AddControllers();
             services.AddSwaggerGen(c => {

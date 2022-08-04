@@ -3,9 +3,9 @@ using BugTracker.DataAccessLayer.Repositories.Abstraction;
 
 namespace BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementation
 {
-    public class EFUserRepository<TKey> : EFRepository<UserEntity<TKey>, TKey>, IUserRepository<TKey>
+    public class EFUserRepository : EFRepository<UserEntity<int>>, IUserRepository<int>
     {
-        public EFUserRepository(BugTrackerDbContext<TKey> dbContext) : base(dbContext, dbContext.Users)
+        public EFUserRepository(BugTrackerDbContext dbContext) : base(dbContext, dbContext.Users)
         {
         }
     }

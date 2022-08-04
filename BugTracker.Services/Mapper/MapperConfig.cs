@@ -4,18 +4,18 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BugTracker.Services.Mapper
 {
-    internal static class MapperConfig
+    public static class MapperConfig
     {
-        public static IServiceCollection SetMapperConfig<TKey>(
+        public static IServiceCollection SetMapperConfig(
             this IServiceCollection services)
         {
             services.AddAutoMapper(cfg =>
-                cfg.CreateMap<Bug<TKey>, BugEntity<TKey>>().ReverseMap());
+                cfg.CreateMap<Bug<int>, BugEntity<int>>().ReverseMap());
             services.AddAutoMapper(cfg =>
-                cfg.CreateMap<Project<TKey>, ProjectEntity<TKey>>()
+                cfg.CreateMap<Project<int>, ProjectEntity<int>>()
                     .ReverseMap());
             services.AddAutoMapper(cfg =>
-                cfg.CreateMap<User<TKey>, UserEntity<TKey>>().ReverseMap());
+                cfg.CreateMap<User<int>, UserEntity<int>>().ReverseMap());
 
             return services;
         }

@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BugTracker.DataAccessLayer
 {
-    public sealed class BugTrackerDbContext<TKey> : DbContext
+    public sealed class BugTrackerDbContext : DbContext
     {
         public BugTrackerDbContext()
         {
             Database.EnsureCreated();
         }
         
-        public DbSet<BugEntity<TKey>> Bugs { get; set; }
-        public DbSet<UserEntity<TKey>> Users { get; set; }
-        public DbSet<ProjectEntity<TKey>> Projects { get; set; }
-        public DbSet<UserProjectEntity<TKey>> UserProjects { get; set; }
+        public DbSet<BugEntity<int>> Bugs { get; set; }
+        public DbSet<UserEntity<int>> Users { get; set; }
+        public DbSet<ProjectEntity<int>> Projects { get; set; }
+        public DbSet<UserProjectEntity<int>> UserProjects { get; set; }
     }
 }
