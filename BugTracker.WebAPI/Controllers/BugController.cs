@@ -24,5 +24,13 @@ namespace BugTracker.WebAPI.Controllers
             var result = _bugService.GetBugById(command.BugId);
             return Ok(new BugResponse() { Bug = result });
         }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
+        public IActionResult GetAll([FromQuery] SearchBugsCommand command)
+        {
+            var result = _bugService.SearchBugs(command.SearchString);
+            return Ok(new BugsResponse() { Bugs = result });
+        }
     }
 }
