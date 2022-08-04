@@ -17,13 +17,13 @@ namespace BugTracker.Services.Implementation
             _mapper = mapper;
         }
 
-        public Project<TKey> GetBugById(TKey id)
+        public Project<TKey> GetProjectById(TKey id)
         {
             return _mapper.Map<Project<TKey>>(
                 _unitOfWork.BugRepository.GetById(id));
         }
 
-        public IEnumerable<Project<TKey>> SearchBugs(string searchString)
+        public IEnumerable<Project<TKey>> SearchProjects(string searchString)
         {
             return _mapper.Map<IEnumerable<Project<TKey>>>(
                 _unitOfWork.BugRepository.Search(searchString));

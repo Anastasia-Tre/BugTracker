@@ -7,7 +7,7 @@ using BugTracker.Services.Abstraction;
 
 namespace BugTracker.Services.Implementation
 {
-    public class BugService<TKey> : IBugService<TKey>
+    internal class BugService<TKey> : IBugService<TKey>
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork<TKey> _unitOfWork;

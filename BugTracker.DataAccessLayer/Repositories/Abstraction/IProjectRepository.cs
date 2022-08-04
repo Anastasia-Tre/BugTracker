@@ -5,6 +5,6 @@ namespace BugTracker.DataAccessLayer.Repositories.Abstraction
 {
     public interface IProjectRepository<TKey> : IRepository<ProjectEntity<TKey>, TKey>
     {
-        public IEnumerable<ProjectEntity<TKey>> Search(string searchString = "");
+        public IEnumerable<ProjectEntity<TKey>> Search(string searchString);
     }
 }
