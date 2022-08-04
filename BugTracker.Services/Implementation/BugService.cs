@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
+using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
@@ -45,7 +46,7 @@ namespace BugTracker.Services.Implementation
         public void AssignBugToUser(Bug<TKey> bug, TKey userId)
         {
             bug.AssignToId = userId;
-            _unitOfWork.BugRepository.Update(bug.ToDbEntity());
+            _unitOfWork.BugRepository.Update(_mapper.Map<BugEntity<TKey>>(bug));
         }
     }
 }
