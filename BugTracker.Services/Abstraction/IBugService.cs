@@ -3,7 +3,7 @@ using BugTracker.DataModel;
 
 namespace BugTracker.Services.Abstraction
 {
-    internal interface IBugService<TKey>
+    public interface IBugService<TKey>
     {
         // public Bug<TKey> CreateBug();
         public Bug<TKey> GetBugById(TKey id);

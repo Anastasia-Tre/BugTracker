@@ -3,7 +3,7 @@ using BugTracker.DataModel;
 
 namespace BugTracker.Services.Abstraction
 {
-    internal interface IProjectService<TKey>
+    public interface IProjectService<TKey>
     {
         public Project<TKey> GetBugById(TKey id);
         public IEnumerable<Project<TKey>> SearchBugs(string searchString);

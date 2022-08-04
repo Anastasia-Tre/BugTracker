@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BugTracker.Services.Mapper
 {
-    public static class MapperConfig
+    internal static class MapperConfig
     {
         public static IServiceCollection SetMapperConfig<TKey>(
             this IServiceCollection services)

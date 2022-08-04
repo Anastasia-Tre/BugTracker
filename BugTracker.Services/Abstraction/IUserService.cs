@@ -3,7 +3,7 @@ using BugTracker.DataModel;
 
 namespace BugTracker.Services.Abstraction
 {
-    internal interface IUserService<TKey>
+    public interface IUserService<TKey>
     {
         public User<TKey> GetUserById(TKey id);
         public IEnumerable<User<TKey>> GetAllUsers();
