@@ -4,7 +4,6 @@ using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
-using BugTracker.Services.Mapper;
 
 namespace BugTracker.Services.Implementation
 {
