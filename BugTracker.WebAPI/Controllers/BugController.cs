@@ -26,11 +26,48 @@ namespace BugTracker.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("/all")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
         public IActionResult GetAll([FromQuery] SearchBugsCommand command)
         {
             var result = _bugService.SearchBugs(command.SearchString);
             return Ok(new BugsResponse() { Bugs = result });
+        }
+
+        [HttpGet]
+        [Route("/search")]
+        [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
+        public IActionResult SearchBugs([FromQuery] SearchBugsCommand command)
+        {
+            var result = _bugService.SearchBugs(command.SearchString);
+            return Ok(new BugsResponse() { Bugs = result });
+        }
+
+        [HttpGet]
+        [Route("/forUser")]
+        [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
+        public IActionResult GetBugsForUser([FromQuery] GetBugsForUserCommand command)
+        {
+            var result = _bugService.GetBugsForUser(command.UserId);
+            return Ok(new BugsResponse() { Bugs = result });
+        }
+
+        [HttpGet]
+        [Route("/forProject")]
+        [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
+        public IActionResult GetBugsForProject([FromQuery] GetBugsForProjectCommand command)
+        {
+            var result = _bugService.GetBugsForProject(command.ProjectId);
+            return Ok(new BugsResponse() { Bugs = result });
+        }
+
+        [HttpPut]
+        [Route("/assign")]
+        [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
+        public IActionResult AssignBugToUser([FromQuery] AssignBugToUserCommand command)
+        {
+            var result = _bugService.AssignBugToUser(command.BugId, command.UserId);
+            return Ok();
         }
     }
 }
