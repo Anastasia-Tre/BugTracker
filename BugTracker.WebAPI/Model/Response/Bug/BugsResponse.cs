@@ -5,6 +5,6 @@ namespace BugTracker.WebAPI.Model.Response.Bug
 {
     public class BugsResponse
     {
-        public List<Bug<int>> Bugs { get; set; }
+        public IEnumerable<Bug<int>> Bugs { get; set; }
     }
 }
