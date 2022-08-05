@@ -10,6 +10,14 @@ namespace BugTracker.WebAPI.Controllers
     [ApiController]
     public class BugController : ControllerBase
     {
+        [HttpGet]
+        [Route("/test")]
+        public IActionResult Test()
+        {
+            return Ok("Test result");
+        }
+
+        
         private readonly IBugService<int> _bugService;
 
         public BugController(IBugService<int> bugService)
@@ -69,5 +77,6 @@ namespace BugTracker.WebAPI.Controllers
             //var result = _bugService.AssignBugToUser(command.BugId, command.UserId);
             return Ok();
         }
+        
     }
 }
