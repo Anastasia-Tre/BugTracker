@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BugTracker.WebAPI", "BugTra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracker.DataAccessLayer.Tests", "Tests\BugTracker.DataAccessLayer.Tests\BugTracker.DataAccessLayer.Tests.csproj", "{AF731516-2F95-4F3B-9D3B-B1BCC07ECA07}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EDB48B13-E1C7-492F-8C10-D2BCBBF0FF7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AF731516-2F95-4F3B-9D3B-B1BCC07ECA07} = {EDB48B13-E1C7-492F-8C10-D2BCBBF0FF7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65530832-8AAF-43D1-B9ED-57C9BE9BC6F1}
