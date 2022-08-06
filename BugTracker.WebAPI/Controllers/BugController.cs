@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BugTracker.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/[controller]")]
     [ApiController]
     public class BugController : ControllerBase
     {
@@ -18,7 +18,7 @@ namespace BugTracker.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/test")]
+        [Route("test")]
         public IActionResult Test()
         {
             return Ok("Test result");
@@ -33,7 +33,7 @@ namespace BugTracker.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/all")]
+        [Route("all")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
         public IActionResult GetAll([FromQuery] SearchBugsCommand command)
         {
@@ -42,7 +42,7 @@ namespace BugTracker.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/search")]
+        [Route("search")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
         public IActionResult SearchBugs([FromQuery] SearchBugsCommand command)
         {
@@ -51,7 +51,7 @@ namespace BugTracker.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/forUser")]
+        [Route("forUser")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
         public IActionResult GetBugsForUser(
             [FromQuery] GetBugsForUserCommand command)
@@ -61,7 +61,7 @@ namespace BugTracker.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/forProject")]
+        [Route("forProject")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
         public IActionResult GetBugsForProject(
             [FromQuery] GetBugsForProjectCommand command)
@@ -71,7 +71,7 @@ namespace BugTracker.WebAPI.Controllers
         }
 
         [HttpPut]
-        [Route("/assign")]
+        [Route("assign")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
         public IActionResult AssignBugToUser(
             [FromQuery] AssignBugToUserCommand command)
