@@ -12,8 +12,8 @@ namespace BugTracker.DataAccessLayer.Entities
         public BugType Type { get; set; }
         public BugPriority Priority { get; set; }
 
-        public TKey AuthorId { get; set; }
-        public UserEntity<TKey> Author { get; set; }
+        //public TKey AuthorId { get; set; }
+        //public UserEntity<TKey> Author { get; set; }
 
         public TKey AssignToId { get; set; }
         public UserEntity<TKey> AssignTo { get; set; }

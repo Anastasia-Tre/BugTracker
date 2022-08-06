@@ -5,11 +5,12 @@ namespace BugTracker.DataAccessLayer
 {
     public sealed class BugTrackerDbContext : DbContext
     {
-        public BugTrackerDbContext()
+        public BugTrackerDbContext(DbContextOptions<BugTrackerDbContext> options) : base(options)
         {
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
-        
+
         public DbSet<BugEntity<int>> Bugs { get; set; }
         public DbSet<UserEntity<int>> Users { get; set; }
         public DbSet<ProjectEntity<int>> Projects { get; set; }
