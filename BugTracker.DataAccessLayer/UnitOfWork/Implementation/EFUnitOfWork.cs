@@ -5,12 +5,7 @@ namespace BugTracker.DataAccessLayer.UnitOfWork.Implementation
 {
     public class EFUnitOfWork : IUnitOfWork<int>
     {
-        private BugTrackerDbContext _dbContext;
-
-        public IBugRepository<int> BugRepository { get; set; }
-        public IUserRepository<int> UserRepository { get; set; }
-        public IProjectRepository<int> ProjectRepository { get; set; }
-        public IUserProjectRepository<int> UserProjectRepository { get; set; }
+        private readonly BugTrackerDbContext _dbContext;
 
         public EFUnitOfWork(BugTrackerDbContext dbContext,
             IBugRepository<int> bugRepository,
@@ -25,14 +20,19 @@ namespace BugTracker.DataAccessLayer.UnitOfWork.Implementation
             UserProjectRepository = userProjectRepository;
         }
 
-        ~EFUnitOfWork()
-        {
-            _dbContext.Dispose();
-        }
+        public IBugRepository<int> BugRepository { get; set; }
+        public IUserRepository<int> UserRepository { get; set; }
+        public IProjectRepository<int> ProjectRepository { get; set; }
+        public IUserProjectRepository<int> UserProjectRepository { get; set; }
 
         public void Save()
         {
             _dbContext.SaveChanges();
+        }
+
+        ~EFUnitOfWork()
+        {
+            _dbContext.Dispose();
         }
     }
 }

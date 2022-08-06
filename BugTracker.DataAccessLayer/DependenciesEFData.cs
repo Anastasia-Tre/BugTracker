@@ -10,7 +10,8 @@ namespace BugTracker.DataAccessLayer
 {
     public static class DependenciesEFData
     {
-        private static string DbConnectionString => new DatabaseConfiguration().GetDatabaseConnectionString();
+        private static string DbConnectionString => new DatabaseConfiguration()
+            .GetDatabaseConnectionString();
 
         public static IServiceCollection SetEFDataDependencies(
             this IServiceCollection services, string connectionString = null)
@@ -21,7 +22,9 @@ namespace BugTracker.DataAccessLayer
             services.AddScoped<IBugRepository<int>, EFBugRepository>();
             services.AddScoped<IUserRepository<int>, EFUserRepository>();
             services.AddScoped<IProjectRepository<int>, EFProjectRepository>();
-            services.AddScoped<IUserProjectRepository<int>, EFUserProjectRepository>();
+            services
+                .AddScoped<IUserProjectRepository<int>,
+                    EFUserProjectRepository>();
             services.AddScoped<IUnitOfWork<int>, EFUnitOfWork>();
 
             return services;

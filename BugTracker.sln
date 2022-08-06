@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BugTracker.DataAccessLayer"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BugTracker.Services", "BugTracker.Services\BugTracker.Services.csproj", "{4F5DEC2C-C689-4658-A116-CBFCD06D30AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracker.WebAPI", "BugTracker.WebAPI\BugTracker.WebAPI.csproj", "{3CA4A9CF-2C63-43B7-B28B-3EC529471BAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BugTracker.WebAPI", "BugTracker.WebAPI\BugTracker.WebAPI.csproj", "{3CA4A9CF-2C63-43B7-B28B-3EC529471BAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

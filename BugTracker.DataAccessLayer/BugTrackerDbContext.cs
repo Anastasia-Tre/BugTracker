@@ -5,7 +5,8 @@ namespace BugTracker.DataAccessLayer
 {
     public sealed class BugTrackerDbContext : DbContext
     {
-        public BugTrackerDbContext(DbContextOptions<BugTrackerDbContext> options) : base(options)
+        public BugTrackerDbContext(
+            DbContextOptions<BugTrackerDbContext> options) : base(options)
         {
             Database.EnsureDeleted();
             Database.EnsureCreated();

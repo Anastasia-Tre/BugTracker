@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BugTracker.DataAccessLayer.Repositories.Abstraction;
+﻿using BugTracker.DataAccessLayer.Repositories.Abstraction;
 
 namespace BugTracker.DataAccessLayer.UnitOfWork.Abstraction
 {

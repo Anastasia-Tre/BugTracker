@@ -3,7 +3,8 @@ using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.Repositories.Abstraction;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementation
+namespace BugTracker.DataAccessLayer.Repositories.Implementation.
+    EFImplementation
 {
     public class EFRepository<T> : IRepository<T, int> where T : BaseEntity<int>
     {

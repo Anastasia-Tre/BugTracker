@@ -17,7 +17,7 @@ namespace BugTracker.DataAccessLayer.Entities
 
         public TKey AssignToId { get; set; }
         public UserEntity<TKey> AssignTo { get; set; }
-        
+
         public TKey ProjectId { get; set; }
         public ProjectEntity<TKey> Project { get; set; }
 

@@ -1,12 +1,12 @@
+using BugTracker.DataAccessLayer;
+using BugTracker.Services;
+using BugTracker.Services.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using BugTracker.DataAccessLayer;
-using BugTracker.Services;
-using BugTracker.Services.Mapper;
 
 namespace BugTracker.WebAPI
 {
@@ -27,8 +27,11 @@ namespace BugTracker.WebAPI
             services.SetServices();
 
             services.AddControllers();
-            services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BugTracker.WebAPI", Version = "v1" });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                        { Title = "BugTracker.WebAPI", Version = "v1" });
             });
         }
 
@@ -39,7 +42,9 @@ namespace BugTracker.WebAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BugTracker.WebAPI v1"));
+                app.UseSwaggerUI(c =>
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                        "BugTracker.WebAPI v1"));
             }
 
             app.UseHttpsRedirection();
@@ -48,9 +53,7 @@ namespace BugTracker.WebAPI
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

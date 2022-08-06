@@ -3,11 +3,14 @@ using System.Linq;
 using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.Repositories.Abstraction;
 
-namespace BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementation
+namespace BugTracker.DataAccessLayer.Repositories.Implementation.
+    EFImplementation
 {
-    public class EFProjectRepository : EFRepository<ProjectEntity<int>>, IProjectRepository<int>
+    public class EFProjectRepository : EFRepository<ProjectEntity<int>>,
+        IProjectRepository<int>
     {
-        public EFProjectRepository(BugTrackerDbContext dbContext) : base(dbContext, dbContext.Projects)
+        public EFProjectRepository(BugTrackerDbContext dbContext) : base(
+            dbContext, dbContext.Projects)
         {
         }
 
