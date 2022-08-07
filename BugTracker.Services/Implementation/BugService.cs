@@ -44,8 +44,8 @@ namespace BugTracker.Services.Implementation
         public Bug<int> AssignBugToUser(int bugId, int userId)
         {
             var bug = _unitOfWork.BugRepository.GetById(bugId);
-            bug.AssignToId = userId;
-            _unitOfWork.BugRepository.Update(bug);
+            //bug.AssignToId = userId;
+            //_unitOfWork.BugRepository.Update(bug);
             return _mapper.Map<Bug<int>>(bug);
         }
     }

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BugTracker.DataModel;
 
 namespace BugTracker.Services.Abstraction
 {
     public interface IUserService<TKey>
     {
-        public User<TKey> GetUserById(TKey id);
+        public Task<User<TKey>> GetUserById(TKey id);
         public IEnumerable<User<TKey>> GetAllUsers();
 
         // public User<TKey> CreateUser();
