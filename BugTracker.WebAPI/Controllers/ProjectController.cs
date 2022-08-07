@@ -1,4 +1,6 @@
-﻿using BugTracker.Services.Abstraction;
+﻿using System;
+using System.Threading.Tasks;
+using BugTracker.Services.Abstraction;
 using BugTracker.WebAPI.Model.Command.Project;
 using BugTracker.WebAPI.Model.Response.Project;
 using Microsoft.AspNetCore.Http;
@@ -19,19 +21,35 @@ namespace BugTracker.WebAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(ProjectResponse), StatusCodes.Status200OK)]
-        public IActionResult GetById([FromQuery] GetProjectCommand command)
+        public async Task<IActionResult> GetById([FromQuery] GetProjectCommand command)
         {
-            var result = _projectService.GetProjectById(command.ProjectId);
-            return Ok(new ProjectResponse { Project = result });
+            try
+            {
+                var result = await _projectService.GetProjectById(command.ProjectId);
+                return Ok(new ProjectResponse { Project = result });
+            } 
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound(e.Message);
+            }
         }
 
         [HttpGet]
         [Route("search")]
         [ProducesResponseType(typeof(ProjectResponse), StatusCodes.Status200OK)]
-        public IActionResult SearchProjects([FromQuery] SearchProjectsCommand command)
+        public async Task<IActionResult> SearchProjects([FromQuery] SearchProjectsCommand command)
         {
-            var result = _projectService.SearchProjects(command.SearchString);
-            return Ok(new ProjectsResponse { Projects = result });
+            try
+            {
+                var result = await _projectService.SearchProjects(command.SearchString);
+                return Ok(new ProjectsResponse { Projects = result });
+            } 
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound(e.Message);
+            }
         }
     }
 }
