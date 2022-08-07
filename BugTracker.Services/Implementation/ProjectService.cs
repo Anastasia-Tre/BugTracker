@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 using BugTracker.DataModel;
@@ -17,16 +18,16 @@ namespace BugTracker.Services.Implementation
             _mapper = mapper;
         }
 
-        public Project<int> GetProjectById(int id)
+        public async Task<Project<int>> GetProjectById(int id)
         {
-            return _mapper.Map<Project<int>>(
-                _unitOfWork.BugRepository.GetById(id));
+            var project = await _unitOfWork.BugRepository.GetById(id);
+            return _mapper.Map<Project<int>>(project);
         }
 
-        public IEnumerable<Project<int>> SearchProjects(string searchString)
+        public async IAsyncEnumerable<IAsyncEnumerable<Project<int>>> SearchProjects(string searchString)
         {
-            return _mapper.Map<IEnumerable<Project<int>>>(
-                _unitOfWork.BugRepository.Search(searchString));
+            var projects = await _unitOfWork.BugRepository.Search(searchString);
+            yield return _mapper.Map<IAsyncEnumerable<Project<int>>>(projects);
         }
     }
 }
