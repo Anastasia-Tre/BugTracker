@@ -1,4 +1,6 @@
-﻿using BugTracker.Services.Abstraction;
+﻿using System;
+using System.Threading.Tasks;
+using BugTracker.Services.Abstraction;
 using BugTracker.WebAPI.Model.Command.Bug;
 using BugTracker.WebAPI.Model.Response.Bug;
 using Microsoft.AspNetCore.Http;
@@ -18,67 +20,107 @@ namespace BugTracker.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("test")]
-        public IActionResult Test()
-        {
-            return Ok("Test result");
-        }
-
-        [HttpGet]
         [ProducesResponseType(typeof(BugResponse), StatusCodes.Status200OK)]
-        public IActionResult GetById([FromQuery] GetBugCommand command)
+        public async Task<IActionResult> GetById([FromQuery] GetBugCommand command)
         {
-            var result = _bugService.GetBugById(command.BugId);
-            return Ok(new BugResponse { Bug = result });
+            try
+            {
+                var result = await _bugService.GetBugById(command.BugId);
+                return Ok(new BugResponse { Bug = result });
+            } 
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound(e.Message);
+            }
         }
 
         [HttpGet]
         [Route("all")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
-        public IActionResult GetAll([FromQuery] SearchBugsCommand command)
+        public async Task<IActionResult> GetAll([FromQuery] SearchBugsCommand command)
         {
-            var result = _bugService.SearchBugs(command.SearchString);
-            return Ok(new BugsResponse { Bugs = result });
+            try
+            {
+                var result = await _bugService.SearchBugs(command.SearchString);
+                return Ok(new BugsResponse { Bugs = result });
+            } 
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound(e.Message);
+            }
         }
 
         [HttpGet]
         [Route("search")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
-        public IActionResult SearchBugs([FromQuery] SearchBugsCommand command)
+        public async Task<IActionResult> SearchBugs([FromQuery] SearchBugsCommand command)
         {
-            var result = _bugService.SearchBugs(command.SearchString);
-            return Ok(new BugsResponse { Bugs = result });
+            try
+            {
+                var result = await _bugService.SearchBugs(command.SearchString);
+                return Ok(new BugsResponse { Bugs = result });
+            } 
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound(e.Message);
+            }
         }
 
         [HttpGet]
         [Route("forUser")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
-        public IActionResult GetBugsForUser(
+        public async Task<IActionResult> GetBugsForUser(
             [FromQuery] GetBugsForUserCommand command)
         {
-            var result = _bugService.GetBugsForUser(command.UserId);
-            return Ok(new BugsResponse { Bugs = result });
+            try
+            {
+                var result = await _bugService.GetBugsForUser(command.UserId);
+                return Ok(new BugsResponse { Bugs = result });
+            } 
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound(e.Message);
+            }
         }
 
         [HttpGet]
         [Route("forProject")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
-        public IActionResult GetBugsForProject(
+        public async Task<IActionResult> GetBugsForProject(
             [FromQuery] GetBugsForProjectCommand command)
         {
-            var result = _bugService.GetBugsForProject(command.ProjectId);
-            return Ok(new BugsResponse { Bugs = result });
+            try
+            {
+                var result = await _bugService.GetBugsForProject(command.ProjectId);
+                return Ok(new BugsResponse { Bugs = result });
+            } 
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound(e.Message);
+            }
         }
 
         [HttpPut]
         [Route("assign")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
-        public IActionResult AssignBugToUser(
+        public async Task<IActionResult> AssignBugToUser(
             [FromQuery] AssignBugToUserCommand command)
         {
-            var result =
-                _bugService.AssignBugToUser(command.BugId, command.UserId);
-            return Ok(new BugResponse { Bug = result });
+            try
+            {
+                var result = await _bugService.AssignBugToUser(command.BugId, command.UserId);
+                return Ok(new BugResponse { Bug = result });
+            } 
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound(e.Message);
+            }
         }
     }
 }
