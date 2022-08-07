@@ -7,7 +7,7 @@ namespace BugTracker.Services.Abstraction
     public interface IUserService<TKey>
     {
         public Task<User<TKey>> GetUserById(TKey id);
-        public IEnumerable<User<TKey>> GetAllUsers();
+        public IAsyncEnumerable<IAsyncEnumerable<User<int>>> GetAllUsers();
 
         // public User<TKey> CreateUser();
         // public User<TKey> UpdateUser(TKey id, User<TKey> user);

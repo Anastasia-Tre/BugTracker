@@ -24,10 +24,11 @@ namespace BugTracker.Services.Implementation
             return  _mapper.Map<User<int>>(user);
         }
 
-        public IEnumerable<User<int>> GetAllUsers()
+        // bug?????
+        public async IAsyncEnumerable<IAsyncEnumerable<User<int>>> GetAllUsers()
         {
-            return _mapper.Map<IEnumerable<User<int>>>(
-                _unitOfWork.BugRepository.GetAll());
+            var users = await _unitOfWork.BugRepository.GetAll();
+            yield return _mapper.Map<IAsyncEnumerable<User<int>>>(users);
         }
     }
 }
