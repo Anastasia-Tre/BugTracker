@@ -44,7 +44,8 @@ namespace BugTracker.WebAPI.Controllers
             {
                 var result = await _userService.GetAllUsers();
                 return Ok(new UsersResponse { Users = result });
-            } catch (Exception e)
+            } 
+            catch (Exception e)
             {
                 Console.WriteLine(e);
                 return NotFound(e.Message);
