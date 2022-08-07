@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracker.DataAccessLayer.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EDB48B13-E1C7-492F-8C10-D2BCBBF0FF7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracker.API.Tests", "Tests\BugTracker.API.Tests\BugTracker.API.Tests.csproj", "{FD28F451-E5D6-486D-82A9-5EC4F290452B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,12 +43,17 @@ Global
 		{AF731516-2F95-4F3B-9D3B-B1BCC07ECA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF731516-2F95-4F3B-9D3B-B1BCC07ECA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF731516-2F95-4F3B-9D3B-B1BCC07ECA07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD28F451-E5D6-486D-82A9-5EC4F290452B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD28F451-E5D6-486D-82A9-5EC4F290452B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD28F451-E5D6-486D-82A9-5EC4F290452B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD28F451-E5D6-486D-82A9-5EC4F290452B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AF731516-2F95-4F3B-9D3B-B1BCC07ECA07} = {EDB48B13-E1C7-492F-8C10-D2BCBBF0FF7F}
+		{FD28F451-E5D6-486D-82A9-5EC4F290452B} = {EDB48B13-E1C7-492F-8C10-D2BCBBF0FF7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65530832-8AAF-43D1-B9ED-57C9BE9BC6F1}
