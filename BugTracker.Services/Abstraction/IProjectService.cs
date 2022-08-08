@@ -7,7 +7,9 @@ namespace BugTracker.Services.Abstraction
     public interface IProjectService<TKey>
     {
         public Task<Project<int>> GetProjectById(TKey id);
-        public Task<IEnumerable<Project<int>>> SearchProjects(string searchString);
+
+        public Task<IEnumerable<Project<int>>> SearchProjects(
+            string searchString);
 
         // public Project<TKey> CreateProject();
         // public Project<TKey> DeleteProject(TKey id);

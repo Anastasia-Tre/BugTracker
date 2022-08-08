@@ -21,13 +21,15 @@ namespace BugTracker.WebAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(ProjectResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetById([FromQuery] GetProjectCommand command)
+        public async Task<IActionResult> GetById(
+            [FromQuery] GetProjectCommand command)
         {
             try
             {
-                var result = await _projectService.GetProjectById(command.ProjectId);
+                var result =
+                    await _projectService.GetProjectById(command.ProjectId);
                 return Ok(new ProjectResponse { Project = result });
-            } 
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);
@@ -38,13 +40,15 @@ namespace BugTracker.WebAPI.Controllers
         [HttpGet]
         [Route("search")]
         [ProducesResponseType(typeof(ProjectResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> SearchProjects([FromQuery] SearchProjectsCommand command)
+        public async Task<IActionResult> SearchProjects(
+            [FromQuery] SearchProjectsCommand command)
         {
             try
             {
-                var result = await _projectService.SearchProjects(command.SearchString);
+                var result =
+                    await _projectService.SearchProjects(command.SearchString);
                 return Ok(new ProjectsResponse { Projects = result });
-            } 
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);

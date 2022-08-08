@@ -30,9 +30,11 @@ namespace BugTracker.Services.Implementation
             return _mapper.Map<IEnumerable<Bug<int>>>(users);
         }
 
-        public async Task<IEnumerable<Bug<int>>> GetBugsForProject(int projectId)
+        public async Task<IEnumerable<Bug<int>>> GetBugsForProject(
+            int projectId)
         {
-            var users = await _unitOfWork.BugRepository.GetBugsForProject(projectId);
+            var users =
+                await _unitOfWork.BugRepository.GetBugsForProject(projectId);
             return _mapper.Map<IEnumerable<Bug<int>>>(users);
         }
 

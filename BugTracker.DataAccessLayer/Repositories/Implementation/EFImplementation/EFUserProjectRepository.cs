@@ -15,14 +15,16 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
         {
         }
 
-        public async Task<IEnumerable<UserEntity<int>>> GetUsersForProject(int projectId)
+        public async Task<IEnumerable<UserEntity<int>>> GetUsersForProject(
+            int projectId)
         {
             return (await GetAll())
                 .Where(userproject => userproject.ProjectId.Equals(projectId))
                 .Select(userproject => userproject.UserEntity);
         }
 
-        public async Task<IEnumerable<ProjectEntity<int>>> GetProjectsForUser(int userId)
+        public async Task<IEnumerable<ProjectEntity<int>>> GetProjectsForUser(
+            int userId)
         {
             return (await GetAll())
                 .Where(userproject => userproject.UserId.Equals(userId))

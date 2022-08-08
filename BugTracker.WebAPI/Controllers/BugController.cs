@@ -21,13 +21,14 @@ namespace BugTracker.WebAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(BugResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetById([FromQuery] GetBugCommand command)
+        public async Task<IActionResult> GetById(
+            [FromQuery] GetBugCommand command)
         {
             try
             {
                 var result = await _bugService.GetBugById(command.BugId);
                 return Ok(new BugResponse { Bug = result });
-            } 
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);
@@ -38,13 +39,14 @@ namespace BugTracker.WebAPI.Controllers
         [HttpGet]
         [Route("all")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAll([FromQuery] SearchBugsCommand command)
+        public async Task<IActionResult> GetAll(
+            [FromQuery] SearchBugsCommand command)
         {
             try
             {
                 var result = await _bugService.SearchBugs(command.SearchString);
                 return Ok(new BugsResponse { Bugs = result });
-            } 
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);
@@ -55,13 +57,14 @@ namespace BugTracker.WebAPI.Controllers
         [HttpGet]
         [Route("search")]
         [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> SearchBugs([FromQuery] SearchBugsCommand command)
+        public async Task<IActionResult> SearchBugs(
+            [FromQuery] SearchBugsCommand command)
         {
             try
             {
                 var result = await _bugService.SearchBugs(command.SearchString);
                 return Ok(new BugsResponse { Bugs = result });
-            } 
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);
@@ -79,7 +82,7 @@ namespace BugTracker.WebAPI.Controllers
             {
                 var result = await _bugService.GetBugsForUser(command.UserId);
                 return Ok(new BugsResponse { Bugs = result });
-            } 
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);
@@ -95,9 +98,10 @@ namespace BugTracker.WebAPI.Controllers
         {
             try
             {
-                var result = await _bugService.GetBugsForProject(command.ProjectId);
+                var result =
+                    await _bugService.GetBugsForProject(command.ProjectId);
                 return Ok(new BugsResponse { Bugs = result });
-            } 
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);
@@ -113,9 +117,11 @@ namespace BugTracker.WebAPI.Controllers
         {
             try
             {
-                var result = await _bugService.AssignBugToUser(command.BugId, command.UserId);
+                var result =
+                    await _bugService.AssignBugToUser(command.BugId,
+                        command.UserId);
                 return Ok(new BugResponse { Bug = result });
-            } 
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);

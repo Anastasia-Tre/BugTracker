@@ -21,7 +21,8 @@ namespace BugTracker.WebAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetById([FromQuery] GetUserCommand command)
+        public async Task<IActionResult> GetById(
+            [FromQuery] GetUserCommand command)
         {
             try
             {
@@ -38,13 +39,14 @@ namespace BugTracker.WebAPI.Controllers
         [HttpGet]
         [Route("all")]
         [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAll([FromQuery] GetAllUsersCommand command)
+        public async Task<IActionResult> GetAll(
+            [FromQuery] GetAllUsersCommand command)
         {
             try
             {
                 var result = await _userService.GetAllUsers();
                 return Ok(new UsersResponse { Users = result });
-            } 
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);

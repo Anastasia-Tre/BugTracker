@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BugTracker.DataModel;
@@ -61,9 +59,9 @@ namespace BugTracker.API.Tests
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
             var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedUser = JsonConvert.DeserializeObject<User<int>>(returnedJson);
+            var returnedUser =
+                JsonConvert.DeserializeObject<User<int>>(returnedJson);
             Assert.Equal(user, returnedUser);
         }
-
     }
 }

@@ -1,5 +1,4 @@
-﻿using BugTracker.DataAccessLayer.Configuration;
-using BugTracker.DataAccessLayer.Repositories.Abstraction;
+﻿using BugTracker.DataAccessLayer.Repositories.Abstraction;
 using BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementation;
 using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 using BugTracker.DataAccessLayer.UnitOfWork.Implementation;

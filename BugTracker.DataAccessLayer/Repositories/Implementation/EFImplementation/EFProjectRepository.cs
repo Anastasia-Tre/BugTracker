@@ -15,7 +15,8 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
         {
         }
 
-        public async Task<IEnumerable<ProjectEntity<int>>> Search(string searchString)
+        public async Task<IEnumerable<ProjectEntity<int>>> Search(
+            string searchString)
         {
             var result = await GetAll();
             var isSearchStringEmpty = string.IsNullOrEmpty(searchString);
