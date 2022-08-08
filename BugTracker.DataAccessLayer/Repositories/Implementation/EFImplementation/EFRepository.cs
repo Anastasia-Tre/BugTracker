@@ -23,11 +23,9 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
             await _entities.AddAsync(entity);
         }
 
-        public async void Update(T entity)
+        public void Update(T entity)
         {
-            var entityToRemove = await GetById(entity.Id);
-            Delete(entityToRemove);
-            await Create(entity);
+            _entities.Update(entity);
         }
 
         public void Delete(T entity)
