@@ -3,22 +3,16 @@ using BugTracker.DataAccessLayer.Repositories.Abstraction;
 using BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementation;
 using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 using BugTracker.DataAccessLayer.UnitOfWork.Implementation;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BugTracker.DataAccessLayer
 {
     public static class DependenciesEFData
     {
-        private static string DbConnectionString => new DatabaseConfiguration()
-            .GetDatabaseConnectionString();
-
         public static IServiceCollection SetEFDataDependencies(
-            this IServiceCollection services, string connectionString = null)
+            this IServiceCollection services)
         {
-            services.AddDbContext<BugTrackerDbContext>(options =>
-                options.UseSqlServer(connectionString ?? DbConnectionString));
-            //services.AddScoped<BugTrackerDbContext>();
+            services.AddDbContext<BugTrackerDbContext>();
             services.AddScoped<IBugRepository<int>, EFBugRepository>();
             services.AddScoped<IUserRepository<int>, EFUserRepository>();
             services.AddScoped<IProjectRepository<int>, EFProjectRepository>();
