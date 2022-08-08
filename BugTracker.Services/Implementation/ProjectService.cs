@@ -24,10 +24,10 @@ namespace BugTracker.Services.Implementation
             return _mapper.Map<Project<int>>(project);
         }
 
-        public async IAsyncEnumerable<IAsyncEnumerable<Project<int>>> SearchProjects(string searchString)
+        public async Task<IEnumerable<Project<int>>> SearchProjects(string searchString)
         {
             var projects = await _unitOfWork.BugRepository.Search(searchString);
-            yield return _mapper.Map<IAsyncEnumerable<Project<int>>>(projects);
+            return _mapper.Map<IEnumerable<Project<int>>>(projects);
         }
     }
 }
