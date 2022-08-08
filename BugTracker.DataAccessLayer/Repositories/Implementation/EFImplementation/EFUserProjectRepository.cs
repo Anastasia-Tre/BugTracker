@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.Repositories.Abstraction;
 
@@ -14,16 +15,18 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
         {
         }
 
-        public IEnumerable<UserEntity<int>> GetUsersForProject(int projectId)
+        public async Task<IEnumerable<UserEntity<int>>> GetUsersForProject(
+            int projectId)
         {
-            return GetAll()
+            return (await GetAll())
                 .Where(userproject => userproject.ProjectId.Equals(projectId))
                 .Select(userproject => userproject.UserEntity);
         }
 
-        public IEnumerable<ProjectEntity<int>> GetProjectsForUser(int userId)
+        public async Task<IEnumerable<ProjectEntity<int>>> GetProjectsForUser(
+            int userId)
         {
-            return GetAll()
+            return (await GetAll())
                 .Where(userproject => userproject.UserId.Equals(userId))
                 .Select(userproject => userproject.ProjectEntity);
         }

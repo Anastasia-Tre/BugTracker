@@ -18,14 +18,14 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
             _entities = dbSet;
         }
 
-        public void Create(T entity)
+        public async Task Create(T entity)
         {
-            _entities.AddAsync(entity);
+            await _entities.AddAsync(entity);
         }
 
         public void Update(T entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            _entities.Update(entity);
         }
 
         public void Delete(T entity)
@@ -38,9 +38,9 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
             return await _entities.FindAsync(id);
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
-            return _entities.AsNoTracking();
+            return await _entities.ToListAsync();
         }
     }
 }

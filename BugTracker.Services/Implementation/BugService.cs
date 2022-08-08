@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 using BugTracker.DataModel;
@@ -17,35 +18,38 @@ namespace BugTracker.Services.Implementation
             _mapper = mapper;
         }
 
-        public Bug<int> GetBugById(int id)
+        public async Task<Bug<int>> GetBugById(int id)
         {
-            return _mapper.Map<Bug<int>>(
-                _unitOfWork.BugRepository.GetById(id));
+            var bug = await _unitOfWork.BugRepository.GetById(id);
+            return _mapper.Map<Bug<int>>(bug);
         }
 
-        public IEnumerable<Bug<int>> SearchBugs(string searchString)
+        public async Task<IEnumerable<Bug<int>>> SearchBugs(string searchString)
         {
-            return _mapper.Map<IEnumerable<Bug<int>>>(
-                _unitOfWork.BugRepository.Search(searchString));
+            var users = await _unitOfWork.BugRepository.Search(searchString);
+            return _mapper.Map<IEnumerable<Bug<int>>>(users);
         }
 
-        public IEnumerable<Bug<int>> GetBugsForProject(int projectId)
+        public async Task<IEnumerable<Bug<int>>> GetBugsForProject(
+            int projectId)
         {
-            return _mapper.Map<IEnumerable<Bug<int>>>(
-                _unitOfWork.BugRepository.GetBugsForProject(projectId));
+            var users =
+                await _unitOfWork.BugRepository.GetBugsForProject(projectId);
+            return _mapper.Map<IEnumerable<Bug<int>>>(users);
         }
 
-        public IEnumerable<Bug<int>> GetBugsForUser(int userId)
+        public async Task<IEnumerable<Bug<int>>> GetBugsForUser(int userId)
         {
-            return _mapper.Map<IEnumerable<Bug<int>>>(
-                _unitOfWork.BugRepository.GetBugsForUser(userId));
+            var users = await _unitOfWork.BugRepository.GetBugsForUser(userId);
+            return _mapper.Map<IEnumerable<Bug<int>>>(users);
         }
 
-        public Bug<int> AssignBugToUser(int bugId, int userId)
+        public async Task<Bug<int>> AssignBugToUser(int bugId, int userId)
         {
-            var bug = _unitOfWork.BugRepository.GetById(bugId);
-            //bug.AssignToId = userId;
-            //_unitOfWork.BugRepository.Update(bug);
+            var bug = await _unitOfWork.BugRepository.GetById(bugId);
+            bug.AssignToId = userId;
+            // await ????
+            _unitOfWork.BugRepository.Update(bug);
             return _mapper.Map<Bug<int>>(bug);
         }
     }
