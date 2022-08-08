@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BugTracker.DataAccessLayer.Entities;
 
 namespace BugTracker.DataAccessLayer.Repositories.Abstraction
@@ -6,6 +7,6 @@ namespace BugTracker.DataAccessLayer.Repositories.Abstraction
     public interface
         IProjectRepository<TKey> : IRepository<ProjectEntity<TKey>, TKey>
     {
-        public IEnumerable<ProjectEntity<TKey>> Search(string searchString);
+        public Task<IEnumerable<ProjectEntity<int>>> Search(string searchString);
     }
 }
