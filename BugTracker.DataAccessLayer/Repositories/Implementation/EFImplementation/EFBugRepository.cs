@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.Repositories.Abstraction;
 
@@ -14,9 +15,9 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
         {
         }
 
-        public IEnumerable<BugEntity<int>> Search(string searchString)
+        public async Task<IEnumerable<BugEntity<int>>> Search(string searchString)
         {
-            var result = GetAll();
+            var result = await GetAll();
             var isSearchStringEmpty = string.IsNullOrEmpty(searchString);
 
             if (!isSearchStringEmpty)
@@ -30,16 +31,16 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
             return result.OrderBy(bug => bug.Date);
         }
 
-        public IEnumerable<BugEntity<int>> GetBugsForProject(int projectId)
+        public async Task<IEnumerable<BugEntity<int>>> GetBugsForProject(int projectId)
         {
-            return GetAll()
+            return (await GetAll())
                 .Where(bug => bug.ProjectId.Equals(projectId))
                 .OrderBy(bug => bug.Date);
         }
 
-        public IEnumerable<BugEntity<int>> GetBugsForUser(int userId)
+        public async Task<IEnumerable<BugEntity<int>>> GetBugsForUser(int userId)
         {
-            return GetAll()
+            return (await GetAll())
                 .Where(bug => bug.AssignToId.Equals(userId))
                 .OrderBy(bug => bug.Date);
         }

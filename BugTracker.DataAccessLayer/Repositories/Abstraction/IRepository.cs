@@ -7,9 +7,9 @@ namespace BugTracker.DataAccessLayer.Repositories.Abstraction
     public interface IRepository<T, in TKey> where T : BaseEntity<TKey>
     {
         Task<T> GetById(TKey id);
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAll();
 
-        void Create(T item);
+        Task Create(T item);
         void Update(T item);
         void Delete(T item);
     }
