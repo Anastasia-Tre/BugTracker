@@ -15,7 +15,7 @@ namespace BugTracker.DataAccessLayer
         public DbSet<ProjectEntity<int>> Projects { get; set; }
         public DbSet<UserProjectEntity<int>> UserProjects { get; set; }
 
-        public BugTrackerDbContext(string connectionString = null) : base()
+        public BugTrackerDbContext(DbContextOptions<BugTrackerDbContext> options, string connectionString = null) : base(options)
         {
             _connectionString = connectionString ?? DbDefaultConnectionString;
             Database.EnsureDeleted();
@@ -26,7 +26,6 @@ namespace BugTracker.DataAccessLayer
         {
             optionsBuilder
                 .UseSqlServer(_connectionString);
-            //.UseExceptionProcessor();
         }
     }
 }
