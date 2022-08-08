@@ -24,22 +24,22 @@ namespace BugTracker.Services.Implementation
             return _mapper.Map<Bug<int>>(bug);
         }
 
-        public async IAsyncEnumerable<IAsyncEnumerable<Bug<int>>> SearchBugs(string searchString)
+        public async Task<IEnumerable<Bug<int>>> SearchBugs(string searchString)
         {
             var users = await _unitOfWork.BugRepository.Search(searchString);
-            yield return _mapper.Map<IAsyncEnumerable<Bug<int>>>(users);
+            return _mapper.Map<IEnumerable<Bug<int>>>(users);
         }
 
-        public async IAsyncEnumerable<IAsyncEnumerable<Bug<int>>> GetBugsForProject(int projectId)
+        public async Task<IEnumerable<Bug<int>>> GetBugsForProject(int projectId)
         {
             var users = await _unitOfWork.BugRepository.GetBugsForProject(projectId);
-            yield return _mapper.Map<IAsyncEnumerable<Bug<int>>>(users);
+            return _mapper.Map<IEnumerable<Bug<int>>>(users);
         }
 
-        public async IAsyncEnumerable<IAsyncEnumerable<Bug<int>>> GetBugsForUser(int userId)
+        public async Task<IEnumerable<Bug<int>>> GetBugsForUser(int userId)
         {
             var users = await _unitOfWork.BugRepository.GetBugsForUser(userId);
-            yield return _mapper.Map<IAsyncEnumerable<Bug<int>>>(users);
+            return _mapper.Map<IEnumerable<Bug<int>>>(users);
         }
 
         public async Task<Bug<int>> AssignBugToUser(int bugId, int userId)
