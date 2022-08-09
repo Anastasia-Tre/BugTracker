@@ -43,7 +43,7 @@ namespace BugTracker.API.Tests
         }
 
         [Fact]
-        public async Task GetUser_HappyPath()
+        public async Task GetUser_SuccessfulResult()
         {
             var userId = 1;
             var user = new User<int>
@@ -81,7 +81,7 @@ namespace BugTracker.API.Tests
         }
 
         [Fact]
-        public async Task GetAllUsers_HappyPath()
+        public async Task GetAllUsers_SuccessfulResult()
         {
             User<int>[] users =
             {
@@ -118,7 +118,7 @@ namespace BugTracker.API.Tests
         }
 
         [Fact]
-        public async Task GetAllUsers_ReturnEmpty()
+        public async Task GetAllUsers_EmptyResult()
         {
             var users = new User<int>[] { };
             _mock.Setup(userService => userService.GetAllUsers())
@@ -137,7 +137,7 @@ namespace BugTracker.API.Tests
         }
 
         [Fact]
-        public async Task GetUser_Exception_404()
+        public async Task GetAllUsers_Exception_404()
         {
             _mock.Setup(userService => userService.GetAllUsers())
                 .ThrowsAsync(new Exception());
