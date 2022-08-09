@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
 using BugTracker.WebAPI;
+using BugTracker.WebAPI.Model.Response.User;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -59,9 +60,12 @@ namespace BugTracker.API.Tests
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
             var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedUser =
-                JsonConvert.DeserializeObject<User<int>>(returnedJson);
-            Assert.Equal(user, returnedUser);
+            var returnedResponse =
+                JsonConvert.DeserializeObject<UserResponse>(returnedJson);
+            //Assert.Equal(user, returnedResponse.User);
+            Assert.Equal(
+                JsonConvert.SerializeObject(user),
+                JsonConvert.SerializeObject(returnedResponse.User));
         }
     }
 }
