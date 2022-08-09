@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BugTracker.DataModel;
@@ -49,7 +50,7 @@ namespace BugTracker.API.Tests
             {
                 Id = userId,
                 Name = "name",
-                Email = "email",
+                Email = "email@gmail.com",
                 Password = "password"
             };
             _mock.Setup(userService => userService.GetUserById(userId))
@@ -62,10 +63,89 @@ namespace BugTracker.API.Tests
             var returnedJson = await response.Content.ReadAsStringAsync();
             var returnedResponse =
                 JsonConvert.DeserializeObject<UserResponse>(returnedJson);
-            //Assert.Equal(user, returnedResponse.User);
             Assert.Equal(
                 JsonConvert.SerializeObject(user),
                 JsonConvert.SerializeObject(returnedResponse.User));
         }
+
+        [Fact]
+        public async Task GetUser_UserNotFoundException_404()
+        {
+            var userId = 1;
+            _mock.Setup(userService => userService.GetUserById(userId))
+                .ThrowsAsync(new Exception("User not found"));
+
+            var response = await _httpClient.GetAsync($"User?UserId={userId}");
+            
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task GetAllUsers_HappyPath()
+        {
+            User<int>[] users =
+            {
+                new User<int>
+                {
+                    Id = 1,
+                    Name = "name1",
+                    Email = "email1@gmail.com",
+                    Password = "password1"
+                },
+                new User<int>
+                {
+                    Id = 2,
+                    Name = "name2",
+                    Email = "email2@gmail.com",
+                    Password = "password2"
+                }
+            };
+        
+
+        _mock.Setup(userService => userService.GetAllUsers())
+                .ReturnsAsync(users);
+
+            var response = await _httpClient.GetAsync($"User/all");
+            response.EnsureSuccessStatusCode();
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+            var returnedJson = await response.Content.ReadAsStringAsync();
+            var returnedResponse =
+                JsonConvert.DeserializeObject<UsersResponse>(returnedJson);
+            Assert.Equal(
+                JsonConvert.SerializeObject(users),
+                JsonConvert.SerializeObject(returnedResponse.Users));
+        }
+
+        [Fact]
+        public async Task GetAllUsers_ReturnEmpty()
+        {
+            var users = new User<int>[] { };
+            _mock.Setup(userService => userService.GetAllUsers())
+                .ReturnsAsync(users);
+
+            var response = await _httpClient.GetAsync($"User/all");
+            response.EnsureSuccessStatusCode();
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+            var returnedJson = await response.Content.ReadAsStringAsync();
+            var returnedResponse =
+                JsonConvert.DeserializeObject<UsersResponse>(returnedJson);
+            Assert.Equal(
+                JsonConvert.SerializeObject(users),
+                JsonConvert.SerializeObject(returnedResponse.Users));
+        }
+
+        [Fact]
+        public async Task GetUser_Exception_404()
+        {
+            _mock.Setup(userService => userService.GetAllUsers())
+                .ThrowsAsync(new Exception());
+
+            var response = await _httpClient.GetAsync($"User/all");
+
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+
     }
 }
