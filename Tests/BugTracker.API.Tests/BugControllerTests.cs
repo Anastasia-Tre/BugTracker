@@ -119,7 +119,6 @@ namespace BugTracker.API.Tests
                 JsonConvert.SerializeObject(returnedResponse.Bugs));
         }
 
-
         [Fact]
         public async Task GetAllBugs_EmptyResult()
         {

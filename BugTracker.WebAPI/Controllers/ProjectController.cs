@@ -39,7 +39,7 @@ namespace BugTracker.WebAPI.Controllers
 
         [HttpGet]
         [Route("all")]
-        [ProducesResponseType(typeof(ProjectResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProjectsResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll(
             [FromQuery] SearchProjectsCommand command)
         {
@@ -48,7 +48,8 @@ namespace BugTracker.WebAPI.Controllers
                 var result =
                     await _projectService.SearchProjects(command.SearchString);
                 return Ok(new ProjectsResponse { Projects = result });
-            } catch (Exception e)
+            } 
+            catch (Exception e)
             {
                 Console.WriteLine(e);
                 return NotFound(e.Message);
@@ -57,7 +58,7 @@ namespace BugTracker.WebAPI.Controllers
 
         [HttpGet]
         [Route("search")]
-        [ProducesResponseType(typeof(ProjectResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProjectsResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> SearchProjects(
             [FromQuery] SearchProjectsCommand command)
         {

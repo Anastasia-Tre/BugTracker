@@ -82,7 +82,7 @@ namespace BugTracker.API.Tests
 
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
-        /*
+        
         [Fact]
         public async Task GetAllProjects_SuccessfulResult()
         {
@@ -102,7 +102,7 @@ namespace BugTracker.API.Tests
                 }
             };
 
-            _mock.Setup(projectService => projectService.SearchProjects(null))
+            _mock.Setup(projectService => projectService.SearchProjects(""))
                     .ReturnsAsync(projects);
 
             var response = await _httpClient.GetAsync($"Project/all");
@@ -116,13 +116,12 @@ namespace BugTracker.API.Tests
                 JsonConvert.SerializeObject(projects),
                 JsonConvert.SerializeObject(returnedResponse.Projects));
         }
-        
 
         [Fact]
         public async Task GetAllProjects_EmptyResult()
         {
             var projects = new Project<int>[] { };
-            _mock.Setup(projectService => projectService.SearchProjects(null))
+            _mock.Setup(projectService => projectService.SearchProjects(""))
                 .ReturnsAsync(projects);
 
             var response = await _httpClient.GetAsync($"Project/all");
@@ -136,12 +135,11 @@ namespace BugTracker.API.Tests
                 JsonConvert.SerializeObject(projects),
                 JsonConvert.SerializeObject(returnedResponse.Projects));
         }
-        */
 
         [Fact]
         public async Task GetAllProjects_Exception_404()
         {
-            _mock.Setup(projectService => projectService.SearchProjects(null))
+            _mock.Setup(projectService => projectService.SearchProjects(""))
                 .ThrowsAsync(new Exception());
 
             var response = await _httpClient.GetAsync("Project/all");

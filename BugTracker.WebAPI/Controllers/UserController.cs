@@ -38,7 +38,7 @@ namespace BugTracker.WebAPI.Controllers
 
         [HttpGet]
         [Route("all")]
-        [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UsersResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll(
             [FromQuery] GetAllUsersCommand command)
         {
