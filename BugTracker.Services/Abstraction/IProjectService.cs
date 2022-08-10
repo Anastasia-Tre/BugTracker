@@ -4,7 +4,7 @@ using BugTracker.DataModel;
 
 namespace BugTracker.Services.Abstraction
 {
-    public interface IProjectService<TKey>
+    public interface IProjectService<in TKey>
     {
         public Task<Project<int>> GetProjectById(TKey id);
 
