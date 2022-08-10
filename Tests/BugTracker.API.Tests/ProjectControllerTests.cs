@@ -24,10 +24,12 @@ namespace BugTracker.API.Tests
         public async Task InitializeAsync()
         {
             var hostBuilder = Program.CreateHostBuilder(new string[0])
-                .ConfigureWebHost(webHostBuilder => {
+                .ConfigureWebHost(webHostBuilder =>
+                {
                     webHostBuilder.UseTestServer();
                 })
-                .ConfigureServices((_, services) => {
+                .ConfigureServices((_, services) =>
+                {
                     services.AddSingleton(_mock.Object);
                 });
 
@@ -50,10 +52,12 @@ namespace BugTracker.API.Tests
                 Name = "name",
                 Description = "description"
             };
-            _mock.Setup(projectService => projectService.GetProjectById(projectId))
+            _mock.Setup(projectService =>
+                    projectService.GetProjectById(projectId))
                 .ReturnsAsync(project);
 
-            var response = await _httpClient.GetAsync($"Project?ProjectId={projectId}");
+            var response =
+                await _httpClient.GetAsync($"Project?ProjectId={projectId}");
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -69,10 +73,12 @@ namespace BugTracker.API.Tests
         public async Task GetProject_ProjectNotFoundException_404()
         {
             var projectId = 1;
-            _mock.Setup(projectService => projectService.GetProjectById(projectId))
+            _mock.Setup(projectService =>
+                    projectService.GetProjectById(projectId))
                 .ThrowsAsync(new Exception("Project not found"));
 
-            var response = await _httpClient.GetAsync($"Project?ProjectId={projectId}");
+            var response =
+                await _httpClient.GetAsync($"Project?ProjectId={projectId}");
 
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
@@ -138,7 +144,7 @@ namespace BugTracker.API.Tests
             _mock.Setup(projectService => projectService.SearchProjects(null))
                 .ThrowsAsync(new Exception());
 
-            var response = await _httpClient.GetAsync($"Project/all");
+            var response = await _httpClient.GetAsync("Project/all");
 
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
@@ -148,13 +154,13 @@ namespace BugTracker.API.Tests
         {
             Project<int>[] projects =
             {
-                new Project<int>
+                new()
                 {
                     Id = 1,
                     Name = "name1",
                     Description = "description1"
                 },
-                new Project<int>
+                new()
                 {
                     Id = 2,
                     Name = "name2",
@@ -162,10 +168,13 @@ namespace BugTracker.API.Tests
                 }
             };
             var searchStr = "name";
-            _mock.Setup(projectService => projectService.SearchProjects(searchStr))
+            _mock.Setup(projectService =>
+                    projectService.SearchProjects(searchStr))
                 .ReturnsAsync(projects);
 
-            var response = await _httpClient.GetAsync($"Project/search?SearchString={searchStr}");
+            var response =
+                await _httpClient.GetAsync(
+                    $"Project/search?SearchString={searchStr}");
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -182,10 +191,13 @@ namespace BugTracker.API.Tests
         {
             var projects = new Project<int>[] { };
             var searchStr = "name";
-            _mock.Setup(projectService => projectService.SearchProjects(searchStr))
+            _mock.Setup(projectService =>
+                    projectService.SearchProjects(searchStr))
                 .ReturnsAsync(projects);
 
-            var response = await _httpClient.GetAsync($"Project/search?SearchString={searchStr}");
+            var response =
+                await _httpClient.GetAsync(
+                    $"Project/search?SearchString={searchStr}");
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -196,6 +208,5 @@ namespace BugTracker.API.Tests
                 JsonConvert.SerializeObject(projects),
                 JsonConvert.SerializeObject(returnedResponse.Projects));
         }
-
     }
 }

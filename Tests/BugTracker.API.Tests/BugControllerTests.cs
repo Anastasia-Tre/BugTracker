@@ -24,10 +24,12 @@ namespace BugTracker.API.Tests
         public async Task InitializeAsync()
         {
             var hostBuilder = Program.CreateHostBuilder(new string[0])
-                .ConfigureWebHost(webHostBuilder => {
+                .ConfigureWebHost(webHostBuilder =>
+                {
                     webHostBuilder.UseTestServer();
                 })
-                .ConfigureServices((_, services) => {
+                .ConfigureServices((_, services) =>
+                {
                     services.AddSingleton(_mock.Object);
                 });
 
@@ -44,7 +46,7 @@ namespace BugTracker.API.Tests
         {
             Bug<int>[] bugs =
             {
-                new Bug<int>
+                new()
                 {
                     Id = 1,
                     Name = "name1",
@@ -53,7 +55,7 @@ namespace BugTracker.API.Tests
                     AuthorId = 1,
                     ProjectId = 1
                 },
-                new Bug<int>
+                new()
                 {
                     Id = 2,
                     Name = "name2",
@@ -96,16 +98,16 @@ namespace BugTracker.API.Tests
 
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
-        
+
         [Fact]
         public async Task GetAllBugs_SuccessfulResult()
         {
             var bugs = GetTestData();
 
             _mock.Setup(bugService => bugService.SearchBugs(""))
-                    .ReturnsAsync(bugs);
+                .ReturnsAsync(bugs);
 
-            var response = await _httpClient.GetAsync($"Bug/all");
+            var response = await _httpClient.GetAsync("Bug/all");
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -116,7 +118,7 @@ namespace BugTracker.API.Tests
                 JsonConvert.SerializeObject(bugs),
                 JsonConvert.SerializeObject(returnedResponse.Bugs));
         }
-        
+
 
         [Fact]
         public async Task GetAllBugs_EmptyResult()
@@ -125,7 +127,7 @@ namespace BugTracker.API.Tests
             _mock.Setup(bugService => bugService.SearchBugs(null))
                 .ReturnsAsync(bugs);
 
-            var response = await _httpClient.GetAsync($"Bug/all");
+            var response = await _httpClient.GetAsync("Bug/all");
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -143,7 +145,7 @@ namespace BugTracker.API.Tests
             _mock.Setup(bugService => bugService.SearchBugs(""))
                 .ThrowsAsync(new Exception());
 
-            var response = await _httpClient.GetAsync($"Bug/all");
+            var response = await _httpClient.GetAsync("Bug/all");
 
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
@@ -156,7 +158,9 @@ namespace BugTracker.API.Tests
             _mock.Setup(bugService => bugService.SearchBugs(searchStr))
                 .ReturnsAsync(bugs);
 
-            var response = await _httpClient.GetAsync($"Bug/search?SearchString={searchStr}");
+            var response =
+                await _httpClient.GetAsync(
+                    $"Bug/search?SearchString={searchStr}");
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -176,7 +180,9 @@ namespace BugTracker.API.Tests
             _mock.Setup(bugService => bugService.SearchBugs(searchStr))
                 .ReturnsAsync(bugs);
 
-            var response = await _httpClient.GetAsync($"Bug/search?SearchString={searchStr}");
+            var response =
+                await _httpClient.GetAsync(
+                    $"Bug/search?SearchString={searchStr}");
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -187,7 +193,5 @@ namespace BugTracker.API.Tests
                 JsonConvert.SerializeObject(bugs),
                 JsonConvert.SerializeObject(returnedResponse.Bugs));
         }
-
-         
     }
 }

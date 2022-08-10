@@ -76,7 +76,7 @@ namespace BugTracker.API.Tests
                 .ThrowsAsync(new Exception("User not found"));
 
             var response = await _httpClient.GetAsync($"User?UserId={userId}");
-            
+
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
 
@@ -85,14 +85,14 @@ namespace BugTracker.API.Tests
         {
             User<int>[] users =
             {
-                new User<int>
+                new()
                 {
                     Id = 1,
                     Name = "name1",
                     Email = "email1@gmail.com",
                     Password = "password1"
                 },
-                new User<int>
+                new()
                 {
                     Id = 2,
                     Name = "name2",
@@ -100,12 +100,12 @@ namespace BugTracker.API.Tests
                     Password = "password2"
                 }
             };
-        
 
-        _mock.Setup(userService => userService.GetAllUsers())
+
+            _mock.Setup(userService => userService.GetAllUsers())
                 .ReturnsAsync(users);
 
-            var response = await _httpClient.GetAsync($"User/all");
+            var response = await _httpClient.GetAsync("User/all");
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -124,7 +124,7 @@ namespace BugTracker.API.Tests
             _mock.Setup(userService => userService.GetAllUsers())
                 .ReturnsAsync(users);
 
-            var response = await _httpClient.GetAsync($"User/all");
+            var response = await _httpClient.GetAsync("User/all");
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -142,10 +142,9 @@ namespace BugTracker.API.Tests
             _mock.Setup(userService => userService.GetAllUsers())
                 .ThrowsAsync(new Exception());
 
-            var response = await _httpClient.GetAsync($"User/all");
+            var response = await _httpClient.GetAsync("User/all");
 
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
-
     }
 }
