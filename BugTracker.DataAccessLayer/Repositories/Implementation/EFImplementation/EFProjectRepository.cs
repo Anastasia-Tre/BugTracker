@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.Repositories.Abstraction;
 
@@ -14,9 +15,10 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
         {
         }
 
-        public IEnumerable<ProjectEntity<int>> Search(string searchString)
+        public async Task<IEnumerable<ProjectEntity<int>>> Search(
+            string searchString)
         {
-            var result = GetAll();
+            var result = await GetAll();
             var isSearchStringEmpty = string.IsNullOrEmpty(searchString);
 
             if (!isSearchStringEmpty)

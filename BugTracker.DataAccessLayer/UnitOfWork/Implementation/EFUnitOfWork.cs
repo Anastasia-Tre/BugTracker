@@ -25,14 +25,14 @@ namespace BugTracker.DataAccessLayer.UnitOfWork.Implementation
         public IProjectRepository<int> ProjectRepository { get; set; }
         public IUserProjectRepository<int> UserProjectRepository { get; set; }
 
-        public void Save()
+        public async void Save()
         {
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
         ~EFUnitOfWork()
         {
-            _dbContext.Dispose();
+            _dbContext.DisposeAsync();
         }
     }
 }

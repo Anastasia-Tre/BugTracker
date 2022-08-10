@@ -1,4 +1,6 @@
-﻿using BugTracker.Services.Abstraction;
+﻿using System;
+using System.Threading.Tasks;
+using BugTracker.Services.Abstraction;
 using BugTracker.WebAPI.Model.Command.User;
 using BugTracker.WebAPI.Model.Response.User;
 using Microsoft.AspNetCore.Http;
@@ -19,19 +21,37 @@ namespace BugTracker.WebAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
-        public IActionResult GetById([FromQuery] GetUserCommand command)
+        public async Task<IActionResult> GetById(
+            [FromQuery] GetUserCommand command)
         {
-            var result = _userService.GetUserById(command.UserId);
-            return Ok(new UserResponse { User = result });
+            try
+            {
+                var result = await _userService.GetUserById(command.UserId);
+                return Ok(new UserResponse { User = result });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound(e.Message);
+            }
         }
 
         [HttpGet]
         [Route("all")]
         [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
-        public IActionResult GetAll([FromQuery] GetAllUsersCommand command)
+        public async Task<IActionResult> GetAll(
+            [FromQuery] GetAllUsersCommand command)
         {
-            var result = _userService.GetAllUsers();
-            return Ok(new UsersResponse { Users = result });
+            try
+            {
+                var result = await _userService.GetAllUsers();
+                return Ok(new UsersResponse { Users = result });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound(e.Message);
+            }
         }
     }
 }

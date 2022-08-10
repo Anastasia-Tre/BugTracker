@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BugTracker.DataModel;
 
 namespace BugTracker.Services.Abstraction
@@ -6,11 +7,11 @@ namespace BugTracker.Services.Abstraction
     public interface IBugService<TKey>
     {
         // public Bug<TKey> CreateBug();
-        public Bug<TKey> GetBugById(TKey id);
-        public IEnumerable<Bug<TKey>> SearchBugs(string searchString);
-        public IEnumerable<Bug<TKey>> GetBugsForProject(TKey projectId);
-        public IEnumerable<Bug<TKey>> GetBugsForUser(TKey userId);
+        public Task<Bug<int>> GetBugById(TKey id);
+        public Task<IEnumerable<Bug<int>>> SearchBugs(string searchString);
+        public Task<IEnumerable<Bug<int>>> GetBugsForProject(TKey projectId);
+        public Task<IEnumerable<Bug<int>>> GetBugsForUser(TKey userId);
 
-        public Bug<TKey> AssignBugToUser(int bugId, TKey userId);
+        public Task<Bug<int>> AssignBugToUser(int bugId, TKey userId);
     }
 }
