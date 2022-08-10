@@ -7,16 +7,24 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["BugTracker.csproj", "."]
-RUN dotnet restore "./BugTracker.csproj"
 COPY . .
-WORKDIR "/src/."
-RUN dotnet build "BugTracker.csproj" -c Release -o /app/build
+# COPY ["BugTracker.DataModel/BugTracker.DataModel.csproj", "BugTracker.DataModel/"]
+# COPY ["BugTracker.DataAccessLayer/BugTracker.DataAccessLayer.csproj", "BugTracker.DataAccessLayer/"]
+# COPY ["BugTracker.Services/BugTracker.Services.csproj", "BugTracker.Services/"]
+# COPY ["BugTracker.WebAPI/BugTracker.WebAPI.csproj", "BugTracker.WebAPI/"]
+
+RUN dotnet restore "BugTracker.WebAPI/BugTracker.WebAPI.csproj"
+COPY . .
+WORKDIR "/src/BugTracker.WebAPI"
+RUN dotnet build "BugTracker.WebAPI.csproj" -c Release -o /app/build
+
+#RUN dotnet test
 
 FROM build AS publish
-RUN dotnet publish "BugTracker.csproj" -c Release -o /app/publish
+RUN dotnet publish "BugTracker.WebAPI.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "BugTracker.dll"]
+ENTRYPOINT ["dotnet", "BugTracker.WebAPI.dll"]
+#ENTRYPOINT ["dotnet", "test"]
