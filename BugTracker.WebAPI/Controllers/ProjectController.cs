@@ -38,6 +38,24 @@ namespace BugTracker.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("all")]
+        [ProducesResponseType(typeof(ProjectResponse), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAll(
+            [FromQuery] SearchProjectsCommand command)
+        {
+            try
+            {
+                var result =
+                    await _projectService.SearchProjects(command.SearchString);
+                return Ok(new ProjectsResponse { Projects = result });
+            } catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound(e.Message);
+            }
+        }
+
+        [HttpGet]
         [Route("search")]
         [ProducesResponseType(typeof(ProjectResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> SearchProjects(
