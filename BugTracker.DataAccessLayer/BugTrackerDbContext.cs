@@ -1,4 +1,5 @@
-﻿using BugTracker.DataAccessLayer.Configuration;
+﻿using System;
+using BugTracker.DataAccessLayer.Configuration;
 using BugTracker.DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +20,7 @@ namespace BugTracker.DataAccessLayer
 
         private static string DbDefaultConnectionString =>
             new DatabaseConfiguration()
-                .GetDatabaseConnectionString();
+                .GetConnectionStringFromConfiguration();
 
         public DbSet<BugEntity<int>> Bugs { get; set; }
         public DbSet<UserEntity<int>> Users { get; set; }
