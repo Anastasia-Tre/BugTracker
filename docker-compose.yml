@@ -5,11 +5,10 @@ services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
     ports:
-      - 1433:1433
+      - 1450:1433
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=Pa$$w0rd2022
-      # - MSSQL_PID=Express
+      - SA_PASSWORD=Pa__w0rd2022
     
   app:
     build:

@@ -14,7 +14,9 @@ namespace BugTracker.DataAccessLayer
             string connectionString = null) : base(options)
         {
             _connectionString = connectionString ?? DbDefaultConnectionString;
-            Database.EnsureDeleted();
+            Console.WriteLine("In BugTackerDbContext" + _connectionString);
+            var result = Database.EnsureDeleted();
+            Console.WriteLine("EnsureDeleted: " + result);
             Database.EnsureCreated();
         }
 
