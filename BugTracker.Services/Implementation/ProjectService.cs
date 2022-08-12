@@ -27,7 +27,8 @@ namespace BugTracker.Services.Implementation
         public async Task<IEnumerable<Project<int>>> SearchProjects(
             string searchString)
         {
-            var projects = await _unitOfWork.ProjectRepository.Search(searchString);
+            var projects =
+                await _unitOfWork.ProjectRepository.Search(searchString);
             return _mapper.Map<IEnumerable<Project<int>>>(projects);
         }
     }

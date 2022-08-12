@@ -1,5 +1,4 @@
-﻿using System;
-using BugTracker.DataAccessLayer.Configuration;
+﻿using BugTracker.DataAccessLayer.Configuration;
 using BugTracker.DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
