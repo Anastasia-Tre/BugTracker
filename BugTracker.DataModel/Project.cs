@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace BugTracker.DataModel
+﻿namespace BugTracker.DataModel
 {
     public class Project<TKey>
     {
@@ -9,6 +7,6 @@ namespace BugTracker.DataModel
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public List<TKey> UsersId { get; set; }
+        //public List<TKey> UsersId { get; set; }
     }
 }

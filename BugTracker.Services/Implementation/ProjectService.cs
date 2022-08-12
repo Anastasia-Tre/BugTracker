@@ -20,14 +20,14 @@ namespace BugTracker.Services.Implementation
 
         public async Task<Project<int>> GetProjectById(int id)
         {
-            var project = await _unitOfWork.BugRepository.GetById(id);
+            var project = await _unitOfWork.ProjectRepository.GetById(id);
             return _mapper.Map<Project<int>>(project);
         }
 
         public async Task<IEnumerable<Project<int>>> SearchProjects(
             string searchString)
         {
-            var projects = await _unitOfWork.BugRepository.Search(searchString);
+            var projects = await _unitOfWork.ProjectRepository.Search(searchString);
             return _mapper.Map<IEnumerable<Project<int>>>(projects);
         }
     }

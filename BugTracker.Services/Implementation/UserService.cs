@@ -20,13 +20,13 @@ namespace BugTracker.Services.Implementation
 
         public async Task<User<int>> GetUserById(int id)
         {
-            var user = await _unitOfWork.BugRepository.GetById(id);
+            var user = await _unitOfWork.UserRepository.GetById(id);
             return _mapper.Map<User<int>>(user);
         }
 
         public async Task<IEnumerable<User<int>>> GetAllUsers()
         {
-            var users = await _unitOfWork.BugRepository.GetAll();
+            var users = await _unitOfWork.UserRepository.GetAll();
             return _mapper.Map<IEnumerable<User<int>>>(users);
         }
     }
