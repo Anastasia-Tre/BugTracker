@@ -1,5 +1,4 @@
-﻿using System;
-using BugTracker.DataAccessLayer.Configuration;
+﻿using BugTracker.DataAccessLayer.Configuration;
 using BugTracker.DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,8 +13,7 @@ namespace BugTracker.DataAccessLayer
             string connectionString = null) : base(options)
         {
             _connectionString = connectionString ?? DbDefaultConnectionString;
-            Console.WriteLine("In BugTackerDbContext" + _connectionString);
-            Database.EnsureCreated();
+            Database.Migrate();
         }
 
         private static string DbDefaultConnectionString =>

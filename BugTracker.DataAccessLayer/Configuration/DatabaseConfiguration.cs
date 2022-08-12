@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BugTracker.DataAccessLayer.Configuration
+﻿namespace BugTracker.DataAccessLayer.Configuration
 {
     internal class DatabaseConfiguration : ConfigurationBase
     {
@@ -13,8 +11,6 @@ namespace BugTracker.DataAccessLayer.Configuration
             var password = configuration["DbPassword"];
             var database = configuration["DbName"];
 
-            Console.WriteLine("In DatabaseConfiguration   " + server + ":" +
-                              user + ":" + password);
             return
                 $"Server={server};Initial Catalog={database};User ID={user};Password={password};" +
                 "MultipleActiveResultSets=true;Connect Timeout=30;Encrypt=False;" +
