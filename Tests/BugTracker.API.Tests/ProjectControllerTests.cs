@@ -82,19 +82,19 @@ namespace BugTracker.API.Tests
 
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
-        
+
         [Fact]
         public async Task GetAllProjects_SuccessfulResult()
         {
             Project<int>[] projects =
             {
-                new Project<int>
+                new()
                 {
                     Id = 1,
                     Name = "name1",
                     Description = "description1"
                 },
-                new Project<int>
+                new()
                 {
                     Id = 2,
                     Name = "name2",
@@ -103,9 +103,9 @@ namespace BugTracker.API.Tests
             };
 
             _mock.Setup(projectService => projectService.SearchProjects(""))
-                    .ReturnsAsync(projects);
+                .ReturnsAsync(projects);
 
-            var response = await _httpClient.GetAsync($"Project/all");
+            var response = await _httpClient.GetAsync("Project/all");
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
@@ -124,7 +124,7 @@ namespace BugTracker.API.Tests
             _mock.Setup(projectService => projectService.SearchProjects(""))
                 .ReturnsAsync(projects);
 
-            var response = await _httpClient.GetAsync($"Project/all");
+            var response = await _httpClient.GetAsync("Project/all");
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 

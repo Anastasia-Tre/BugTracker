@@ -38,14 +38,15 @@ namespace BugTracker.WebAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            ILogger<Startup> logger)
         {
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
-                 c.SwaggerEndpoint("/swagger/v1/swagger.json",
-                      "BugTracker.WebAPI v1"));
-            
+                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                    "BugTracker.WebAPI v1"));
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -54,8 +55,10 @@ namespace BugTracker.WebAPI
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
-            app.UseEndpoints(endpoints => {
-                endpoints.MapGet("/", async context => {
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGet("/", async context =>
+                {
                     logger.LogInformation(context.Request.GetDisplayUrl());
                     await context.Response.WriteAsync("BugTracker");
                 });
