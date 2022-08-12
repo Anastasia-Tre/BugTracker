@@ -15,14 +15,12 @@ namespace BugTracker.DataAccessLayer
         {
             _connectionString = connectionString ?? DbDefaultConnectionString;
             Console.WriteLine("In BugTackerDbContext" + _connectionString);
-            var result = Database.EnsureDeleted();
-            Console.WriteLine("EnsureDeleted: " + result);
             Database.EnsureCreated();
         }
 
         private static string DbDefaultConnectionString =>
             new DatabaseConfiguration()
-                .GetConnectionStringFromConfiguration();
+                .GetDatabaseConnectionString();
 
         public DbSet<BugEntity<int>> Bugs { get; set; }
         public DbSet<UserEntity<int>> Users { get; set; }
