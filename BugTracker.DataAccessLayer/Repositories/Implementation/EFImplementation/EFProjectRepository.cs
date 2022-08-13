@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.Repositories.Abstraction;
+using Microsoft.EntityFrameworkCore;
 
 namespace BugTracker.DataAccessLayer.Repositories.Implementation.
     EFImplementation
@@ -18,18 +19,18 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
         public async Task<IEnumerable<ProjectEntity<int>>> Search(
             string searchString)
         {
-            var result = await GetAll();
+            var result = _entities.AsQueryable();
             var isSearchStringEmpty = string.IsNullOrEmpty(searchString);
 
             if (!isSearchStringEmpty)
             {
                 searchString = searchString.ToLower();
-                result = result.Where(project =>
+                result = await Task.Run(() => result.Where(project =>
                     project.Name.ToLower().Contains(searchString)
-                    || project.Description.Contains(searchString));
+                    || project.Description.Contains(searchString)));
             }
 
-            return result.OrderBy(project => project.Name);
+            return await result.ToListAsync();
         }
     }
 }

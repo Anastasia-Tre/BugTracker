@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BugTracker.DataAccessLayer.Entities;
 
 namespace BugTracker.DataAccessLayer.Repositories.Abstraction
@@ -7,7 +6,6 @@ namespace BugTracker.DataAccessLayer.Repositories.Abstraction
     public interface IRepository<T, in TKey> where T : BaseEntity<TKey>
     {
         Task<T> GetById(TKey id);
-        Task<IEnumerable<T>> GetAll();
 
         Task Create(T item);
         void Update(T item);

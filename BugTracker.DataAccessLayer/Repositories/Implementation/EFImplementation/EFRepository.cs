@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.Repositories.Abstraction;
 using Microsoft.EntityFrameworkCore;
@@ -36,11 +35,6 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
         public async Task<T> GetById(int id)
         {
             return await _entities.FindAsync(id);
-        }
-
-        public async Task<IEnumerable<T>> GetAll()
-        {
-            return await _entities.ToListAsync();
         }
     }
 }

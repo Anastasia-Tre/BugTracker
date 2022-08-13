@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.Repositories.Abstraction;
+using Microsoft.EntityFrameworkCore;
 
 namespace BugTracker.DataAccessLayer.Repositories.Implementation.
     EFImplementation
@@ -18,34 +19,34 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
         public async Task<IEnumerable<BugEntity<int>>> Search(
             string searchString)
         {
-            var result = await GetAll();
+            var result = _entities.AsQueryable();
             var isSearchStringEmpty = string.IsNullOrEmpty(searchString);
 
             if (!isSearchStringEmpty)
             {
                 searchString = searchString.ToLower();
-                result = result.Where(bug =>
+                result = await Task.Run(() => result.Where(bug =>
                     bug.Name.ToLower().Contains(searchString)
-                    || bug.Description.Contains(searchString));
+                    || bug.Description.Contains(searchString)));
             }
 
-            return result.OrderBy(bug => bug.Date);
+            return await result.ToListAsync();
         }
 
         public async Task<IEnumerable<BugEntity<int>>> GetBugsForProject(
             int projectId)
         {
-            return (await GetAll())
+            return await _entities
                 .Where(bug => bug.ProjectId.Equals(projectId))
-                .OrderBy(bug => bug.Date);
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<BugEntity<int>>> GetBugsForUser(
             int userId)
         {
-            return (await GetAll())
+            return await _entities
                 .Where(bug => bug.AssignToId.Equals(userId))
-                .OrderBy(bug => bug.Date);
+                .ToListAsync();
         }
     }
 }
