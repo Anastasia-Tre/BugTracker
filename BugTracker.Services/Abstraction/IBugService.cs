@@ -8,7 +8,7 @@ namespace BugTracker.Services.Abstraction
     {
         // public Bug<TKey> CreateBug();
         public Task<Bug<TKey>> GetBugById(TKey id);
-        public Task<IEnumerable<Bug<TKey>>> SearchBugs(string searchString);
+        public Task<IEnumerable<Bug<TKey>>> SearchBugs(string searchString = "");
         public Task<IEnumerable<Bug<TKey>>> GetBugsForProject(TKey projectId);
         public Task<IEnumerable<Bug<TKey>>> GetBugsForUser(TKey userId);
 
