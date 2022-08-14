@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
+using BugTracker.WebAPI.Features.BugFeatures.Queries;
 using BugTracker.WebAPI.Model.Command.Bug;
 using BugTracker.WebAPI.Model.Response.Bug;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,121 +16,64 @@ namespace BugTracker.WebAPI.Controllers
     [ApiController]
     public class BugController : ControllerBase
     {
-        private readonly IBugService<int> _bugService;
+        private readonly IMediator _mediator;
 
-        public BugController(IBugService<int> bugService)
+        public BugController(IMediator mediator)
         {
-            _bugService = bugService;
+            _mediator = mediator;
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(Bug<int>), StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(
+                await _mediator.Send(new GetBugByIdQuery() { BugId = id }));
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(BugResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetById(
-            [FromQuery] GetBugCommand command)
+        [ProducesResponseType(typeof(IEnumerable<Bug<int>>), StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> GetAll()
         {
-            try
-            {
-                var result = await _bugService.GetBugById(command.BugId);
-                return Ok(new BugResponse { Bug = result });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return NotFound(e.Message);
-            }
-        }
-
-        [HttpGet]
-        [Route("all")]
-        [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAll(
-            [FromQuery] SearchBugsCommand command)
-        {
-            try
-            {
-                var result = await _bugService.SearchBugs(command.SearchString);
-                return Ok(new BugsResponse { Bugs = result });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return NotFound(e.Message);
-            }
+            return Ok(await _mediator.Send(new GetAllBugsQuery()));
         }
 
         [HttpGet]
         [Route("search")]
-        [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> SearchBugs(
-            [FromQuery] SearchBugsCommand command)
+        [ProducesResponseType(typeof(IEnumerable<Bug<int>>), StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> SearchBugs([FromQuery] string searchString)
         {
-            try
-            {
-                var result = await _bugService.SearchBugs(command.SearchString);
-                return Ok(new BugsResponse { Bugs = result });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return NotFound(e.Message);
-            }
+            return Ok(await _mediator.Send(new GetBugsBySearchStringQuery() { SearchString = searchString }));
         }
 
         [HttpGet]
         [Route("forUser")]
-        [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetBugsForUser(
-            [FromQuery] GetBugsForUserCommand command)
+        [ProducesResponseType(typeof(IEnumerable<Bug<int>>), StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> GetBugsForUser([FromQuery] int userId)
         {
-            try
-            {
-                var result = await _bugService.GetBugsForUser(command.UserId);
-                return Ok(new BugsResponse { Bugs = result });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return NotFound(e.Message);
-            }
+            return Ok(await _mediator.Send(new GetBugsByUserQuery() { UserId = userId }));
         }
 
         [HttpGet]
         [Route("forProject")]
-        [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetBugsForProject(
-            [FromQuery] GetBugsForProjectCommand command)
+        [ProducesResponseType(typeof(IEnumerable<Bug<int>>), StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> GetBugsForProject([FromQuery] int projectId)
         {
-            try
-            {
-                var result =
-                    await _bugService.GetBugsForProject(command.ProjectId);
-                return Ok(new BugsResponse { Bugs = result });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return NotFound(e.Message);
-            }
+            return Ok(await _mediator.Send(new GetBugsByProjectQuery() { ProjectId = projectId }));
         }
 
         [HttpPut]
         [Route("assign")]
-        [ProducesResponseType(typeof(BugsResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> AssignBugToUser(
-            [FromQuery] AssignBugToUserCommand command)
+        [ProducesResponseType(typeof(Bug<int>), StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> AssignBugToUser([FromQuery] int bugId, int userId)
         {
-            try
-            {
-                var result =
-                    await _bugService.AssignBugToUser(command.BugId,
-                        command.UserId);
-                return Ok(new BugResponse { Bug = result });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return NotFound(e.Message);
-            }
+            return Ok(await _mediator.Send(new AssignBugToUserCommand() { BugId = bugId, UserId = userId }));
         }
     }
 }
