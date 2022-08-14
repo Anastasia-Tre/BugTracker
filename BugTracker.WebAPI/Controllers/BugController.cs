@@ -46,8 +46,8 @@ namespace BugTracker.WebAPI.Controllers
         public async Task<IActionResult> SearchBugs(
             [FromQuery] string searchString)
         {
-            return Ok(await _mediator.Send(new GetBugsBySearchStringQuery
-                { SearchString = searchString }));
+            return Ok(await _mediator.Send(
+                new GetBugsBySearchStringQuery { SearchString = searchString }));
         }
 
         [HttpGet]
@@ -57,8 +57,8 @@ namespace BugTracker.WebAPI.Controllers
         [ProducesDefaultResponseType]
         public async Task<IActionResult> GetBugsForUser([FromQuery] int userId)
         {
-            return Ok(await _mediator.Send(new GetBugsByUserQuery
-                { UserId = userId }));
+            return Ok(await _mediator.Send(
+                new GetBugsByUserQuery { UserId = userId }));
         }
 
         [HttpGet]
@@ -69,8 +69,8 @@ namespace BugTracker.WebAPI.Controllers
         public async Task<IActionResult> GetBugsForProject(
             [FromQuery] int projectId)
         {
-            return Ok(await _mediator.Send(new GetBugsByProjectQuery
-                { ProjectId = projectId }));
+            return Ok(await _mediator.Send(
+                new GetBugsByProjectQuery { ProjectId = projectId }));
         }
 
         [HttpPut]
@@ -80,8 +80,8 @@ namespace BugTracker.WebAPI.Controllers
         public async Task<IActionResult> AssignBugToUser([FromQuery] int bugId,
             int userId)
         {
-            return Ok(await _mediator.Send(new AssignBugToUserCommand
-                { BugId = bugId, UserId = userId }));
+            return Ok(await _mediator.Send(
+                new AssignBugToUserCommand { BugId = bugId, UserId = userId }));
         }
     }
 }
