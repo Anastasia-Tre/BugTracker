@@ -9,9 +9,6 @@ namespace BugTracker.Services.Abstraction
         public Task<Project<TKey>> GetProjectById(TKey id);
 
         public Task<IEnumerable<Project<TKey>>> SearchProjects(
-            string searchString);
-
-        // public Project<TKey> CreateProject();
-        // public Project<TKey> DeleteProject(TKey id);
+            string searchString = "");
     }
 }
