@@ -10,7 +10,9 @@ namespace BugTracker.WebAPI.Features.ProjectFeatures.Queries
     {
         public int ProjectId { get; set; }
 
-        public class GetProjectByIdQueryHandler : IRequestHandler<GetProjectByIdQuery, Project<int>>
+        public class
+            GetProjectByIdQueryHandler : IRequestHandler<GetProjectByIdQuery,
+                Project<int>>
         {
             private readonly IProjectService<int> _service;
 
@@ -18,12 +20,13 @@ namespace BugTracker.WebAPI.Features.ProjectFeatures.Queries
             {
                 _service = service;
             }
-            public async Task<Project<int>> Handle(GetProjectByIdQuery request, CancellationToken cancellationToken)
+
+            public async Task<Project<int>> Handle(GetProjectByIdQuery request,
+                CancellationToken cancellationToken)
             {
                 var result = await _service.GetProjectById(request.ProjectId);
                 return result;
             }
         }
-
     }
 }

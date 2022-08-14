@@ -32,7 +32,8 @@ namespace BugTracker.WebAPI
             services.SetServices();
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+            services.AddSingleton(typeof(IPipelineBehavior<,>),
+                typeof(LoggingBehavior<,>));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

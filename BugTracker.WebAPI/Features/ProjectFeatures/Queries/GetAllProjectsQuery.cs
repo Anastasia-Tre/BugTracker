@@ -20,7 +20,9 @@ namespace BugTracker.WebAPI.Features.ProjectFeatures.Queries
                 _service = service;
             }
 
-            public async Task<IEnumerable<Project<int>>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<Project<int>>> Handle(
+                GetAllProjectsQuery request,
+                CancellationToken cancellationToken)
             {
                 var result = await _service.SearchProjects();
                 return result;

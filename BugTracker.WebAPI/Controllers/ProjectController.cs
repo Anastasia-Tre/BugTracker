@@ -24,7 +24,7 @@ namespace BugTracker.WebAPI.Controllers
         [ProducesDefaultResponseType]
         public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await _mediator.Send(new GetProjectByIdQuery()
+            return Ok(await _mediator.Send(new GetProjectByIdQuery
                 { ProjectId = id }));
         }
 
@@ -42,9 +42,10 @@ namespace BugTracker.WebAPI.Controllers
         [ProducesResponseType(typeof(IEnumerable<Project<int>>),
             StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> SearchProjects([FromQuery] string searchString)
+        public async Task<IActionResult> SearchProjects(
+            [FromQuery] string searchString)
         {
-            return Ok(await _mediator.Send(new GetProjectsBySearchString()
+            return Ok(await _mediator.Send(new GetProjectsBySearchString
                 { SearchString = searchString }));
         }
     }
