@@ -11,7 +11,8 @@ namespace BugTracker.WebAPI.Features.BugFeatures.Queries
     {
         public string SearchString { get; set; }
 
-        public class GetBugsBySearchStringQueryHandler : IRequestHandler<GetBugsBySearchStringQuery, IEnumerable<Bug<int>>>
+        public class GetBugsBySearchStringQueryHandler : IRequestHandler<
+            GetBugsBySearchStringQuery, IEnumerable<Bug<int>>>
         {
             private readonly IBugService<int> _service;
 
@@ -20,7 +21,9 @@ namespace BugTracker.WebAPI.Features.BugFeatures.Queries
                 _service = service;
             }
 
-            public async Task<IEnumerable<Bug<int>>> Handle(GetBugsBySearchStringQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<Bug<int>>> Handle(
+                GetBugsBySearchStringQuery request,
+                CancellationToken cancellationToken)
             {
                 var result = await _service.SearchBugs(request.SearchString);
                 return result;

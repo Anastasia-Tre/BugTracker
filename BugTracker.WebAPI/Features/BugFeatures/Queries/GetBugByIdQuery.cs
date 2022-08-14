@@ -10,7 +10,8 @@ namespace BugTracker.WebAPI.Features.BugFeatures.Queries
     {
         public int BugId { get; set; }
 
-        public class GetBugByIdQueryHandler : IRequestHandler<GetBugByIdQuery, Bug<int>>
+        public class
+            GetBugByIdQueryHandler : IRequestHandler<GetBugByIdQuery, Bug<int>>
         {
             private readonly IBugService<int> _service;
 
@@ -19,7 +20,8 @@ namespace BugTracker.WebAPI.Features.BugFeatures.Queries
                 _service = service;
             }
 
-            public async Task<Bug<int>> Handle(GetBugByIdQuery request, CancellationToken cancellationToken)
+            public async Task<Bug<int>> Handle(GetBugByIdQuery request,
+                CancellationToken cancellationToken)
             {
                 var result = await _service.GetBugById(request.BugId);
                 return result;

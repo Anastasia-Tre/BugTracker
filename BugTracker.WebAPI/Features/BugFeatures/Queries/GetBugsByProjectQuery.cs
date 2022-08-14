@@ -11,7 +11,8 @@ namespace BugTracker.WebAPI.Features.BugFeatures.Queries
     {
         public int ProjectId { get; set; }
 
-        public class GetBugsByProjectQueryHandler : IRequestHandler<GetBugsByProjectQuery, IEnumerable<Bug<int>>>
+        public class GetBugsByProjectQueryHandler : IRequestHandler<
+            GetBugsByProjectQuery, IEnumerable<Bug<int>>>
         {
             private readonly IBugService<int> _service;
 
@@ -20,7 +21,9 @@ namespace BugTracker.WebAPI.Features.BugFeatures.Queries
                 _service = service;
             }
 
-            public async Task<IEnumerable<Bug<int>>> Handle(GetBugsByProjectQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<Bug<int>>> Handle(
+                GetBugsByProjectQuery request,
+                CancellationToken cancellationToken)
             {
                 var result =
                     await _service.GetBugsForProject(request.ProjectId);

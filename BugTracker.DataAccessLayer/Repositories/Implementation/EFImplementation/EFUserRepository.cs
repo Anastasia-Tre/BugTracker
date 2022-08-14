@@ -13,7 +13,6 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
         public EFUserRepository(BugTrackerDbContext dbContext) : base(dbContext,
             dbContext.Users)
         {
-            
         }
 
         public async Task<IEnumerable<UserEntity<int>>> GetAllUsers()
