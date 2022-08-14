@@ -24,12 +24,13 @@ namespace BugTracker.WebAPI.Controllers
         [ProducesDefaultResponseType]
         public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await _mediator.Send(new GetUserByIdQuery()
-                { UserId = id }));
+            return Ok(
+                await _mediator.Send(new GetUserByIdQuery { UserId = id }));
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<User<int>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<User<int>>),
+            StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _mediator.Send(new GetAllUsersQuery()));
