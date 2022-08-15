@@ -47,7 +47,8 @@ namespace BugTracker.WebAPI.Controllers
             [FromQuery] string searchString)
         {
             return Ok(await _mediator.Send(
-                new GetBugsBySearchStringQuery { SearchString = searchString }));
+                new GetBugsBySearchStringQuery
+                    { SearchString = searchString }));
         }
 
         [HttpGet]
