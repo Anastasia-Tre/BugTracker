@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BugTracker.DataModel;
 using BugTracker.WebAPI.Features.BugFeatures.Commands;
 using BugTracker.WebAPI.Features.BugFeatures.Queries;
+using BugTracker.WebAPI.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace BugTracker.WebAPI.Controllers
 {
     [Route("/[controller]")]
     [ApiController]
+    [TypeFilter(typeof(ExceptionFilter))]
     public class BugController : ControllerBase
     {
         private readonly IMediator _mediator;
