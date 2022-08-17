@@ -83,7 +83,7 @@ namespace BugTracker.WebAPI.Controllers
             int userId)
         {
             return Ok(await _mediator.Send(
-                new AssignBugToUserCommand() { BugId = bugId, UserId = userId }));
+                new AssignBugToUserCommand { BugId = bugId, UserId = userId }));
         }
     }
 }
