@@ -1,11 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
+using AutoBogus;
 using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
 using BugTracker.WebAPI;
+using BugTracker.WebAPI.Controllers;
+using BugTracker.WebAPI.Features.ProjectFeatures.Queries;
+using BugTracker.WebAPI.Features.UserFeatures.Queries;
 using BugTracker.WebAPI.Model.Response.User;
+using FluentAssertions;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,136 +25,55 @@ using Xunit;
 
 namespace BugTracker.API.Tests
 {
-    public class UserControllerTests : IAsyncLifetime
+    public class UserControllerTests
     {
-        private readonly Mock<IUserService<int>> _mock = new();
+        private readonly Mock<IMediator> _mediator;
+        private readonly UserController _target;
 
-        private HttpClient _httpClient;
-
-        public async Task InitializeAsync()
+        public UserControllerTests()
         {
-            var hostBuilder = Program.CreateHostBuilder(new string[0])
-                .ConfigureWebHost(webHostBuilder =>
-                {
-                    webHostBuilder.UseTestServer();
-                })
-                .ConfigureServices((_, services) =>
-                {
-                    services.AddSingleton(_mock.Object);
-                });
-
-            var host = await hostBuilder.StartAsync();
-            _httpClient = host.GetTestClient();
-        }
-
-        public Task DisposeAsync()
-        {
-            return Task.CompletedTask;
+            _mediator = new Mock<IMediator>();
+            _target = new UserController(_mediator.Object);
         }
 
         [Fact]
-        public async Task GetUser_SuccessfulResult()
+        public async Task GetUserById_ReturnsOk()
         {
-            var userId = 1;
-            var user = new User<int>
-            {
-                Id = userId,
-                Name = "name",
-                Email = "email@gmail.com",
-                Password = "password"
-            };
-            _mock.Setup(userService => userService.GetUserById(userId))
-                .ReturnsAsync(user);
+            // arrange
+            var expected = AutoFaker.Generate<User<int>>();
+            _mediator.Setup(x => x.Send(
+                    new GetUserByIdQuery() { UserId = expected.Id },
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expected);
 
-            var response = await _httpClient.GetAsync($"User?UserId={userId}");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            // act
+            var actual = await _target.GetById(expected.Id);
+            var okResult = actual as ObjectResult;
 
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<UserResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(user),
-                JsonConvert.SerializeObject(returnedResponse.User));
+            // assert
+            okResult.Should().NotBeNull();
+            okResult.Should().BeOfType<OkObjectResult>();
+            okResult!.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
 
         [Fact]
-        public async Task GetUser_UserNotFoundException_404()
+        public async Task GetAllUsers_ReturnsOk()
         {
-            var userId = 1;
-            _mock.Setup(userService => userService.GetUserById(userId))
-                .ThrowsAsync(new Exception("User not found"));
+            // arrange
+            var expected = AutoFaker.Generate<IEnumerable<User<int>>>();
+            _mediator.Setup(x => x.Send(
+                    new GetAllUsersQuery(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expected);
 
-            var response = await _httpClient.GetAsync($"User?UserId={userId}");
+            // act
+            var actual = await _target.GetAll();
+            var okResult = actual as ObjectResult;
 
-            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
-        }
-
-        [Fact]
-        public async Task GetAllUsers_SuccessfulResult()
-        {
-            User<int>[] users =
-            {
-                new()
-                {
-                    Id = 1,
-                    Name = "name1",
-                    Email = "email1@gmail.com",
-                    Password = "password1"
-                },
-                new()
-                {
-                    Id = 2,
-                    Name = "name2",
-                    Email = "email2@gmail.com",
-                    Password = "password2"
-                }
-            };
-
-
-            _mock.Setup(userService => userService.GetAllUsers())
-                .ReturnsAsync(users);
-
-            var response = await _httpClient.GetAsync("User/all");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<UsersResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(users),
-                JsonConvert.SerializeObject(returnedResponse.Users));
-        }
-
-        [Fact]
-        public async Task GetAllUsers_EmptyResult()
-        {
-            var users = new User<int>[] { };
-            _mock.Setup(userService => userService.GetAllUsers())
-                .ReturnsAsync(users);
-
-            var response = await _httpClient.GetAsync("User/all");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<UsersResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(users),
-                JsonConvert.SerializeObject(returnedResponse.Users));
-        }
-
-        [Fact]
-        public async Task GetAllUsers_Exception_404()
-        {
-            _mock.Setup(userService => userService.GetAllUsers())
-                .ThrowsAsync(new Exception());
-
-            var response = await _httpClient.GetAsync("User/all");
-
-            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            // assert
+            okResult.Should().NotBeNull();
+            okResult.Should().BeOfType<OkObjectResult>();
+            okResult!.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
     }
 }
