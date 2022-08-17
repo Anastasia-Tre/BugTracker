@@ -13,8 +13,7 @@ namespace BugTracker.DataModel
         public BugStatus Status { get; set; }
         public BugType Type { get; set; }
         public BugPriority Priority { get; set; }
-
-        public TKey AuthorId { get; set; }
+        
         public TKey AssignToId { get; set; }
         public TKey ProjectId { get; set; }
 
