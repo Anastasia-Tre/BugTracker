@@ -1,210 +1,89 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using AutoBogus;
 using BugTracker.DataModel;
-using BugTracker.Services.Abstraction;
-using BugTracker.WebAPI;
-using BugTracker.WebAPI.Model.Response.Project;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using BugTracker.WebAPI.Controllers;
+using BugTracker.WebAPI.Features.ProjectFeatures.Queries;
+using FluentAssertions;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace BugTracker.API.Tests
 {
-    public class ProjectControllerTests : IAsyncLifetime
+    public class ProjectControllerTests
     {
-        private readonly Mock<IProjectService<int>> _mock = new();
+        private readonly Mock<IMediator> _mediator;
+        private readonly ProjectController _target;
 
-        private HttpClient _httpClient;
-
-        public async Task InitializeAsync()
+        public ProjectControllerTests()
         {
-            var hostBuilder = Program.CreateHostBuilder(new string[0])
-                .ConfigureWebHost(webHostBuilder =>
-                {
-                    webHostBuilder.UseTestServer();
-                })
-                .ConfigureServices((_, services) =>
-                {
-                    services.AddSingleton(_mock.Object);
-                });
-
-            var host = await hostBuilder.StartAsync();
-            _httpClient = host.GetTestClient();
-        }
-
-        public Task DisposeAsync()
-        {
-            return Task.CompletedTask;
+            _mediator = new Mock<IMediator>();
+            _target = new ProjectController(_mediator.Object);
         }
 
         [Fact]
-        public async Task GetProject_SuccessfulResult()
+        public async Task GetProjectById_ReturnsOk()
         {
-            var projectId = 1;
-            var project = new Project<int>
-            {
-                Id = projectId,
-                Name = "name",
-                Description = "description"
-            };
-            _mock.Setup(projectService =>
-                    projectService.GetProjectById(projectId))
-                .ReturnsAsync(project);
+            // arrange
+            var expected = AutoFaker.Generate<Project<int>>();
+            _mediator.Setup(x => x.Send(
+                    new GetProjectByIdQuery() { ProjectId = expected.Id },
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expected);
 
-            var response =
-                await _httpClient.GetAsync($"Project?ProjectId={projectId}");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            // act
+            var actual = await _target.GetById(expected.Id);
+            var okResult = actual as ObjectResult;
 
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<ProjectResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(project),
-                JsonConvert.SerializeObject(returnedResponse.Project));
+            // assert
+            okResult.Should().NotBeNull();
+            okResult.Should().BeOfType<OkObjectResult>();
+            okResult!.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
 
         [Fact]
-        public async Task GetProject_ProjectNotFoundException_404()
+        public async Task GetAllProjects_ReturnsOk()
         {
-            var projectId = 1;
-            _mock.Setup(projectService =>
-                    projectService.GetProjectById(projectId))
-                .ThrowsAsync(new Exception("Project not found"));
+            // arrange
+            var expected = AutoFaker.Generate<IEnumerable<Project<int>>>();
+            _mediator.Setup(x => x.Send(
+                    new GetAllProjectsQuery(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expected);
 
-            var response =
-                await _httpClient.GetAsync($"Project?ProjectId={projectId}");
+            // act
+            var actual = await _target.GetAll();
+            var okResult = actual as ObjectResult;
 
-            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            // assert
+            okResult.Should().NotBeNull();
+            okResult.Should().BeOfType<OkObjectResult>();
+            okResult!.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
 
         [Fact]
-        public async Task GetAllProjects_SuccessfulResult()
+        public async Task SearchProjects_ReturnsOk()
         {
-            Project<int>[] projects =
-            {
-                new()
-                {
-                    Id = 1,
-                    Name = "name1",
-                    Description = "description1"
-                },
-                new()
-                {
-                    Id = 2,
-                    Name = "name2",
-                    Description = "description2"
-                }
-            };
+            // arrange
+            var expected = AutoFaker.Generate<IEnumerable<Project<int>>>();
+            var searchString = AutoFaker.Generate<string>();
+            _mediator.Setup(x => x.Send(
+                    new GetProjectsBySearchString() { SearchString = searchString },
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expected);
 
-            _mock.Setup(projectService => projectService.SearchProjects(""))
-                .ReturnsAsync(projects);
+            // act
+            var actual = await _target.SearchProjects(searchString);
+            var okResult = actual as ObjectResult;
 
-            var response = await _httpClient.GetAsync("Project/all");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<ProjectsResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(projects),
-                JsonConvert.SerializeObject(returnedResponse.Projects));
-        }
-
-        [Fact]
-        public async Task GetAllProjects_EmptyResult()
-        {
-            var projects = new Project<int>[] { };
-            _mock.Setup(projectService => projectService.SearchProjects(""))
-                .ReturnsAsync(projects);
-
-            var response = await _httpClient.GetAsync("Project/all");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<ProjectsResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(projects),
-                JsonConvert.SerializeObject(returnedResponse.Projects));
-        }
-
-        [Fact]
-        public async Task GetAllProjects_Exception_404()
-        {
-            _mock.Setup(projectService => projectService.SearchProjects(""))
-                .ThrowsAsync(new Exception());
-
-            var response = await _httpClient.GetAsync("Project/all");
-
-            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
-        }
-
-        [Fact]
-        public async Task SearchProjects_SuccessfulResult()
-        {
-            Project<int>[] projects =
-            {
-                new()
-                {
-                    Id = 1,
-                    Name = "name1",
-                    Description = "description1"
-                },
-                new()
-                {
-                    Id = 2,
-                    Name = "name2",
-                    Description = "description2"
-                }
-            };
-            var searchStr = "name";
-            _mock.Setup(projectService =>
-                    projectService.SearchProjects(searchStr))
-                .ReturnsAsync(projects);
-
-            var response =
-                await _httpClient.GetAsync(
-                    $"Project/search?SearchString={searchStr}");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<ProjectsResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(projects),
-                JsonConvert.SerializeObject(returnedResponse.Projects));
-        }
-
-        [Fact]
-        public async Task SearchProjects_SuccessfulEmptyResult()
-        {
-            var projects = new Project<int>[] { };
-            var searchStr = "name";
-            _mock.Setup(projectService =>
-                    projectService.SearchProjects(searchStr))
-                .ReturnsAsync(projects);
-
-            var response =
-                await _httpClient.GetAsync(
-                    $"Project/search?SearchString={searchStr}");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<ProjectsResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(projects),
-                JsonConvert.SerializeObject(returnedResponse.Projects));
+            // assert
+            okResult.Should().NotBeNull();
+            okResult.Should().BeOfType<OkObjectResult>();
+            okResult!.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
     }
 }
