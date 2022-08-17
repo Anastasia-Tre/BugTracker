@@ -31,14 +31,14 @@ namespace BugTracker.API.Tests
             // arrange
             var expected = AutoFaker.Generate<Bug<int>>();
             _mediator.Setup(x => x.Send(
-                    new GetBugByIdQuery() { BugId = expected.Id },
+                    new GetBugByIdQuery { BugId = expected.Id },
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync(expected);
 
             // act
             var actual = await _target.GetById(expected.Id);
             var okResult = actual as ObjectResult;
-            
+
             // assert
             okResult.Should().NotBeNull();
             okResult.Should().BeOfType<OkObjectResult>();
@@ -72,7 +72,8 @@ namespace BugTracker.API.Tests
             var expected = AutoFaker.Generate<IEnumerable<Bug<int>>>();
             var searchString = AutoFaker.Generate<string>();
             _mediator.Setup(x => x.Send(
-                    new GetBugsBySearchStringQuery() { SearchString = searchString },
+                    new GetBugsBySearchStringQuery
+                        { SearchString = searchString },
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync(expected);
 
@@ -93,7 +94,7 @@ namespace BugTracker.API.Tests
             var expected = AutoFaker.Generate<IEnumerable<Bug<int>>>();
             var userId = AutoFaker.Generate<int>();
             _mediator.Setup(x => x.Send(
-                    new GetBugsByUserQuery() { UserId = userId },
+                    new GetBugsByUserQuery { UserId = userId },
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync(expected);
 
@@ -114,7 +115,7 @@ namespace BugTracker.API.Tests
             var expected = AutoFaker.Generate<IEnumerable<Bug<int>>>();
             var projectId = AutoFaker.Generate<int>();
             _mediator.Setup(x => x.Send(
-                    new GetBugsByProjectQuery() { ProjectId = projectId },
+                    new GetBugsByProjectQuery { ProjectId = projectId },
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync(expected);
 

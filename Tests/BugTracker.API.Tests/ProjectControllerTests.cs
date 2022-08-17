@@ -1,4 +1,7 @@
-﻿using AutoBogus;
+﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoBogus;
 using BugTracker.DataModel;
 using BugTracker.WebAPI.Controllers;
 using BugTracker.WebAPI.Features.ProjectFeatures.Queries;
@@ -7,9 +10,6 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace BugTracker.API.Tests
@@ -31,7 +31,7 @@ namespace BugTracker.API.Tests
             // arrange
             var expected = AutoFaker.Generate<Project<int>>();
             _mediator.Setup(x => x.Send(
-                    new GetProjectByIdQuery() { ProjectId = expected.Id },
+                    new GetProjectByIdQuery { ProjectId = expected.Id },
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync(expected);
 
@@ -72,7 +72,8 @@ namespace BugTracker.API.Tests
             var expected = AutoFaker.Generate<IEnumerable<Project<int>>>();
             var searchString = AutoFaker.Generate<string>();
             _mediator.Setup(x => x.Send(
-                    new GetProjectsBySearchString() { SearchString = searchString },
+                    new GetProjectsBySearchString
+                        { SearchString = searchString },
                     It.IsAny<CancellationToken>()))
                 .ReturnsAsync(expected);
 
