@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BugTracker.DataModel;
+using BugTracker.WebAPI.Features.BugFeatures.Commands;
 using BugTracker.WebAPI.Features.BugFeatures.Queries;
-using BugTracker.WebAPI.Model.Command.Bug;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -81,7 +81,7 @@ namespace BugTracker.WebAPI.Controllers
             int userId)
         {
             return Ok(await _mediator.Send(
-                new AssignBugToUserCommand { BugId = bugId, UserId = userId }));
+                new AssignBugToUserCommand() { BugId = bugId, UserId = userId }));
         }
     }
 }
