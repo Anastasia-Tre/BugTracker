@@ -1,8 +1,9 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BugTracker.Services.Abstraction;
-using BugTracker.WebAPI.Model.Command.Project;
-using BugTracker.WebAPI.Model.Response.Project;
+using BugTracker.DataModel;
+using BugTracker.WebAPI.Features.ProjectFeatures.Queries;
+using BugTracker.WebAPI.Filters;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,71 +11,44 @@ namespace BugTracker.WebAPI.Controllers
 {
     [Route("/[controller]")]
     [ApiController]
+    [TypeFilter(typeof(ExceptionFilter))]
     public class ProjectController : ControllerBase
     {
-        private readonly IProjectService<int> _projectService;
+        private readonly IMediator _mediator;
 
-        public ProjectController(IProjectService<int> projectService)
+        public ProjectController(IMediator mediator)
         {
-            _projectService = projectService;
+            _mediator = mediator;
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(Project<int>), StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await _mediator.Send(new GetProjectByIdQuery
+                { ProjectId = id }));
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(ProjectResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetById(
-            [FromQuery] GetProjectCommand command)
-        {
-            try
-            {
-                var result =
-                    await _projectService.GetProjectById(command.ProjectId);
-                return Ok(new ProjectResponse { Project = result });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return NotFound(e.Message);
-            }
-        }
-
-        [HttpGet]
-        [Route("all")]
-        [ProducesResponseType(typeof(ProjectsResponse),
+        [ProducesResponseType(typeof(IEnumerable<Project<int>>),
             StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAll(
-            [FromQuery] SearchProjectsCommand command)
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> GetAll()
         {
-            try
-            {
-                var result =
-                    await _projectService.SearchProjects(command.SearchString);
-                return Ok(new ProjectsResponse { Projects = result });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return NotFound(e.Message);
-            }
+            return Ok(await _mediator.Send(new GetAllProjectsQuery()));
         }
 
         [HttpGet]
         [Route("search")]
-        [ProducesResponseType(typeof(ProjectsResponse),
+        [ProducesResponseType(typeof(IEnumerable<Project<int>>),
             StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> SearchProjects(
-            [FromQuery] SearchProjectsCommand command)
+            [FromQuery] string searchString)
         {
-            try
-            {
-                var result =
-                    await _projectService.SearchProjects(command.SearchString);
-                return Ok(new ProjectsResponse { Projects = result });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return NotFound(e.Message);
-            }
+            return Ok(await _mediator.Send(new GetProjectsBySearchString
+                { SearchString = searchString }));
         }
     }
 }

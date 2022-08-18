@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.Repositories.Abstraction;
+using Microsoft.EntityFrameworkCore;
 
 namespace BugTracker.DataAccessLayer.Repositories.Implementation.
     EFImplementation
@@ -18,17 +19,19 @@ namespace BugTracker.DataAccessLayer.Repositories.Implementation.
         public async Task<IEnumerable<UserEntity<int>>> GetUsersForProject(
             int projectId)
         {
-            return (await GetAll())
+            return await _entities
                 .Where(userproject => userproject.ProjectId.Equals(projectId))
-                .Select(userproject => userproject.UserEntity);
+                .Select(userproject => userproject.UserEntity)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<ProjectEntity<int>>> GetProjectsForUser(
             int userId)
         {
-            return (await GetAll())
+            return await _entities
                 .Where(userproject => userproject.UserId.Equals(userId))
-                .Select(userproject => userproject.ProjectEntity);
+                .Select(userproject => userproject.ProjectEntity)
+                .ToListAsync();
         }
     }
 }

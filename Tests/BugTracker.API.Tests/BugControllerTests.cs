@@ -1,196 +1,132 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using AutoBogus;
 using BugTracker.DataModel;
-using BugTracker.Services.Abstraction;
-using BugTracker.WebAPI;
-using BugTracker.WebAPI.Model.Response.Bug;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using BugTracker.WebAPI.Controllers;
+using BugTracker.WebAPI.Features.BugFeatures.Queries;
+using FluentAssertions;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace BugTracker.API.Tests
 {
-    public class BugControllerTests : IAsyncLifetime
+    public class BugControllerTests
     {
-        private readonly Mock<IBugService<int>> _mock = new();
+        private readonly Mock<IMediator> _mediator;
+        private readonly BugController _target;
 
-        private HttpClient _httpClient;
-
-        public async Task InitializeAsync()
+        public BugControllerTests()
         {
-            var hostBuilder = Program.CreateHostBuilder(new string[0])
-                .ConfigureWebHost(webHostBuilder =>
-                {
-                    webHostBuilder.UseTestServer();
-                })
-                .ConfigureServices((_, services) =>
-                {
-                    services.AddSingleton(_mock.Object);
-                });
-
-            var host = await hostBuilder.StartAsync();
-            _httpClient = host.GetTestClient();
-        }
-
-        public Task DisposeAsync()
-        {
-            return Task.CompletedTask;
-        }
-
-        private static Bug<int>[] GetTestData()
-        {
-            Bug<int>[] bugs =
-            {
-                new()
-                {
-                    Id = 1,
-                    Name = "name1",
-                    Description = "description1",
-                    AssignToId = 1,
-                    AuthorId = 1,
-                    ProjectId = 1
-                },
-                new()
-                {
-                    Id = 2,
-                    Name = "name2",
-                    Description = "description2",
-                    AssignToId = 2,
-                    AuthorId = 2,
-                    ProjectId = 2
-                }
-            };
-            return bugs;
+            _mediator = new Mock<IMediator>();
+            _target = new BugController(_mediator.Object);
         }
 
         [Fact]
-        public async Task GetBug_SuccessfulResult()
+        public async Task GetBugById_ReturnsOk()
         {
-            var bug = GetTestData()[0];
-            _mock.Setup(bugService => bugService.GetBugById(bug.Id))
-                .ReturnsAsync(bug);
+            // arrange
+            var expected = AutoFaker.Generate<Bug<int>>();
+            _mediator.Setup(x => x.Send(
+                    new GetBugByIdQuery { BugId = expected.Id },
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expected);
 
-            var response = await _httpClient.GetAsync($"Bug?BugId={bug.Id}");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            // act
+            var actual = await _target.GetById(expected.Id);
+            var okResult = actual as ObjectResult;
 
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<BugResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(bug),
-                JsonConvert.SerializeObject(returnedResponse.Bug));
+            // assert
+            okResult.Should().NotBeNull();
+            okResult.Should().BeOfType<OkObjectResult>();
+            okResult!.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
 
         [Fact]
-        public async Task GetBug_BugNotFoundException_404()
+        public async Task GetAllBugs_ReturnsOk()
         {
-            var bugId = 1;
-            _mock.Setup(bugService => bugService.GetBugById(bugId))
-                .ThrowsAsync(new Exception("Bug not found"));
+            // arrange
+            var expected = AutoFaker.Generate<IEnumerable<Bug<int>>>();
+            _mediator.Setup(x => x.Send(
+                    new GetAllBugsQuery(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expected);
 
-            var response = await _httpClient.GetAsync($"Bug?BugId={bugId}");
+            // act
+            var actual = await _target.GetAll();
+            var okResult = actual as ObjectResult;
 
-            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            // assert
+            okResult.Should().NotBeNull();
+            okResult.Should().BeOfType<OkObjectResult>();
+            okResult!.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
 
         [Fact]
-        public async Task GetAllBugs_SuccessfulResult()
+        public async Task SearchBugs_ReturnsOk()
         {
-            var bugs = GetTestData();
+            // arrange
+            var expected = AutoFaker.Generate<IEnumerable<Bug<int>>>();
+            var searchString = AutoFaker.Generate<string>();
+            _mediator.Setup(x => x.Send(
+                    new GetBugsBySearchStringQuery
+                        { SearchString = searchString },
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expected);
 
-            _mock.Setup(bugService => bugService.SearchBugs(""))
-                .ReturnsAsync(bugs);
+            // act
+            var actual = await _target.SearchBugs(searchString);
+            var okResult = actual as ObjectResult;
 
-            var response = await _httpClient.GetAsync("Bug/all");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<BugsResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(bugs),
-                JsonConvert.SerializeObject(returnedResponse.Bugs));
+            // assert
+            okResult.Should().NotBeNull();
+            okResult.Should().BeOfType<OkObjectResult>();
+            okResult!.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
 
         [Fact]
-        public async Task GetAllBugs_EmptyResult()
+        public async Task GetBugsForUser_ReturnsOk()
         {
-            var bugs = new Bug<int>[] { };
-            _mock.Setup(bugService => bugService.SearchBugs(null))
-                .ReturnsAsync(bugs);
+            // arrange
+            var expected = AutoFaker.Generate<IEnumerable<Bug<int>>>();
+            var userId = AutoFaker.Generate<int>();
+            _mediator.Setup(x => x.Send(
+                    new GetBugsByUserQuery { UserId = userId },
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expected);
 
-            var response = await _httpClient.GetAsync("Bug/all");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            // act
+            var actual = await _target.GetBugsForUser(userId);
+            var okResult = actual as ObjectResult;
 
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<BugsResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(bugs),
-                JsonConvert.SerializeObject(returnedResponse.Bugs));
+            // assert
+            okResult.Should().NotBeNull();
+            okResult.Should().BeOfType<OkObjectResult>();
+            okResult!.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
 
         [Fact]
-        public async Task GetAllBugs_Exception_404()
+        public async Task GetBugsForProject_ReturnsOk()
         {
-            _mock.Setup(bugService => bugService.SearchBugs(""))
-                .ThrowsAsync(new Exception());
+            // arrange
+            var expected = AutoFaker.Generate<IEnumerable<Bug<int>>>();
+            var projectId = AutoFaker.Generate<int>();
+            _mediator.Setup(x => x.Send(
+                    new GetBugsByProjectQuery { ProjectId = projectId },
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expected);
 
-            var response = await _httpClient.GetAsync("Bug/all");
+            // act
+            var actual = await _target.GetBugsForProject(projectId);
+            var okResult = actual as ObjectResult;
 
-            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
-        }
-
-        [Fact]
-        public async Task SearchBugs_SuccessfulResult()
-        {
-            var bugs = GetTestData();
-            var searchStr = "name";
-            _mock.Setup(bugService => bugService.SearchBugs(searchStr))
-                .ReturnsAsync(bugs);
-
-            var response =
-                await _httpClient.GetAsync(
-                    $"Bug/search?SearchString={searchStr}");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<BugsResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(bugs),
-                JsonConvert.SerializeObject(returnedResponse.Bugs));
-        }
-
-        [Fact]
-        public async Task SearchBugs_SuccessfulEmptyResult()
-        {
-            var bugs = new Bug<int>[] { };
-            var searchStr = "name";
-            _mock.Setup(bugService => bugService.SearchBugs(searchStr))
-                .ReturnsAsync(bugs);
-
-            var response =
-                await _httpClient.GetAsync(
-                    $"Bug/search?SearchString={searchStr}");
-            response.EnsureSuccessStatusCode();
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-
-            var returnedJson = await response.Content.ReadAsStringAsync();
-            var returnedResponse =
-                JsonConvert.DeserializeObject<BugsResponse>(returnedJson);
-            Assert.Equal(
-                JsonConvert.SerializeObject(bugs),
-                JsonConvert.SerializeObject(returnedResponse.Bugs));
+            // assert
+            okResult.Should().NotBeNull();
+            okResult.Should().BeOfType<OkObjectResult>();
+            okResult!.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
     }
 }

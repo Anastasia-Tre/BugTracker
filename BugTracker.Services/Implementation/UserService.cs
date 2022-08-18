@@ -26,7 +26,7 @@ namespace BugTracker.Services.Implementation
 
         public async Task<IEnumerable<User<int>>> GetAllUsers()
         {
-            var users = await _unitOfWork.UserRepository.GetAll();
+            var users = await _unitOfWork.UserRepository.GetAllUsers();
             return _mapper.Map<IEnumerable<User<int>>>(users);
         }
     }

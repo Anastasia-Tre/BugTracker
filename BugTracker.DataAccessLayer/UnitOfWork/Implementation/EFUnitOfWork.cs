@@ -30,6 +30,11 @@ namespace BugTracker.DataAccessLayer.UnitOfWork.Implementation
             await _dbContext.SaveChangesAsync();
         }
 
+        public async void Dispose()
+        {
+            await _dbContext.DisposeAsync();
+        }
+
         ~EFUnitOfWork()
         {
             _dbContext.DisposeAsync();

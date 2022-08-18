@@ -1,6 +1,9 @@
+using System.Reflection;
 using BugTracker.DataAccessLayer;
 using BugTracker.Services;
 using BugTracker.Services.Mapper;
+using BugTracker.WebAPI.Behaviors;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +30,10 @@ namespace BugTracker.WebAPI
             services.SetEFDataDependencies();
             services.SetMapperConfig();
             services.SetServices();
+
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddSingleton(typeof(IPipelineBehavior<,>),
+                typeof(LoggingBehavior<,>));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

@@ -6,11 +6,11 @@ namespace BugTracker.DataAccessLayer.Repositories.Abstraction
 {
     public interface IBugRepository<TKey> : IRepository<BugEntity<TKey>, TKey>
     {
-        public Task<IEnumerable<BugEntity<int>>> Search(string searchString);
+        public Task<IEnumerable<BugEntity<TKey>>> Search(string searchString);
 
-        public Task<IEnumerable<BugEntity<int>>> GetBugsForProject(
+        public Task<IEnumerable<BugEntity<TKey>>> GetBugsForProject(
             TKey projectId);
 
-        public Task<IEnumerable<BugEntity<int>>> GetBugsForUser(TKey userId);
+        public Task<IEnumerable<BugEntity<TKey>>> GetBugsForUser(TKey userId);
     }
 }

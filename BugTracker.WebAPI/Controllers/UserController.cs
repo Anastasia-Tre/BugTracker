@@ -1,8 +1,9 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BugTracker.Services.Abstraction;
-using BugTracker.WebAPI.Model.Command.User;
-using BugTracker.WebAPI.Model.Response.User;
+using BugTracker.DataModel;
+using BugTracker.WebAPI.Features.UserFeatures.Queries;
+using BugTracker.WebAPI.Filters;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,48 +11,31 @@ namespace BugTracker.WebAPI.Controllers
 {
     [Route("/[controller]")]
     [ApiController]
+    [TypeFilter(typeof(ExceptionFilter))]
     public class UserController : ControllerBase
     {
-        private readonly IUserService<int> _userService;
+        private readonly IMediator _mediator;
 
-        public UserController(IUserService<int> userService)
+        public UserController(IMediator mediator)
         {
-            _userService = userService;
+            _mediator = mediator;
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(User<int>), StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(
+                await _mediator.Send(new GetUserByIdQuery { UserId = id }));
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetById(
-            [FromQuery] GetUserCommand command)
+        [ProducesResponseType(typeof(IEnumerable<User<int>>),
+            StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAll()
         {
-            try
-            {
-                var result = await _userService.GetUserById(command.UserId);
-                return Ok(new UserResponse { User = result });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return NotFound(e.Message);
-            }
-        }
-
-        [HttpGet]
-        [Route("all")]
-        [ProducesResponseType(typeof(UsersResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAll(
-            [FromQuery] GetAllUsersCommand command)
-        {
-            try
-            {
-                var result = await _userService.GetAllUsers();
-                return Ok(new UsersResponse { Users = result });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return NotFound(e.Message);
-            }
+            return Ok(await _mediator.Send(new GetAllUsersQuery()));
         }
     }
 }
