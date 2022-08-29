@@ -18,6 +18,5 @@ namespace BugTracker.Services.Abstraction
         Task<List<string>> GetUserRolesAsync(string userId);
         Task<bool> AssignUserToRole(string username, IList<string> roles);
         Task<bool> UpdateUsersRole(string username, IList<string> usersRole);
-
     }
 }
