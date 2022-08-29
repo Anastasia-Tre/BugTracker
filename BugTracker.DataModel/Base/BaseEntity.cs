@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BugTracker.DataModel.Base
 {
-    internal class BaseEntity
+    public class BaseEntity<TKey>
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
+        public TKey Id { get; set; }
         public DateTime CreatedDate { get; set; }
 
         public DateTime ModifiedDate { get; private set; }
