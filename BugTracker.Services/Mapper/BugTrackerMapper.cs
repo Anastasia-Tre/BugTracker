@@ -5,9 +5,12 @@ namespace BugTracker.Services.Mapper
 {
     public class BugTrackerMapper
     {
-        private static readonly Lazy<IMapper> Lazy = new Lazy<IMapper>(() => {
-            var config = new MapperConfiguration(cfg => {
-                cfg.ShouldMapProperty = p => p.GetMethod.IsPublic || p.GetMethod.IsAssembly;
+        private static readonly Lazy<IMapper> Lazy = new(() =>
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.ShouldMapProperty = p =>
+                    p.GetMethod.IsPublic || p.GetMethod.IsAssembly;
                 cfg.AddProfile<MappingProfile>();
             });
 

@@ -1,6 +1,6 @@
-﻿using BugTracker.DataModel.Enums;
-using System;
+﻿using System;
 using BugTracker.DataModel.Base;
+using BugTracker.DataModel.Enums;
 
 namespace BugTracker.DataModel
 {
