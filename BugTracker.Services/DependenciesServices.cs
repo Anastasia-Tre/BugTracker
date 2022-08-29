@@ -1,5 +1,6 @@
 ﻿using BugTracker.Services.Abstraction;
 using BugTracker.Services.Implementation;
+using BugTracker.Services.Mapper;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BugTracker.Services
@@ -13,6 +14,7 @@ namespace BugTracker.Services
             services.AddScoped<IUserService<int>, UserService>();
             services.AddScoped<IProjectService<int>, ProjectService>();
 
+            services.AddAutoMapper(typeof(BugTrackerMapper));
             return services;
         }
     }

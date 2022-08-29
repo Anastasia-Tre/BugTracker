@@ -28,7 +28,6 @@ namespace BugTracker.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.SetEFDataDependencies();
-            services.SetMapperConfig();
             services.SetServices();
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
