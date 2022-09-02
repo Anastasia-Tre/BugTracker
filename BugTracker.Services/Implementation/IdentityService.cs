@@ -23,7 +23,6 @@ namespace BugTracker.Services.Implementation
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
-            _roleManager = roleManager;
         }
 
         public async Task<bool> SigninUserAsync(string username,
