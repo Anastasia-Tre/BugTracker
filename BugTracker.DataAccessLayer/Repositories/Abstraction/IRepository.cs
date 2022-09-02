@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using BugTracker.DataAccessLayer.Entities;
+using BugTracker.DataAccessLayer.Entities.Base;
 
 namespace BugTracker.DataAccessLayer.Repositories.Abstraction
 {

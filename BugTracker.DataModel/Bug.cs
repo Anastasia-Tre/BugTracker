@@ -1,12 +1,11 @@
-﻿using BugTracker.DataModel.Enums;
-using System;
+﻿using System;
+using BugTracker.DataModel.Base;
+using BugTracker.DataModel.Enums;
 
 namespace BugTracker.DataModel
 {
-    public class Bug<TKey>
+    public class Bug<TKey> : BaseEntity<TKey>
     {
-        public TKey Id { get; set; }
-
         public string Name { get; set; }
         public string Description { get; set; }
 
