@@ -1,4 +1,5 @@
 ﻿using System;
+using BugTracker.DataAccessLayer.Entities.Base;
 using BugTracker.DataAccessLayer.Entities.Enums;
 
 namespace BugTracker.DataAccessLayer.Entities

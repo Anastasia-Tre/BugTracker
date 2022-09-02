@@ -1,4 +1,6 @@
-﻿namespace BugTracker.DataAccessLayer.Entities
+﻿using BugTracker.DataAccessLayer.Entities.Base;
+
+namespace BugTracker.DataAccessLayer.Entities
 {
     public class ProjectEntity<TKey> : BaseEntity<TKey>
     {
