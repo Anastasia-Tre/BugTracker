@@ -1,6 +1,6 @@
 ﻿namespace BugTracker.DataAccessLayer.Entities.Enums;
 
-public enum BugPriority
+public enum TaskPriority
 {
     Minor,
     Low,

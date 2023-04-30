@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BugTracker.DataModel;
-using BugTracker.WebAPI.Features.BugFeatures.Commands;
-using BugTracker.WebAPI.Features.BugFeatures.Queries;
+using BugTracker.WebAPI.Features.TaskFeatures.Commands;
+using BugTracker.WebAPI.Features.TaskFeatures.Queries;
 using BugTracker.WebAPI.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -13,76 +12,76 @@ namespace BugTracker.WebAPI.Controllers;
 [Route("/[controller]")]
 [ApiController]
 [TypeFilter(typeof(ExceptionFilter))]
-public class BugController : ControllerBase
+public class TaskController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public BugController(IMediator mediator)
+    public TaskController(IMediator mediator)
     {
         _mediator = mediator;
     }
 
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(Bug<int>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(DataModel.Task<int>), StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
     public async Task<IActionResult> GetById(int id)
     {
         return Ok(
-            await _mediator.Send(new GetBugByIdQuery { BugId = id }));
+            await _mediator.Send(new GetTaskByIdQuery { TaskId = id }));
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<Bug<int>>),
+    [ProducesResponseType(typeof(IEnumerable<DataModel.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await _mediator.Send(new GetAllBugsQuery()));
+        return Ok(await _mediator.Send(new GetAllTasksQuery()));
     }
 
     [HttpGet]
     [Route("search")]
-    [ProducesResponseType(typeof(IEnumerable<Bug<int>>),
+    [ProducesResponseType(typeof(IEnumerable<DataModel.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> SearchBugs(
+    public async Task<IActionResult> SearchTasks(
         [FromQuery] string searchString)
     {
         return Ok(await _mediator.Send(
-            new GetBugsBySearchStringQuery { SearchString = searchString }));
+            new GetTasksBySearchStringQuery { SearchString = searchString }));
     }
 
     [HttpGet]
     [Route("forUser")]
-    [ProducesResponseType(typeof(IEnumerable<Bug<int>>),
+    [ProducesResponseType(typeof(IEnumerable<DataModel.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> GetBugsForUser([FromQuery] int userId)
+    public async Task<IActionResult> GetTasksForUser([FromQuery] int userId)
     {
         return Ok(await _mediator.Send(
-            new GetBugsByUserQuery { UserId = userId }));
+            new GetTasksByUserQuery { UserId = userId }));
     }
 
     [HttpGet]
     [Route("forProject")]
-    [ProducesResponseType(typeof(IEnumerable<Bug<int>>),
+    [ProducesResponseType(typeof(IEnumerable<DataModel.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> GetBugsForProject(
+    public async Task<IActionResult> GetTasksForProject(
         [FromQuery] int projectId)
     {
         return Ok(await _mediator.Send(
-            new GetBugsByProjectQuery { ProjectId = projectId }));
+            new GetTasksByProjectQuery { ProjectId = projectId }));
     }
 
     [HttpPut]
     [Route("assign")]
-    [ProducesResponseType(typeof(Bug<int>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(DataModel.Task<int>), StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> AssignBugToUser([FromQuery] int bugId,
+    public async Task<IActionResult> AssignTaskToUser([FromQuery] int bugId,
         int userId)
     {
         return Ok(await _mediator.Send(
-            new AssignBugToUserCommand { BugId = bugId, UserId = userId }));
+            new AssignTaskToUserCommand { TaskId = bugId, UserId = userId }));
     }
 }

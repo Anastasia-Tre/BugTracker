@@ -9,7 +9,7 @@ public static class DependenciesServices
     public static IServiceCollection SetServices(
         this IServiceCollection services)
     {
-        services.AddScoped<IBugService<int>, BugService>();
+        services.AddScoped<ITaskService<int>, TaskService>();
         services.AddScoped<IUserService<int>, UserService>();
         services.AddScoped<IProjectService<int>, ProjectService>();
 

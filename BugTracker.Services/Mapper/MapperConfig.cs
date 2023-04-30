@@ -10,7 +10,7 @@ public static class MapperConfig
         this IServiceCollection services)
     {
         services.AddAutoMapper(cfg =>
-            cfg.CreateMap<Bug<int>, BugEntity<int>>().ReverseMap());
+            cfg.CreateMap<Task<int>, TaskEntity<int>>().ReverseMap());
         services.AddAutoMapper(cfg =>
             cfg.CreateMap<Project<int>, ProjectEntity<int>>()
                 .ReverseMap());

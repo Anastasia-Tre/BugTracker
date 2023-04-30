@@ -8,15 +8,15 @@ using Microsoft.EntityFrameworkCore;
 namespace BugTracker.DataAccessLayer.Repositories.Implementation.
     EFImplementation;
 
-public class EFBugRepository : EFRepository<BugEntity<int>>,
-    IBugRepository<int>
+public class EFTaskRepository : EFRepository<TaskEntity<int>>,
+    ITaskRepository<int>
 {
-    public EFBugRepository(BugTrackerDbContext dbContext) : base(dbContext,
-        dbContext.Bugs)
+    public EFTaskRepository(BugTrackerDbContext dbContext) : base(dbContext,
+        dbContext.Tasks)
     {
     }
 
-    public async Task<IEnumerable<BugEntity<int>>> Search(
+    public async Task<IEnumerable<TaskEntity<int>>> Search(
         string searchString)
     {
         var result = _entities.AsQueryable();
@@ -25,27 +25,27 @@ public class EFBugRepository : EFRepository<BugEntity<int>>,
         if (!isSearchStringEmpty)
         {
             searchString = searchString.ToLower();
-            result = await Task.Run(() => result.Where(bug =>
-                bug.Name.ToLower().Contains(searchString)
-                || bug.Description.Contains(searchString)));
+            result = await Task.Run(() => result.Where(task =>
+                task.Name.ToLower().Contains(searchString)
+                || task.Description.Contains(searchString)));
         }
 
         return await result.ToListAsync();
     }
 
-    public async Task<IEnumerable<BugEntity<int>>> GetBugsForProject(
+    public async Task<IEnumerable<TaskEntity<int>>> GetTasksForProject(
         int projectId)
     {
         return await _entities
-            .Where(bug => bug.ProjectId.Equals(projectId))
+            .Where(task => task.ProjectId.Equals(projectId))
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<BugEntity<int>>> GetBugsForUser(
+    public async Task<IEnumerable<TaskEntity<int>>> GetTasksForUser(
         int userId)
     {
         return await _entities
-            .Where(bug => bug.AssignToId.Equals(userId))
+            .Where(task => task.AssignToId.Equals(userId))
             .ToListAsync();
     }
 }

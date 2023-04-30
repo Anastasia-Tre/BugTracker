@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using BugTracker.DataModel;
 using BugTracker.WebAPI.Features.UserFeatures.Queries;
 using BugTracker.WebAPI.Filters;
@@ -24,7 +23,7 @@ public class UserController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(User<int>), StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> GetById(int id)
+    public async System.Threading.Tasks.Task<IActionResult> GetById(int id)
     {
         return Ok(
             await _mediator.Send(new GetUserByIdQuery { UserId = id }));
@@ -33,7 +32,7 @@ public class UserController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<User<int>>),
         StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAll()
+    public async System.Threading.Tasks.Task<IActionResult> GetAll()
     {
         return Ok(await _mediator.Send(new GetAllUsersQuery()));
     }

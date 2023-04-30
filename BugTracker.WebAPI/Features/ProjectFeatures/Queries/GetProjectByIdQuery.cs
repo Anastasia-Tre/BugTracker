@@ -1,5 +1,4 @@
 ﻿using System.Threading;
-using System.Threading.Tasks;
 using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
 using MediatR;
@@ -21,7 +20,8 @@ public class GetProjectByIdQuery : IRequest<Project<int>>
             _service = service;
         }
 
-        public async Task<Project<int>> Handle(GetProjectByIdQuery request,
+        public async System.Threading.Tasks.Task<Project<int>> Handle(
+            GetProjectByIdQuery request,
             CancellationToken cancellationToken)
         {
             var result = await _service.GetProjectById(request.ProjectId);

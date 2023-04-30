@@ -1,8 +1,9 @@
 ﻿namespace BugTracker.DataModel.Enums;
 
-public enum BugType
+public enum TaskType
 {
     Issue,
     Bug,
-    Unknown
+    Task,
+    Feature
 }

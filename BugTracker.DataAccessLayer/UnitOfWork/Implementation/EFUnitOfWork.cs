@@ -8,19 +8,19 @@ public class EFUnitOfWork : IUnitOfWork<int>
     private readonly BugTrackerDbContext _dbContext;
 
     public EFUnitOfWork(BugTrackerDbContext dbContext,
-        IBugRepository<int> bugRepository,
+        ITaskRepository<int> taskRepository,
         IUserRepository<int> userRepository,
         IProjectRepository<int> projectRepository,
         IUserProjectRepository<int> userProjectRepository)
     {
         _dbContext = dbContext;
-        BugRepository = bugRepository;
+        TaskRepository = taskRepository;
         UserRepository = userRepository;
         ProjectRepository = projectRepository;
         UserProjectRepository = userProjectRepository;
     }
 
-    public IBugRepository<int> BugRepository { get; set; }
+    public ITaskRepository<int> TaskRepository { get; set; }
     public IUserRepository<int> UserRepository { get; set; }
     public IProjectRepository<int> ProjectRepository { get; set; }
     public IUserProjectRepository<int> UserProjectRepository { get; set; }

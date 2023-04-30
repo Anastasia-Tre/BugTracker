@@ -1,6 +1,6 @@
 ﻿namespace BugTracker.DataAccessLayer.Entities.Enums;
 
-public enum BugStatus
+public enum TaskStatus
 {
     New,
     InProgress,

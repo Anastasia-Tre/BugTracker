@@ -19,7 +19,7 @@ namespace BugTracker.DataAccessLayer.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BugTracker.DataAccessLayer.Entities.BugEntity<int>", b =>
+            modelBuilder.Entity("BugTracker.DataAccessLayer.Entities.TaskEntity<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,7 +59,7 @@ namespace BugTracker.DataAccessLayer.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("Bugs");
+                    b.ToTable("Tasks");
 
                     b.HasData(
                         new
@@ -317,7 +317,7 @@ namespace BugTracker.DataAccessLayer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BugTracker.DataAccessLayer.Entities.BugEntity<int>", b =>
+            modelBuilder.Entity("BugTracker.DataAccessLayer.Entities.TaskEntity<int>", b =>
                 {
                     b.HasOne("BugTracker.DataAccessLayer.Entities.UserEntity<int>", "AssignTo")
                         .WithMany()

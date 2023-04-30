@@ -2,9 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoBogus;
-using BugTracker.DataModel;
 using BugTracker.WebAPI.Controllers;
-using BugTracker.WebAPI.Features.BugFeatures.Queries;
+using BugTracker.WebAPI.Features.TaskFeatures.Queries;
 using FluentAssertions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -14,24 +13,24 @@ using Xunit;
 
 namespace BugTracker.API.Tests;
 
-public class BugControllerTests
+public class TaskControllerTests
 {
     private readonly Mock<IMediator> _mediator;
-    private readonly BugController _target;
+    private readonly TaskController _target;
 
-    public BugControllerTests()
+    public TaskControllerTests()
     {
         _mediator = new Mock<IMediator>();
-        _target = new BugController(_mediator.Object);
+        _target = new TaskController(_mediator.Object);
     }
 
     [Fact]
-    public async Task GetBugById_ReturnsOk()
+    public async Task GetTaskById_ReturnsOk()
     {
         // arrange
-        var expected = AutoFaker.Generate<Bug<int>>();
+        var expected = AutoFaker.Generate<DataModel.Task<int>>();
         _mediator.Setup(x => x.Send(
-                new GetBugByIdQuery { BugId = expected.Id },
+                new GetTaskByIdQuery { TaskId = expected.Id },
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(expected);
 
@@ -46,12 +45,12 @@ public class BugControllerTests
     }
 
     [Fact]
-    public async Task GetAllBugs_ReturnsOk()
+    public async Task GetAllTasks_ReturnsOk()
     {
         // arrange
-        var expected = AutoFaker.Generate<IEnumerable<Bug<int>>>();
+        var expected = AutoFaker.Generate<IEnumerable<DataModel.Task<int>>>();
         _mediator.Setup(x => x.Send(
-                new GetAllBugsQuery(),
+                new GetAllTasksQuery(),
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(expected);
 
@@ -66,19 +65,19 @@ public class BugControllerTests
     }
 
     [Fact]
-    public async Task SearchBugs_ReturnsOk()
+    public async Task SearchTasks_ReturnsOk()
     {
         // arrange
-        var expected = AutoFaker.Generate<IEnumerable<Bug<int>>>();
+        var expected = AutoFaker.Generate<IEnumerable<DataModel.Task<int>>>();
         var searchString = AutoFaker.Generate<string>();
         _mediator.Setup(x => x.Send(
-                new GetBugsBySearchStringQuery
+                new GetTasksBySearchStringQuery
                     { SearchString = searchString },
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(expected);
 
         // act
-        var actual = await _target.SearchBugs(searchString);
+        var actual = await _target.SearchTasks(searchString);
         var okResult = actual as ObjectResult;
 
         // assert
@@ -88,18 +87,18 @@ public class BugControllerTests
     }
 
     [Fact]
-    public async Task GetBugsForUser_ReturnsOk()
+    public async Task GetTasksForUser_ReturnsOk()
     {
         // arrange
-        var expected = AutoFaker.Generate<IEnumerable<Bug<int>>>();
+        var expected = AutoFaker.Generate<IEnumerable<DataModel.Task<int>>>();
         var userId = AutoFaker.Generate<int>();
         _mediator.Setup(x => x.Send(
-                new GetBugsByUserQuery { UserId = userId },
+                new GetTasksByUserQuery { UserId = userId },
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(expected);
 
         // act
-        var actual = await _target.GetBugsForUser(userId);
+        var actual = await _target.GetTasksForUser(userId);
         var okResult = actual as ObjectResult;
 
         // assert
@@ -109,18 +108,18 @@ public class BugControllerTests
     }
 
     [Fact]
-    public async Task GetBugsForProject_ReturnsOk()
+    public async Task GetTasksForProject_ReturnsOk()
     {
         // arrange
-        var expected = AutoFaker.Generate<IEnumerable<Bug<int>>>();
+        var expected = AutoFaker.Generate<IEnumerable<DataModel.Task<int>>>();
         var projectId = AutoFaker.Generate<int>();
         _mediator.Setup(x => x.Send(
-                new GetBugsByProjectQuery { ProjectId = projectId },
+                new GetTasksByProjectQuery { ProjectId = projectId },
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(expected);
 
         // act
-        var actual = await _target.GetBugsForProject(projectId);
+        var actual = await _target.GetTasksForProject(projectId);
         var okResult = actual as ObjectResult;
 
         // assert

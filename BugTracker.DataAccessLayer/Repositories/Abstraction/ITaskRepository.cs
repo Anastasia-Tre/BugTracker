@@ -1,0 +1,15 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using BugTracker.DataAccessLayer.Entities;
+
+namespace BugTracker.DataAccessLayer.Repositories.Abstraction;
+
+public interface ITaskRepository<TKey> : IRepository<TaskEntity<TKey>, TKey>
+{
+    public Task<IEnumerable<TaskEntity<TKey>>> Search(string searchString);
+
+    public Task<IEnumerable<TaskEntity<TKey>>> GetTasksForProject(
+        TKey projectId);
+
+    public Task<IEnumerable<TaskEntity<TKey>>> GetTasksForUser(TKey userId);
+}

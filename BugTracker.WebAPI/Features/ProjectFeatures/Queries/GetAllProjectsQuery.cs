@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
 using MediatR;
@@ -20,9 +19,10 @@ public class GetAllProjectsQuery : IRequest<IEnumerable<Project<int>>>
             _service = service;
         }
 
-        public async Task<IEnumerable<Project<int>>> Handle(
-            GetAllProjectsQuery request,
-            CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<IEnumerable<Project<int>>>
+            Handle(
+                GetAllProjectsQuery request,
+                CancellationToken cancellationToken)
         {
             var result = await _service.SearchProjects();
             return result;

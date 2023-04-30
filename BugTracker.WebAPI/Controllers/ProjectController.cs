@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using BugTracker.DataModel;
 using BugTracker.WebAPI.Features.ProjectFeatures.Queries;
 using BugTracker.WebAPI.Filters;
@@ -24,7 +23,7 @@ public class ProjectController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(Project<int>), StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> GetById(int id)
+    public async System.Threading.Tasks.Task<IActionResult> GetById(int id)
     {
         return Ok(await _mediator.Send(new GetProjectByIdQuery
             { ProjectId = id }));
@@ -34,7 +33,7 @@ public class ProjectController : ControllerBase
     [ProducesResponseType(typeof(IEnumerable<Project<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> GetAll()
+    public async System.Threading.Tasks.Task<IActionResult> GetAll()
     {
         return Ok(await _mediator.Send(new GetAllProjectsQuery()));
     }
@@ -44,7 +43,7 @@ public class ProjectController : ControllerBase
     [ProducesResponseType(typeof(IEnumerable<Project<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> SearchProjects(
+    public async System.Threading.Tasks.Task<IActionResult> SearchProjects(
         [FromQuery] string searchString)
     {
         return Ok(await _mediator.Send(new GetProjectsBySearchString

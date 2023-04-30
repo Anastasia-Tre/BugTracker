@@ -1,7 +1,8 @@
 ﻿namespace BugTracker.DataModel.Enums;
 
-public enum BugPriority
+public enum TaskPriority
 {
+    Minor,
     Low,
     Normal,
     High

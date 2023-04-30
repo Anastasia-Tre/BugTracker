@@ -37,7 +37,7 @@ namespace BugTracker.DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bugs",
+                name: "Tasks",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -99,12 +99,12 @@ namespace BugTracker.DataAccessLayer.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bugs_AssignToId",
-                table: "Bugs",
+                table: "Tasks",
                 column: "AssignToId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bugs_ProjectId",
-                table: "Bugs",
+                table: "Tasks",
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
@@ -121,7 +121,7 @@ namespace BugTracker.DataAccessLayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Bugs");
+                name: "Tasks");
 
             migrationBuilder.DropTable(
                 name: "UserProjects");

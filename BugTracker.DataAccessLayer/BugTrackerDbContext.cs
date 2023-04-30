@@ -20,7 +20,7 @@ public sealed class BugTrackerDbContext : DbContext
         new DatabaseConfiguration()
             .GetDatabaseConnectionString();
 
-    public DbSet<BugEntity<int>> Bugs { get; set; }
+    public DbSet<TaskEntity<int>> Tasks { get; set; }
     public DbSet<UserEntity<int>> Users { get; set; }
     public DbSet<ProjectEntity<int>> Projects { get; set; }
     public DbSet<UserProjectEntity<int>> UserProjects { get; set; }

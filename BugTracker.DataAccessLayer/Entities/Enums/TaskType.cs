@@ -1,6 +1,6 @@
 ﻿namespace BugTracker.DataAccessLayer.Entities.Enums;
 
-public enum BugType
+public enum TaskType
 {
     Issue,
     Bug,

@@ -12,7 +12,7 @@ public static class DependenciesEFData
         this IServiceCollection services)
     {
         services.AddDbContext<BugTrackerDbContext>();
-        services.AddScoped<IBugRepository<int>, EFBugRepository>();
+        services.AddScoped<ITaskRepository<int>, EFTaskRepository>();
         services.AddScoped<IUserRepository<int>, EFUserRepository>();
         services.AddScoped<IProjectRepository<int>, EFProjectRepository>();
         services
