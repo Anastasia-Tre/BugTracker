@@ -5,29 +5,28 @@ using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.BugFeatures.Queries
+namespace BugTracker.WebAPI.Features.BugFeatures.Queries;
+
+public class GetBugsBySearchStringQuery : IRequest<IEnumerable<Bug<int>>>
 {
-    public class GetBugsBySearchStringQuery : IRequest<IEnumerable<Bug<int>>>
+    public string SearchString { get; set; }
+
+    public class GetBugsBySearchStringQueryHandler : IRequestHandler<
+        GetBugsBySearchStringQuery, IEnumerable<Bug<int>>>
     {
-        public string SearchString { get; set; }
+        private readonly IBugService<int> _service;
 
-        public class GetBugsBySearchStringQueryHandler : IRequestHandler<
-            GetBugsBySearchStringQuery, IEnumerable<Bug<int>>>
+        public GetBugsBySearchStringQueryHandler(IBugService<int> service)
         {
-            private readonly IBugService<int> _service;
+            _service = service;
+        }
 
-            public GetBugsBySearchStringQueryHandler(IBugService<int> service)
-            {
-                _service = service;
-            }
-
-            public async Task<IEnumerable<Bug<int>>> Handle(
-                GetBugsBySearchStringQuery request,
-                CancellationToken cancellationToken)
-            {
-                var result = await _service.SearchBugs(request.SearchString);
-                return result;
-            }
+        public async Task<IEnumerable<Bug<int>>> Handle(
+            GetBugsBySearchStringQuery request,
+            CancellationToken cancellationToken)
+        {
+            var result = await _service.SearchBugs(request.SearchString);
+            return result;
         }
     }
 }

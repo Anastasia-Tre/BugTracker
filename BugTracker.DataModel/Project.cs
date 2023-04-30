@@ -1,10 +1,9 @@
-﻿namespace BugTracker.DataModel
-{
-    public class Project<TKey>
-    {
-        public TKey Id { get; set; }
+﻿namespace BugTracker.DataModel;
 
-        public string Name { get; set; }
-        public string Description { get; set; }
-    }
+public class Project<TKey>
+{
+    public TKey Id { get; set; }
+
+    public string Name { get; set; }
+    public string Description { get; set; }
 }

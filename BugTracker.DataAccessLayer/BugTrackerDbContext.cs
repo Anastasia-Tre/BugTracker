@@ -2,34 +2,33 @@
 using BugTracker.DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugTracker.DataAccessLayer
+namespace BugTracker.DataAccessLayer;
+
+public sealed class BugTrackerDbContext : DbContext
 {
-    public sealed class BugTrackerDbContext : DbContext
+    private readonly string _connectionString;
+
+    public BugTrackerDbContext(
+        DbContextOptions<BugTrackerDbContext> options,
+        string connectionString = null) : base(options)
     {
-        private readonly string _connectionString;
+        _connectionString = connectionString ?? DbDefaultConnectionString;
+        Database.Migrate();
+    }
 
-        public BugTrackerDbContext(
-            DbContextOptions<BugTrackerDbContext> options,
-            string connectionString = null) : base(options)
-        {
-            _connectionString = connectionString ?? DbDefaultConnectionString;
-            Database.Migrate();
-        }
+    private static string DbDefaultConnectionString =>
+        new DatabaseConfiguration()
+            .GetDatabaseConnectionString();
 
-        private static string DbDefaultConnectionString =>
-            new DatabaseConfiguration()
-                .GetDatabaseConnectionString();
+    public DbSet<BugEntity<int>> Bugs { get; set; }
+    public DbSet<UserEntity<int>> Users { get; set; }
+    public DbSet<ProjectEntity<int>> Projects { get; set; }
+    public DbSet<UserProjectEntity<int>> UserProjects { get; set; }
 
-        public DbSet<BugEntity<int>> Bugs { get; set; }
-        public DbSet<UserEntity<int>> Users { get; set; }
-        public DbSet<ProjectEntity<int>> Projects { get; set; }
-        public DbSet<UserProjectEntity<int>> UserProjects { get; set; }
-
-        protected override void OnConfiguring(
-            DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder
-                .UseSqlServer(_connectionString);
-        }
+    protected override void OnConfiguring(
+        DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder
+            .UseSqlServer(_connectionString);
     }
 }

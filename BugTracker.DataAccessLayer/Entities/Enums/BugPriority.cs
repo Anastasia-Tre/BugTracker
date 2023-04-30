@@ -1,9 +1,9 @@
-﻿namespace BugTracker.DataAccessLayer.Entities.Enums
+﻿namespace BugTracker.DataAccessLayer.Entities.Enums;
+
+public enum BugPriority
 {
-    public enum BugPriority
-    {
-        Low = 1,
-        Normal,
-        High
-    }
+    Minor,
+    Low,
+    Normal,
+    High
 }

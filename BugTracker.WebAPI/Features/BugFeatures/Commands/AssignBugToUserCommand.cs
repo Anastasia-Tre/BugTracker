@@ -4,32 +4,31 @@ using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.BugFeatures.Commands
+namespace BugTracker.WebAPI.Features.BugFeatures.Commands;
+
+public class AssignBugToUserCommand : IRequest<Bug<int>>
 {
-    public class AssignBugToUserCommand : IRequest<Bug<int>>
+    public int BugId { get; set; }
+    public int UserId { get; set; }
+
+    public class
+        AssignBugToUserCommandHandler : IRequestHandler<
+            AssignBugToUserCommand, Bug<int>>
     {
-        public int BugId { get; set; }
-        public int UserId { get; set; }
+        private readonly IBugService<int> _service;
 
-        public class
-            AssignBugToUserCommandHandler : IRequestHandler<
-                AssignBugToUserCommand, Bug<int>>
+        public AssignBugToUserCommandHandler(IBugService<int> service)
         {
-            private readonly IBugService<int> _service;
+            _service = service;
+        }
 
-            public AssignBugToUserCommandHandler(IBugService<int> service)
-            {
-                _service = service;
-            }
-
-            public async Task<Bug<int>> Handle(AssignBugToUserCommand request,
-                CancellationToken cancellationToken)
-            {
-                var result =
-                    await _service.AssignBugToUser(request.BugId,
-                        request.UserId);
-                return result;
-            }
+        public async Task<Bug<int>> Handle(AssignBugToUserCommand request,
+            CancellationToken cancellationToken)
+        {
+            var result =
+                await _service.AssignBugToUser(request.BugId,
+                    request.UserId);
+            return result;
         }
     }
 }

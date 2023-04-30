@@ -5,33 +5,32 @@ using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.ProjectFeatures.Queries
+namespace BugTracker.WebAPI.Features.ProjectFeatures.Queries;
+
+public class GetProjectsBySearchString : IRequest<IEnumerable<Project<int>>>
 {
-    public class GetProjectsBySearchString : IRequest<IEnumerable<Project<int>>>
+    public string SearchString;
+
+    public class
+        GetProjectsBySearchStringHandler : IRequestHandler<
+            GetProjectsBySearchString,
+            IEnumerable<Project<int>>>
     {
-        public string SearchString;
+        private readonly IProjectService<int> _service;
 
-        public class
-            GetProjectsBySearchStringHandler : IRequestHandler<
-                GetProjectsBySearchString,
-                IEnumerable<Project<int>>>
+        public GetProjectsBySearchStringHandler(
+            IProjectService<int> service)
         {
-            private readonly IProjectService<int> _service;
+            _service = service;
+        }
 
-            public GetProjectsBySearchStringHandler(
-                IProjectService<int> service)
-            {
-                _service = service;
-            }
-
-            public async Task<IEnumerable<Project<int>>> Handle(
-                GetProjectsBySearchString request,
-                CancellationToken cancellationToken)
-            {
-                var result =
-                    await _service.SearchProjects(request.SearchString);
-                return result;
-            }
+        public async Task<IEnumerable<Project<int>>> Handle(
+            GetProjectsBySearchString request,
+            CancellationToken cancellationToken)
+        {
+            var result =
+                await _service.SearchProjects(request.SearchString);
+            return result;
         }
     }
 }

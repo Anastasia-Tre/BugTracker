@@ -1,11 +1,10 @@
-﻿namespace BugTracker.DataModel.Enums
+﻿namespace BugTracker.DataModel.Enums;
+
+public enum BugStatus
 {
-    public enum BugStatus
-    {
-        Open,
-        Fixed,
-        Closed,
-        NotGoingToFix,
-        Unknown
-    }
+    Open,
+    Fixed,
+    Closed,
+    NotGoingToFix,
+    Unknown
 }

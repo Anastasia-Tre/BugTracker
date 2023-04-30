@@ -1,9 +1,8 @@
 ﻿namespace BugTracker.DataAccessLayer.Entities.Enums;
 
-public enum BugStatus
+public enum ProjectStatus
 {
-    New,
-    InProgress,
-    InTesting,
+    Open,
+    Current,
     Closed
 }

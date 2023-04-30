@@ -4,28 +4,27 @@ using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.BugFeatures.Queries
+namespace BugTracker.WebAPI.Features.BugFeatures.Queries;
+
+public class GetBugByIdQuery : IRequest<Bug<int>>
 {
-    public class GetBugByIdQuery : IRequest<Bug<int>>
+    public int BugId { get; set; }
+
+    public class
+        GetBugByIdQueryHandler : IRequestHandler<GetBugByIdQuery, Bug<int>>
     {
-        public int BugId { get; set; }
+        private readonly IBugService<int> _service;
 
-        public class
-            GetBugByIdQueryHandler : IRequestHandler<GetBugByIdQuery, Bug<int>>
+        public GetBugByIdQueryHandler(IBugService<int> service)
         {
-            private readonly IBugService<int> _service;
+            _service = service;
+        }
 
-            public GetBugByIdQueryHandler(IBugService<int> service)
-            {
-                _service = service;
-            }
-
-            public async Task<Bug<int>> Handle(GetBugByIdQuery request,
-                CancellationToken cancellationToken)
-            {
-                var result = await _service.GetBugById(request.BugId);
-                return result;
-            }
+        public async Task<Bug<int>> Handle(GetBugByIdQuery request,
+            CancellationToken cancellationToken)
+        {
+            var result = await _service.GetBugById(request.BugId);
+            return result;
         }
     }
 }

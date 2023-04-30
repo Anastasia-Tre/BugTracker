@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using BugTracker.DataAccessLayer.Entities;
 
-namespace BugTracker.DataAccessLayer.Repositories.Abstraction
+namespace BugTracker.DataAccessLayer.Repositories.Abstraction;
+
+public interface IUserRepository<TKey> : IRepository<UserEntity<TKey>, TKey>
 {
-    public interface IUserRepository<TKey> : IRepository<UserEntity<TKey>, TKey>
-    {
-        public Task<IEnumerable<UserEntity<TKey>>> GetAllUsers();
-    }
+    public Task<IEnumerable<UserEntity<TKey>>> GetAllUsers();
 }

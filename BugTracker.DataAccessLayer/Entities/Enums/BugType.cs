@@ -1,9 +1,9 @@
-﻿namespace BugTracker.DataAccessLayer.Entities.Enums
+﻿namespace BugTracker.DataAccessLayer.Entities.Enums;
+
+public enum BugType
 {
-    public enum BugType
-    {
-        Issue = 1,
-        Bug,
-        Unknown
-    }
+    Issue,
+    Bug,
+    Task,
+    Feature
 }

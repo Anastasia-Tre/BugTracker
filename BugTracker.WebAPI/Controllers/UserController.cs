@@ -7,35 +7,34 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BugTracker.WebAPI.Controllers
+namespace BugTracker.WebAPI.Controllers;
+
+[Route("/[controller]")]
+[ApiController]
+[TypeFilter(typeof(ExceptionFilter))]
+public class UserController : ControllerBase
 {
-    [Route("/[controller]")]
-    [ApiController]
-    [TypeFilter(typeof(ExceptionFilter))]
-    public class UserController : ControllerBase
+    private readonly IMediator _mediator;
+
+    public UserController(IMediator mediator)
     {
-        private readonly IMediator _mediator;
+        _mediator = mediator;
+    }
 
-        public UserController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(User<int>), StatusCodes.Status200OK)]
+    [ProducesDefaultResponseType]
+    public async Task<IActionResult> GetById(int id)
+    {
+        return Ok(
+            await _mediator.Send(new GetUserByIdQuery { UserId = id }));
+    }
 
-        [HttpGet("{id}")]
-        [ProducesResponseType(typeof(User<int>), StatusCodes.Status200OK)]
-        [ProducesDefaultResponseType]
-        public async Task<IActionResult> GetById(int id)
-        {
-            return Ok(
-                await _mediator.Send(new GetUserByIdQuery { UserId = id }));
-        }
-
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<User<int>>),
-            StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAll()
-        {
-            return Ok(await _mediator.Send(new GetAllUsersQuery()));
-        }
+    [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<User<int>>),
+        StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAll()
+    {
+        return Ok(await _mediator.Send(new GetAllUsersQuery()));
     }
 }

@@ -1,9 +1,8 @@
-﻿namespace BugTracker.DataModel.Enums
+﻿namespace BugTracker.DataModel.Enums;
+
+public enum BugType
 {
-    public enum BugType
-    {
-        Issue,
-        Bug,
-        Unknown
-    }
+    Issue,
+    Bug,
+    Unknown
 }

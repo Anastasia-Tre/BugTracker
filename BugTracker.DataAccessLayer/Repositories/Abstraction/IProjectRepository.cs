@@ -2,12 +2,11 @@
 using System.Threading.Tasks;
 using BugTracker.DataAccessLayer.Entities;
 
-namespace BugTracker.DataAccessLayer.Repositories.Abstraction
+namespace BugTracker.DataAccessLayer.Repositories.Abstraction;
+
+public interface
+    IProjectRepository<TKey> : IRepository<ProjectEntity<TKey>, TKey>
 {
-    public interface
-        IProjectRepository<TKey> : IRepository<ProjectEntity<TKey>, TKey>
-    {
-        public Task<IEnumerable<ProjectEntity<TKey>>>
-            Search(string searchString);
-    }
+    public Task<IEnumerable<ProjectEntity<TKey>>>
+        Search(string searchString);
 }

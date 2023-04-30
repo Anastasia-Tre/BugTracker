@@ -2,13 +2,12 @@
 using System.Threading.Tasks;
 using BugTracker.DataModel;
 
-namespace BugTracker.Services.Abstraction
-{
-    public interface IProjectService<TKey>
-    {
-        public Task<Project<TKey>> GetProjectById(TKey id);
+namespace BugTracker.Services.Abstraction;
 
-        public Task<IEnumerable<Project<TKey>>> SearchProjects(
-            string searchString = "");
-    }
+public interface IProjectService<TKey>
+{
+    public Task<Project<TKey>> GetProjectById(TKey id);
+
+    public Task<IEnumerable<Project<TKey>>> SearchProjects(
+        string searchString = "");
 }
