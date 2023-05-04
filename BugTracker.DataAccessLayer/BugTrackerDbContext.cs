@@ -13,7 +13,7 @@ public sealed class BugTrackerDbContext : DbContext
         string connectionString = null) : base(options)
     {
         _connectionString = connectionString ?? DbDefaultConnectionString;
-        Database.Migrate();
+        //Database.Migrate();
     }
 
     private static string DbDefaultConnectionString =>
