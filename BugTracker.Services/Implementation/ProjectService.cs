@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
+using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
@@ -31,5 +32,22 @@ public class ProjectService : IProjectService<int>
         var projects =
             await _unitOfWork.ProjectRepository.Search(searchString);
         return _mapper.Map<IEnumerable<Project<int>>>(projects);
+    }
+
+    public async System.Threading.Tasks.Task<Project<int>>
+        CreateProject(Project<int> project)
+    {
+        var mappedProject = _mapper.Map<ProjectEntity<int>>(project);
+        await _unitOfWork.ProjectRepository.Create(mappedProject);
+        await _unitOfWork.Save();
+        return project;
+    }
+
+    public async System.Threading.Tasks.Task<Project<int>> UpdateProject(Project<int> project)
+    {
+        var mappedProject = _mapper.Map<ProjectEntity<int>>(project);
+        _unitOfWork.ProjectRepository.Update(mappedProject);
+        await _unitOfWork.Save();
+        return project;
     }
 }

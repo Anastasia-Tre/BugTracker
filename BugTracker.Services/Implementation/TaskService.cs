@@ -52,7 +52,7 @@ public class TaskService : ITaskService<int>
         var task = await _unitOfWork.TaskRepository.GetById(taskId);
         task.AssignToId = userId;
         _unitOfWork.TaskRepository.Update(task);
-        _unitOfWork.Save();
+        await _unitOfWork.Save();
         return _mapper.Map<Task<int>>(task);
     }
 }

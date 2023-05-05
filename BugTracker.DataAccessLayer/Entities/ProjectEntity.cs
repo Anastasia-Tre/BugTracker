@@ -10,6 +10,9 @@ public class ProjectEntity<TKey> : BaseEntity<TKey>
     public DateTime Deadline { get; set; }
     public ProjectStatus Status { get; set; }
 
+    public TKey AuthorId { get; set; }
+    //public UserEntity<TKey> Author { get; set; }
+
     //public TaskEntity<TKey>[] Tasks { get; set; }
     //public UserEntity<TKey>[] Team { get; set; }
 }

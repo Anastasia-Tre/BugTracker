@@ -1,4 +1,5 @@
-﻿using BugTracker.DataAccessLayer.Repositories.Abstraction;
+﻿using System.Threading.Tasks;
+using BugTracker.DataAccessLayer.Repositories.Abstraction;
 using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 
 namespace BugTracker.DataAccessLayer.UnitOfWork.Implementation;
@@ -25,7 +26,7 @@ public class EFUnitOfWork : IUnitOfWork<int>
     public IProjectRepository<int> ProjectRepository { get; set; }
     public IUserProjectRepository<int> UserProjectRepository { get; set; }
 
-    public async void Save()
+    public async Task Save()
     {
         await _dbContext.SaveChangesAsync();
     }

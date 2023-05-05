@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BugTracker.DataModel;
+using BugTracker.WebAPI.Features.ProjectFeatures.Commands;
 using BugTracker.WebAPI.Features.ProjectFeatures.Queries;
 using BugTracker.WebAPI.Filters;
 using MediatR;
@@ -48,5 +49,17 @@ public class ProjectController : ControllerBase
     {
         return Ok(await _mediator.Send(new GetProjectsBySearchString
             { SearchString = searchString }));
+    }
+
+    [HttpPost]
+    [Route("create")]
+    [ProducesResponseType(typeof(Project<int>), StatusCodes.Status201Created)]
+    [ProducesDefaultResponseType]
+    public async System.Threading.Tasks.Task<IActionResult> CreateProject(
+        Project<int> project)
+    {
+        var actionName = nameof(CreateProject);
+       return CreatedAtAction(actionName, await _mediator.Send(new CreateProjectCommand
+            { Project = project }));
     }
 }

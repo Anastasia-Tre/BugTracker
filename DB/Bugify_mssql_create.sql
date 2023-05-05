@@ -1,5 +1,5 @@
  CREATE TABLE [Tasks] (
-	Id integer NOT NULL,
+	Id integer IDENTITY(1,1),
 	Name varchar(255) NOT NULL,
 	Description varchar(255),
 	ProjectId integer NOT NULL,
@@ -19,7 +19,7 @@
 )
 GO
 CREATE TABLE [Projects] (
-	Id integer NOT NULL,
+	Id integer IDENTITY(1,1),
 	Name varchar(255) NOT NULL,
 	Description varchar(255),
 	AuthorId integer NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE [Projects] (
 )
 GO
 CREATE TABLE [Users] (
-	Id integer NOT NULL,
+	Id integer IDENTITY(1,1),
 	FirstName varchar(255) NOT NULL,
 	LastName varchar(255) NOT NULL,
 	Email varchar(255) NOT NULL,
