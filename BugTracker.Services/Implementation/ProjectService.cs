@@ -50,4 +50,12 @@ public class ProjectService : IProjectService<int>
         await _unitOfWork.Save();
         return project;
     }
+
+    public async System.Threading.Tasks.Task<Project<int>> DeleteProject(Project<int> project)
+    {
+        var mappedProject = _mapper.Map<ProjectEntity<int>>(project);
+        _unitOfWork.ProjectRepository.Delete(mappedProject);
+        await _unitOfWork.Save();
+        return project;
+    }
 }

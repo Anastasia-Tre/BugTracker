@@ -16,4 +16,7 @@ public interface IProjectService<TKey>
 
     public System.Threading.Tasks.Task<Project<int>> 
         UpdateProject(Project<int> project);
+
+    public System.Threading.Tasks.Task<Project<int>>
+        DeleteProject(Project<int> project);
 }

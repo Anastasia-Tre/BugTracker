@@ -3,28 +3,27 @@ using MediatR;
 using System.Threading;
 using BugTracker.Services.Abstraction;
 
-namespace BugTracker.WebAPI.Features.ProjectFeatures.Commands
+namespace BugTracker.WebAPI.Features.ProjectFeatures.Commands;
+
+public class CreateProjectCommand : IRequest<Project<int>>
 {
-    public class CreateProjectCommand : IRequest<Project<int>>
+    public Project<int> Project { get; set; }
+
+    public class
+        CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand,
+            Project<int>>
     {
-        public Project<int> Project { get; set; }
+        private readonly IProjectService<int> _service;
 
-        public class
-            CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand,
-                Project<int>>
+        public CreateProjectCommandHandler(IProjectService<int> service)
         {
-            private readonly IProjectService<int> _service;
+            _service = service;
+        }
 
-            public CreateProjectCommandHandler(IProjectService<int> service)
-            {
-                _service = service;
-            }
-
-            public async System.Threading.Tasks.Task<Project<int>> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
-            {
-                var result = await _service.CreateProject(request.Project);
-                return result;
-            }
+        public async System.Threading.Tasks.Task<Project<int>> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
+        {
+            var result = await _service.CreateProject(request.Project);
+            return result;
         }
     }
 }

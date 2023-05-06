@@ -62,4 +62,27 @@ public class ProjectController : ControllerBase
        return CreatedAtAction(actionName, await _mediator.Send(new CreateProjectCommand
             { Project = project }));
     }
+
+    [HttpPost]
+    [Route("{id}")]
+    [ProducesResponseType(typeof(Project<int>), StatusCodes.Status201Created)]
+    [ProducesDefaultResponseType]
+    public async System.Threading.Tasks.Task<IActionResult> UpdateProject(
+        Project<int> project)
+    {
+        var actionName = nameof(UpdateProject);
+        return CreatedAtAction(actionName, await _mediator.Send(new UpdateProjectCommand
+            { Project = project }));
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    [ProducesResponseType(typeof(Project<int>), StatusCodes.Status201Created)]
+    [ProducesDefaultResponseType]
+    public async System.Threading.Tasks.Task<IActionResult> DeleteProject(
+        Project<int> project)
+    {
+        return Ok(await _mediator.Send(new DeleteProjectCommand
+            { Project = project }));
+    }
 }
