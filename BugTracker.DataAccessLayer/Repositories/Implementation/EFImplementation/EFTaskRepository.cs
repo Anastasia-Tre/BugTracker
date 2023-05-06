@@ -45,7 +45,7 @@ public class EFTaskRepository : EFRepository<TaskEntity<int>>,
         int userId)
     {
         return await _entities
-            .Where(task => task.AssignToId.Equals(userId))
+            .Where(task => task.AssignedId.Equals(userId))
             .ToListAsync();
     }
 }

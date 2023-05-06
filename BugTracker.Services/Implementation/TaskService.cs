@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
+using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
@@ -50,9 +51,33 @@ public class TaskService : ITaskService<int>
         int taskId, int userId)
     {
         var task = await _unitOfWork.TaskRepository.GetById(taskId);
-        task.AssignToId = userId;
+        task.AssignedId = userId;
         _unitOfWork.TaskRepository.Update(task);
         await _unitOfWork.Save();
         return _mapper.Map<Task<int>>(task);
+    }
+
+    public async System.Threading.Tasks.Task<Task<int>> CreateTask(Task<int> task)
+    {
+        var mappedTask = _mapper.Map<TaskEntity<int>>(task);
+        await _unitOfWork.TaskRepository.Create(mappedTask);
+        await _unitOfWork.Save();
+        return task;
+    }
+
+    public async System.Threading.Tasks.Task<Task<int>> UpdateTask(Task<int> task)
+    {
+        var mappedTask = _mapper.Map<TaskEntity<int>>(task);
+        _unitOfWork.TaskRepository.Update(mappedTask);
+        await _unitOfWork.Save();
+        return task;
+    }
+
+    public async System.Threading.Tasks.Task<Task<int>> DeleteTask(Task<int> task)
+    {
+        var mappedTask = _mapper.Map<TaskEntity<int>>(task);
+        _unitOfWork.TaskRepository.Delete(mappedTask);
+        await _unitOfWork.Save();
+        return task;
     }
 }

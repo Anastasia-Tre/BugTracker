@@ -11,12 +11,12 @@ public interface IProjectService<TKey>
         SearchProjects(
             string searchString = "");
 
-    public System.Threading.Tasks.Task<Project<int>>
-        CreateProject(Project<int> project);
+    public System.Threading.Tasks.Task<Project<TKey>>
+        CreateProject(Project<TKey> project);
 
-    public System.Threading.Tasks.Task<Project<int>> 
-        UpdateProject(Project<int> project);
+    public System.Threading.Tasks.Task<Project<TKey>> 
+        UpdateProject(Project<TKey> project);
 
-    public System.Threading.Tasks.Task<Project<int>>
-        DeleteProject(Project<int> project);
+    public System.Threading.Tasks.Task<Project<TKey>>
+        DeleteProject(Project<TKey> project);
 }
