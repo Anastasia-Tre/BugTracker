@@ -8,7 +8,12 @@ public interface IUserService<TKey>
     public System.Threading.Tasks.Task<User<TKey>> GetUserById(TKey id);
     public System.Threading.Tasks.Task<IEnumerable<User<TKey>>> GetAllUsers();
 
-    // public User<TKey> CreateUser();
-    // public User<TKey> UpdateUser(TKey id, User<TKey> user);
-    // public User<TKey> DeleteUser(TKey id);
+    public System.Threading.Tasks.Task<User<TKey>>
+        CreateUser(User<TKey> user);
+
+    public System.Threading.Tasks.Task<User<TKey>>
+        UpdateUser(User<TKey> user);
+
+    public System.Threading.Tasks.Task<User<TKey>>
+        DeleteUser(User<TKey> user);
 }

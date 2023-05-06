@@ -1,20 +1,20 @@
 
 -- User
-INSERT INTO [Users] (FirstName, LastName, Email, Phone, Title, Bio, Created)
+INSERT INTO [Users] (FirstName, LastName, Email, Phone, Title, Bio, Created, Password)
 VALUES
-('John', 'Doe', 'john.doe@example.com', '+1-555-1234', 'Software Engineer', 'I enjoy programming and hiking.', '2022-01-01 10:00:00'),
-('Jane', 'Doe', 'jane.doe@example.com', '+1-555-5678', 'Product Manager', 'I love building great products.', '2022-01-02 11:00:00'),
-('Bob', 'Smith', 'bob.smith@example.com', '+1-555-2468', 'Marketing Manager', 'I specialize in digital marketing.', '2022-01-03 12:00:00'),
-('Alice', 'Johnson', 'alice.johnson@example.com', '+1-555-3698', 'Sales Representative', 'I excel at building relationships with customers.', '2022-01-04 13:00:00'),
-('Tom', 'Lee', 'tom.lee@example.com', '+1-555-9876', 'Data Analyst', 'I have a passion for data analysis and visualization.', '2022-01-05 14:00:00');
+('John', 'Doe', 'john.doe@example.com', '+1-555-1234', 'Software Engineer', 'I enjoy programming and hiking.', '2022-01-01 10:00:00', 'Password'),
+('Jane', 'Doe', 'jane.doe@example.com', '+1-555-5678', 'Product Manager', 'I love building great products.', '2022-01-02 11:00:00', 'Password'),
+('Bob', 'Smith', 'bob.smith@example.com', '+1-555-2468', 'Marketing Manager', 'I specialize in digital marketing.', '2022-01-03 12:00:00', 'Password'),
+('Alice', 'Johnson', 'alice.johnson@example.com', '+1-555-3698', 'Sales Representative', 'I excel at building relationships with customers.', '2022-01-04 13:00:00', 'Password'),
+('Tom', 'Lee', 'tom.lee@example.com', '+1-555-9876', 'Data Analyst', 'I have a passion for data analysis and visualization.', '2022-01-05 14:00:00', 'Password');
 
-INSERT INTO [Users] (FirstName, LastName, Email, Phone, Title, Bio, Created)
+INSERT INTO [Users] (FirstName, LastName, Email, Phone, Title, Bio, Created, Password)
 VALUES
-('Sarah', 'Johnson', 'sarah.johnson@example.com', '+1-555-4321', 'Graphic Designer', 'I love creating beautiful designs that capture the essence of a brand.', '2022-01-06 15:00:00'),
-('Chris', 'Miller', 'chris.miller@example.com', '+1-555-7531', 'Project Manager', 'I excel at leading cross-functional teams to deliver successful projects.', '2022-01-07 16:00:00'),
-('Emily', 'Garcia', 'emily.garcia@example.com', '+1-555-8642', 'HR Manager', 'I am passionate about creating a positive work culture where everyone can thrive.', '2022-01-08 17:00:00'),
-('Mike', 'Brown', 'mike.brown@example.com', '+1-555-1357', 'Financial Analyst', 'I am a detail-oriented financial analyst who loves working with numbers.', '2022-01-09 18:00:00'),
-('Linda', 'Davis', 'linda.davis@example.com', '+1-555-2468', 'Customer Service Representative', 'I am committed to providing outstanding customer service and resolving issues quickly and effectively.', '2022-01-10 19:00:00');
+('Sarah', 'Johnson', 'sarah.johnson@example.com', '+1-555-4321', 'Graphic Designer', 'I love creating beautiful designs that capture the essence of a brand.', '2022-01-06 15:00:00', 'Password'),
+('Chris', 'Miller', 'chris.miller@example.com', '+1-555-7531', 'Project Manager', 'I excel at leading cross-functional teams to deliver successful projects.', '2022-01-07 16:00:00', 'Password'),
+('Emily', 'Garcia', 'emily.garcia@example.com', '+1-555-8642', 'HR Manager', 'I am passionate about creating a positive work culture where everyone can thrive.', '2022-01-08 17:00:00', 'Password'),
+('Mike', 'Brown', 'mike.brown@example.com', '+1-555-1357', 'Financial Analyst', 'I am a detail-oriented financial analyst who loves working with numbers.', '2022-01-09 18:00:00', 'Password'),
+('Linda', 'Davis', 'linda.davis@example.com', '+1-555-2468', 'Customer Service Representative', 'I am committed to providing outstanding customer service and resolving issues quickly and effectively.', '2022-01-10 19:00:00', 'Password');
 
 -- Project
 INSERT INTO [Projects] (Name, Description, AuthorId, Status, Deadline, Created)

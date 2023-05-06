@@ -14,13 +14,13 @@ public class TaskEntity<TKey> : BaseEntity<TKey>
     public int Difficulty { get; set; }
 
     public TKey AssignedId { get; set; }
-    public UserEntity<TKey> Assigned { get; set; }
+    //public UserEntity<TKey> Assigned { get; set; }
 
     public TKey AuthorId { get; set; }
     //public UserEntity<TKey> Author { get; set; }
 
     public TKey ProjectId { get; set; }
-    public ProjectEntity<TKey> Project { get; set; }
+    //public ProjectEntity<TKey> Project { get; set; }
 
     public DateTime Deadline { get; set; }
     //public float Estimate { get; set; }

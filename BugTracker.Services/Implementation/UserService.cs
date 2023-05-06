@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
+using BugTracker.DataAccessLayer.Entities;
 using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
@@ -28,5 +29,30 @@ public class UserService : IUserService<int>
     {
         var users = await _unitOfWork.UserRepository.GetAllUsers();
         return _mapper.Map<IEnumerable<User<int>>>(users);
+    }
+
+    public async System.Threading.Tasks.Task<User<int>>
+        CreateUser(User<int> user)
+    {
+        var mappedUser = _mapper.Map<UserEntity<int>>(user);
+        await _unitOfWork.UserRepository.Create(mappedUser);
+        await _unitOfWork.Save();
+        return user;
+    }
+
+    public async System.Threading.Tasks.Task<User<int>> UpdateUser(User<int> user)
+    {
+        var mappedUser = _mapper.Map<UserEntity<int>>(user);
+        _unitOfWork.UserRepository.Update(mappedUser);
+        await _unitOfWork.Save();
+        return user;
+    }
+
+    public async System.Threading.Tasks.Task<User<int>> DeleteUser(User<int> user)
+    {
+        var mappedUser = _mapper.Map<UserEntity<int>>(user);
+        _unitOfWork.UserRepository.Delete(mappedUser);
+        await _unitOfWork.Save();
+        return user;
     }
 }

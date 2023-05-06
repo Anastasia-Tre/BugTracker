@@ -42,6 +42,7 @@ CREATE TABLE [Users] (
 	Title varchar(255) NOT NULL,
 	Bio varchar(255),
 	Created datetime NOT NULL,
+	Password varchar(255) NOT NULL,
   CONSTRAINT [PK_USER] PRIMARY KEY CLUSTERED
   (
   [Id] ASC
