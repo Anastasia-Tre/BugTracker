@@ -2,7 +2,7 @@
 
 public enum TaskPriority
 {
-    Minor,
+    Minor = 1,
     Low,
     Normal,
     High

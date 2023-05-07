@@ -2,7 +2,7 @@
 
 public enum TaskStatus
 {
-    New,
+    New = 1,
     InProgress,
     InTesting,
     Closed

@@ -2,8 +2,8 @@
 
 public enum TaskType
 {
-    Issue,
-    Bug,
+    Issue = 1,
+    Feature,
     Task,
-    Feature
+    Bug
 }
