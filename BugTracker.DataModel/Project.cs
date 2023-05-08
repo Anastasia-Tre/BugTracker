@@ -13,7 +13,8 @@ public class Project<TKey>
     public ProjectStatus Status { get; set; }
 
     public TKey AuthorId { get; set; }
-    //public User<TKey> Author { get; set; }
+    //public string Author { get; set; }
+    public User<TKey> Author { get; set; }
 
     //public Task<TKey>[] Tasks { get; set; }
     //public User<TKey>[] Team { get; set; }

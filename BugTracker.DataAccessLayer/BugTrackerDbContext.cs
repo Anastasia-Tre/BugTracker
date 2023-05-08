@@ -31,4 +31,16 @@ public sealed class BugTrackerDbContext : DbContext
         optionsBuilder
             .UseSqlServer(_connectionString);
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<UserEntity<int>>()
+            .HasMany(s => s.Projects)
+            .WithOne(s => s.Author)
+            .HasForeignKey(e => e.AuthorId);
+        //.HasPrincipalKey(e => e.Id);
+
+        modelBuilder.Entity<ProjectEntity<int>>().Navigation(p => p.Author)
+            .AutoInclude();
+    }
 }
