@@ -16,13 +16,13 @@ public class Task<TKey>
     public int Difficulty { get; set; }
 
     public TKey AssignedId { get; set; }
-    //public User<TKey> Assigned { get; set; }
+    public User<TKey> Assigned { get; set; }
 
     public TKey AuthorId { get; set; }
     //public User<TKey> Author { get; set; }
 
     public TKey ProjectId { get; set; }
-    //public Project<TKey> Project { get; set; }
+    public Project<TKey> Project { get; set; }
 
     public DateTime Deadline { get; set; }
     //public float Estimate { get; set; }

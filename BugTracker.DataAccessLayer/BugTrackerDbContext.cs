@@ -34,13 +34,20 @@ public sealed class BugTrackerDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<UserEntity<int>>()
-            .HasMany(s => s.Projects)
-            .WithOne(s => s.Author)
-            .HasForeignKey(e => e.AuthorId);
-        //.HasPrincipalKey(e => e.Id);
+        //modelBuilder.Entity<UserEntity<int>>()
+        //    .HasMany(s => s.Projects)
+        //    .WithOne(s => s.Author)
+        //    .HasForeignKey(e => e.AuthorId);
 
-        modelBuilder.Entity<ProjectEntity<int>>().Navigation(p => p.Author)
+        modelBuilder.Entity<ProjectEntity<int>>()
+                    .Navigation(p => p.Author)
+                    .AutoInclude();
+
+        modelBuilder.Entity<TaskEntity<int>>()
+            .Navigation(p => p.Assigned)
+            .AutoInclude();
+        modelBuilder.Entity<TaskEntity<int>>()
+            .Navigation(p => p.Project)
             .AutoInclude();
     }
 }
