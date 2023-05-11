@@ -27,24 +27,24 @@ public class TaskService : ITaskService<int>
     public async System.Threading.Tasks.Task<IEnumerable<Task<int>>>
         SearchTasks(string searchString)
     {
-        var users = await _unitOfWork.TaskRepository.Search(searchString);
-        return _mapper.Map<IEnumerable<Task<int>>>(users);
+        var tasks = await _unitOfWork.TaskRepository.Search(searchString);
+        return _mapper.Map<IEnumerable<Task<int>>>(tasks);
     }
 
     public async System.Threading.Tasks.Task<IEnumerable<Task<int>>>
         GetTasksForProject(
             int projectId)
     {
-        var users =
+        var tasks =
             await _unitOfWork.TaskRepository.GetTasksForProject(projectId);
-        return _mapper.Map<IEnumerable<Task<int>>>(users);
+        return _mapper.Map<IEnumerable<Task<int>>>(tasks);
     }
 
     public async System.Threading.Tasks.Task<IEnumerable<Task<int>>>
         GetTasksForUser(int userId)
     {
-        var users = await _unitOfWork.TaskRepository.GetTasksForUser(userId);
-        return _mapper.Map<IEnumerable<Task<int>>>(users);
+        var tasks = await _unitOfWork.TaskRepository.GetTasksForUser(userId);
+        return _mapper.Map<IEnumerable<Task<int>>>(tasks);
     }
 
     public async System.Threading.Tasks.Task<Task<int>> AssignTaskToUser(
@@ -79,5 +79,19 @@ public class TaskService : ITaskService<int>
         _unitOfWork.TaskRepository.Delete(mappedTask);
         await _unitOfWork.Save();
         return task;
+    }
+
+    public async System.Threading.Tasks.Task<Task<int>> GetTaskInFocusForUser(int userId)
+    {
+        var tasks =
+            await _unitOfWork.TaskRepository.GetTaskInFocusForUser(userId);
+        return _mapper.Map<Task<int>>(tasks);
+    }
+
+    public async System.Threading.Tasks.Task<IEnumerable<Task<int>>> GetTasksNowOrLaterForUser(int userId)
+    {
+        var tasks =
+            await _unitOfWork.TaskRepository.GetTasksNowOrLaterForUser(userId);
+        return _mapper.Map<IEnumerable<Task<int>>>(tasks);
     }
 }

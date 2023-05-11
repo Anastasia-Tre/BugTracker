@@ -120,4 +120,26 @@ public class TaskController : ControllerBase
         return Ok(await _mediator.Send(new DeleteTaskCommand
             { Task = task }));
     }
+
+    [HttpGet]
+    [Route("inFocus")]
+    [ProducesResponseType(typeof(Task<int>),
+        StatusCodes.Status200OK)]
+    [ProducesDefaultResponseType]
+    public async System.Threading.Tasks.Task<IActionResult> GetTaskInFocusForUser([FromQuery] int userId)
+    {
+        return Ok(await _mediator.Send(
+            new GetTaskInFocusForUser { UserId = userId }));
+    }
+
+    [HttpGet]
+    [Route("nowOrLater")]
+    [ProducesResponseType(typeof(IEnumerable<Task<int>>),
+        StatusCodes.Status200OK)]
+    [ProducesDefaultResponseType]
+    public async System.Threading.Tasks.Task<IActionResult> GetTasksNowOrLaterForUser([FromQuery] int userId)
+    {
+        return Ok(await _mediator.Send(
+            new GetTasksNowOrLaterForUser() { UserId = userId }));
+    }
 }
