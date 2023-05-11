@@ -28,7 +28,9 @@ public interface ITaskService<TKey>
     public System.Threading.Tasks.Task<Task<TKey>>
         DeleteTask(Task<TKey> task);
 
-    public System.Threading.Tasks.Task<Task<TKey>> GetTaskInFocusForUser(TKey userId);
+    public System.Threading.Tasks.Task<Task<TKey>> GetTaskInFocusForUser(
+        TKey userId);
 
-    public System.Threading.Tasks.Task<IEnumerable<Task<TKey>>> GetTasksNowOrLaterForUser(TKey userId);
+    public System.Threading.Tasks.Task<IEnumerable<Task<TKey>>>
+        GetTasksNowOrLaterForUser(TKey userId);
 }

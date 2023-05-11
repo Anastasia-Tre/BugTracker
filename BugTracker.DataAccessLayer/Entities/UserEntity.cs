@@ -12,6 +12,7 @@ public class UserEntity<TKey> : BaseEntity<TKey>
     public string Title { get; set; }
     public string Bio { get; set; }
 
-    public ICollection<ProjectEntity<TKey>> Projects { get; } = new List<ProjectEntity<TKey>>();
+    public ICollection<ProjectEntity<TKey>> Projects { get; } =
+        new List<ProjectEntity<TKey>>();
     //public TaskEntity<TKey> Tasks { get; set; }
 }

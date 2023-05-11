@@ -1,5 +1,5 @@
-﻿using BugTracker.DataAccessLayer.Repositories.Abstraction;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using BugTracker.DataAccessLayer.Repositories.Abstraction;
 
 namespace BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
 

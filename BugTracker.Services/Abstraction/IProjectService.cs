@@ -14,7 +14,7 @@ public interface IProjectService<TKey>
     public System.Threading.Tasks.Task<Project<TKey>>
         CreateProject(Project<TKey> project);
 
-    public System.Threading.Tasks.Task<Project<TKey>> 
+    public System.Threading.Tasks.Task<Project<TKey>>
         UpdateProject(Project<TKey> project);
 
     public System.Threading.Tasks.Task<Project<TKey>>

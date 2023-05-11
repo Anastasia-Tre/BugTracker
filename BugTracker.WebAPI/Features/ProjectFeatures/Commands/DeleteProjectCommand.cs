@@ -1,7 +1,7 @@
-﻿using BugTracker.DataModel;
+﻿using System.Threading;
+using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
 using MediatR;
-using System.Threading;
 
 namespace BugTracker.WebAPI.Features.ProjectFeatures.Commands;
 
@@ -20,7 +20,8 @@ public class DeleteProjectCommand : IRequest<Project<int>>
             _service = service;
         }
 
-        public async System.Threading.Tasks.Task<Project<int>> Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<Project<int>> Handle(
+            DeleteProjectCommand request, CancellationToken cancellationToken)
         {
             var result = await _service.DeleteProject(request.Project);
             return result;

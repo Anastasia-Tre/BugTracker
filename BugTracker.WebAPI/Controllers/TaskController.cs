@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BugTracker.DataModel;
+using System.Threading.Tasks;
 using BugTracker.WebAPI.Features.TaskFeatures.Commands;
 using BugTracker.WebAPI.Features.TaskFeatures.Queries;
 using BugTracker.WebAPI.Filters;
@@ -22,29 +22,29 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(Task<int>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(DataModel.Task<int>), StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async System.Threading.Tasks.Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetById(int id)
     {
         return Ok(
             await _mediator.Send(new GetTaskByIdQuery { TaskId = id }));
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<Task<int>>),
+    [ProducesResponseType(typeof(IEnumerable<DataModel.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async System.Threading.Tasks.Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll()
     {
         return Ok(await _mediator.Send(new GetAllTasksQuery()));
     }
 
     [HttpGet]
     [Route("search")]
-    [ProducesResponseType(typeof(IEnumerable<Task<int>>),
+    [ProducesResponseType(typeof(IEnumerable<DataModel.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async System.Threading.Tasks.Task<IActionResult> SearchTasks(
+    public async Task<IActionResult> SearchTasks(
         [FromQuery] string searchString)
     {
         return Ok(await _mediator.Send(
@@ -53,10 +53,10 @@ public class TaskController : ControllerBase
 
     [HttpGet]
     [Route("forUser")]
-    [ProducesResponseType(typeof(IEnumerable<Task<int>>),
+    [ProducesResponseType(typeof(IEnumerable<DataModel.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async System.Threading.Tasks.Task<IActionResult> GetTasksForUser([FromQuery] int userId)
+    public async Task<IActionResult> GetTasksForUser([FromQuery] int userId)
     {
         return Ok(await _mediator.Send(
             new GetTasksByUserQuery { UserId = userId }));
@@ -64,10 +64,10 @@ public class TaskController : ControllerBase
 
     [HttpGet]
     [Route("forProject")]
-    [ProducesResponseType(typeof(IEnumerable<Task<int>>),
+    [ProducesResponseType(typeof(IEnumerable<DataModel.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async System.Threading.Tasks.Task<IActionResult> GetTasksForProject(
+    public async Task<IActionResult> GetTasksForProject(
         [FromQuery] int projectId)
     {
         return Ok(await _mediator.Send(
@@ -76,9 +76,9 @@ public class TaskController : ControllerBase
 
     [HttpPut]
     [Route("assign")]
-    [ProducesResponseType(typeof(Task<int>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(DataModel.Task<int>), StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async System.Threading.Tasks.Task<IActionResult> AssignTaskToUser([FromQuery] int bugId,
+    public async Task<IActionResult> AssignTaskToUser([FromQuery] int bugId,
         int userId)
     {
         return Ok(await _mediator.Send(
@@ -88,34 +88,36 @@ public class TaskController : ControllerBase
 
     [HttpPost]
     [Route("create")]
-    [ProducesResponseType(typeof(Task<int>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(DataModel.Task<int>),
+        StatusCodes.Status201Created)]
     [ProducesDefaultResponseType]
-    public async System.Threading.Tasks.Task<IActionResult> CreateTask(
-        Task<int> task)
+    public async Task<IActionResult> CreateTask(DataModel.Task<int> task)
     {
         var actionName = nameof(CreateTask);
-        return CreatedAtAction(actionName, await _mediator.Send(new CreateTaskCommand
-            { Task = task }));
+        return CreatedAtAction(actionName, await _mediator.Send(
+            new CreateTaskCommand
+                { Task = task }));
     }
 
     [HttpPost]
     [Route("{id}")]
-    [ProducesResponseType(typeof(Task<int>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(DataModel.Task<int>),
+        StatusCodes.Status201Created)]
     [ProducesDefaultResponseType]
-    public async System.Threading.Tasks.Task<IActionResult> UpdateTask(
-        Task<int> task)
+    public async Task<IActionResult> UpdateTask(DataModel.Task<int> task)
     {
         var actionName = nameof(UpdateTask);
-        return CreatedAtAction(actionName, await _mediator.Send(new UpdateTaskCommand
-            { Task = task }));
+        return CreatedAtAction(actionName, await _mediator.Send(
+            new UpdateTaskCommand
+                { Task = task }));
     }
 
     [HttpDelete]
     [Route("{id}")]
-    [ProducesResponseType(typeof(Task<int>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(DataModel.Task<int>),
+        StatusCodes.Status201Created)]
     [ProducesDefaultResponseType]
-    public async System.Threading.Tasks.Task<IActionResult> DeleteTask(
-        Task<int> task)
+    public async Task<IActionResult> DeleteTask(DataModel.Task<int> task)
     {
         return Ok(await _mediator.Send(new DeleteTaskCommand
             { Task = task }));
@@ -123,10 +125,11 @@ public class TaskController : ControllerBase
 
     [HttpGet]
     [Route("inFocus")]
-    [ProducesResponseType(typeof(Task<int>),
+    [ProducesResponseType(typeof(DataModel.Task<int>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async System.Threading.Tasks.Task<IActionResult> GetTaskInFocusForUser([FromQuery] int userId)
+    public async Task<IActionResult> GetTaskInFocusForUser(
+        [FromQuery] int userId)
     {
         return Ok(await _mediator.Send(
             new GetTaskInFocusForUser { UserId = userId }));
@@ -134,12 +137,13 @@ public class TaskController : ControllerBase
 
     [HttpGet]
     [Route("nowOrLater")]
-    [ProducesResponseType(typeof(IEnumerable<Task<int>>),
+    [ProducesResponseType(typeof(IEnumerable<DataModel.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
-    public async System.Threading.Tasks.Task<IActionResult> GetTasksNowOrLaterForUser([FromQuery] int userId)
+    public async Task<IActionResult> GetTasksNowOrLaterForUser(
+        [FromQuery] int userId)
     {
         return Ok(await _mediator.Send(
-            new GetTasksNowOrLaterForUser() { UserId = userId }));
+            new GetTasksNowOrLaterForUser { UserId = userId }));
     }
 }

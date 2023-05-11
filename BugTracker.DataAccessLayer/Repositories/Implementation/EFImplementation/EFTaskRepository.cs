@@ -65,8 +65,9 @@ public class EFTaskRepository : EFRepository<TaskEntity<int>>,
     {
         return await _entities
             .Where(task => task.AssignedId.Equals(userId)
-                && (task.Status == TaskStatus.New || task.Status == TaskStatus.InProgress) 
-                && task.Project.Status != ProjectStatus.Closed)
+                           && (task.Status == TaskStatus.New ||
+                               task.Status == TaskStatus.InProgress)
+                           && task.Project.Status != ProjectStatus.Closed)
             .OrderBy(task => task.Deadline)
             .ThenByDescending(task => task.Priority)
             .ThenByDescending(task => task.Type)
@@ -87,7 +88,8 @@ public class EFTaskRepository : EFRepository<TaskEntity<int>>,
     {
         return await _entities
             .Where(task => task.AssignedId.Equals(userId)
-                           && (task.Status == TaskStatus.New || task.Status == TaskStatus.InProgress)
+                           && (task.Status == TaskStatus.New ||
+                               task.Status == TaskStatus.InProgress)
                            && task.Project.Status != ProjectStatus.Closed)
             .OrderBy(task => task.Difficulty)
             .ThenByDescending(task => task.Priority)

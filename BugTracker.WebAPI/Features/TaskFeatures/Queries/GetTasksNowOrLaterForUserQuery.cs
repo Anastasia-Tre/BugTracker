@@ -21,7 +21,8 @@ public class GetTasksNowOrLaterForUser : IRequest<IEnumerable<Task<int>>>
         }
 
         public async System.Threading.Tasks.Task<IEnumerable<Task<int>>> Handle(
-            GetTasksNowOrLaterForUser request, CancellationToken cancellationToken)
+            GetTasksNowOrLaterForUser request,
+            CancellationToken cancellationToken)
         {
             var result =
                 await _service.GetTasksNowOrLaterForUser(request.UserId);

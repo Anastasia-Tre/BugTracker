@@ -4,5 +4,5 @@ public enum ProjectStatus
 {
     Open = 1,
     Current,
-    Closed,
+    Closed
 }

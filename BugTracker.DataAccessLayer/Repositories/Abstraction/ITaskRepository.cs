@@ -15,5 +15,6 @@ public interface ITaskRepository<TKey> : IRepository<TaskEntity<TKey>, TKey>
 
     public Task<TaskEntity<TKey>> GetTaskInFocusForUser(TKey userId);
 
-    public Task<IEnumerable<TaskEntity<TKey>>> GetTasksNowOrLaterForUser(TKey userId);
+    public Task<IEnumerable<TaskEntity<TKey>>> GetTasksNowOrLaterForUser(
+        TKey userId);
 }

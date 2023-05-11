@@ -1,7 +1,7 @@
-﻿using BugTracker.DataModel;
+﻿using System.Threading;
+using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
 using MediatR;
-using System.Threading;
 
 namespace BugTracker.WebAPI.Features.TaskFeatures.Commands;
 
@@ -20,7 +20,8 @@ public class DeleteTaskCommand : IRequest<Task<int>>
             _service = service;
         }
 
-        public async System.Threading.Tasks.Task<Task<int>> Handle(DeleteTaskCommand request, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<Task<int>> Handle(
+            DeleteTaskCommand request, CancellationToken cancellationToken)
         {
             var result = await _service.DeleteTask(request.Task);
             return result;

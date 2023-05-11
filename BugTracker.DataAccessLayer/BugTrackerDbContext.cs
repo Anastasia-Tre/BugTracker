@@ -40,8 +40,8 @@ public sealed class BugTrackerDbContext : DbContext
         //    .HasForeignKey(e => e.AuthorId);
 
         modelBuilder.Entity<ProjectEntity<int>>()
-                    .Navigation(p => p.Author)
-                    .AutoInclude();
+            .Navigation(p => p.Author)
+            .AutoInclude();
 
         modelBuilder.Entity<TaskEntity<int>>()
             .Navigation(p => p.Assigned)

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System.Threading;
 using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
 using MediatR;

@@ -40,7 +40,8 @@ public class UserService : IUserService<int>
         return user;
     }
 
-    public async System.Threading.Tasks.Task<User<int>> UpdateUser(User<int> user)
+    public async System.Threading.Tasks.Task<User<int>> UpdateUser(
+        User<int> user)
     {
         var mappedUser = _mapper.Map<UserEntity<int>>(user);
         _unitOfWork.UserRepository.Update(mappedUser);
@@ -48,7 +49,8 @@ public class UserService : IUserService<int>
         return user;
     }
 
-    public async System.Threading.Tasks.Task<User<int>> DeleteUser(User<int> user)
+    public async System.Threading.Tasks.Task<User<int>> DeleteUser(
+        User<int> user)
     {
         var mappedUser = _mapper.Map<UserEntity<int>>(user);
         _unitOfWork.UserRepository.Delete(mappedUser);

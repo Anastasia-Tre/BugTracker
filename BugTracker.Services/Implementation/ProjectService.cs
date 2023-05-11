@@ -43,7 +43,8 @@ public class ProjectService : IProjectService<int>
         return project;
     }
 
-    public async System.Threading.Tasks.Task<Project<int>> UpdateProject(Project<int> project)
+    public async System.Threading.Tasks.Task<Project<int>> UpdateProject(
+        Project<int> project)
     {
         var mappedProject = _mapper.Map<ProjectEntity<int>>(project);
         _unitOfWork.ProjectRepository.Update(mappedProject);
@@ -51,7 +52,8 @@ public class ProjectService : IProjectService<int>
         return project;
     }
 
-    public async System.Threading.Tasks.Task<Project<int>> DeleteProject(Project<int> project)
+    public async System.Threading.Tasks.Task<Project<int>> DeleteProject(
+        Project<int> project)
     {
         var mappedProject = _mapper.Map<ProjectEntity<int>>(project);
         _unitOfWork.ProjectRepository.Delete(mappedProject);

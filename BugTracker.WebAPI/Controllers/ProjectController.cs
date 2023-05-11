@@ -59,8 +59,9 @@ public class ProjectController : ControllerBase
         Project<int> project)
     {
         var actionName = nameof(CreateProject);
-       return CreatedAtAction(actionName, await _mediator.Send(new CreateProjectCommand
-            { Project = project }));
+        return CreatedAtAction(actionName, await _mediator.Send(
+            new CreateProjectCommand
+                { Project = project }));
     }
 
     [HttpPost]
@@ -71,8 +72,9 @@ public class ProjectController : ControllerBase
         Project<int> project)
     {
         var actionName = nameof(UpdateProject);
-        return CreatedAtAction(actionName, await _mediator.Send(new UpdateProjectCommand
-            { Project = project }));
+        return CreatedAtAction(actionName, await _mediator.Send(
+            new UpdateProjectCommand
+                { Project = project }));
     }
 
     [HttpDelete]

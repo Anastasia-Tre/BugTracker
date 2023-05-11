@@ -30,7 +30,8 @@ public class Startup
         services.AddCors(options =>
         {
             options.AddPolicy("AllowLocalhost",
-                builder => {
+                builder =>
+                {
                     builder.WithOrigins("http://localhost:3000")
                         .AllowAnyHeader()
                         .AllowAnyMethod();

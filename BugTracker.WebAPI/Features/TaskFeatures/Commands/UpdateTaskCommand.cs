@@ -1,7 +1,7 @@
-﻿using BugTracker.DataModel;
+﻿using System.Threading;
+using BugTracker.DataModel;
 using BugTracker.Services.Abstraction;
 using MediatR;
-using System.Threading;
 
 namespace BugTracker.WebAPI.Features.TaskFeatures.Commands;
 
@@ -20,7 +20,8 @@ public class UpdateTaskCommand : IRequest<Task<int>>
             _service = service;
         }
 
-        public async System.Threading.Tasks.Task<Task<int>> Handle(UpdateTaskCommand request, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<Task<int>> Handle(
+            UpdateTaskCommand request, CancellationToken cancellationToken)
         {
             var result = await _service.UpdateTask(request.Task);
             return result;

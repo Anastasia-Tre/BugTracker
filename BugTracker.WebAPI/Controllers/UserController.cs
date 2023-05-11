@@ -47,8 +47,9 @@ public class UserController : ControllerBase
         User<int> user)
     {
         var actionName = nameof(CreateUser);
-        return CreatedAtAction(actionName, await _mediator.Send(new CreateUserCommand
-            { User = user }));
+        return CreatedAtAction(actionName, await _mediator.Send(
+            new CreateUserCommand
+                { User = user }));
     }
 
     [HttpPost]
@@ -59,8 +60,9 @@ public class UserController : ControllerBase
         User<int> user)
     {
         var actionName = nameof(UpdateUser);
-        return CreatedAtAction(actionName, await _mediator.Send(new UpdateUserCommand
-            { User = user }));
+        return CreatedAtAction(actionName, await _mediator.Send(
+            new UpdateUserCommand
+                { User = user }));
     }
 
     [HttpDelete]
