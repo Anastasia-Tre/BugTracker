@@ -33,4 +33,12 @@ public interface ITaskService<TKey>
 
     public System.Threading.Tasks.Task<IEnumerable<Task<TKey>>>
         GetTasksNowOrLaterForUser(TKey userId);
+
+    public System.Threading.Tasks.Task<int> GetTotalTasksForUser(int userId);
+
+    public System.Threading.Tasks.Task<int> GetCompleteTasksForUser(int userId);
+
+    public System.Threading.Tasks.Task<int> GetUncompleteTasksForUser(int userId);
+
+    public System.Threading.Tasks.Task<int> GetOverdueTasksForUser(int userId);
 }

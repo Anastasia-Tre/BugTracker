@@ -146,4 +146,52 @@ public class TaskController : ControllerBase
         return Ok(await _mediator.Send(
             new GetTasksNowOrLaterForUser { UserId = userId }));
     }
+
+    [HttpGet]
+    [Route("total")]
+    [ProducesResponseType(typeof(int),
+        StatusCodes.Status200OK)]
+    [ProducesDefaultResponseType]
+    public async Task<IActionResult> GetTotalTasksForUser(
+        [FromQuery] int userId)
+    {
+        return Ok(await _mediator.Send(
+            new GetTotalTasksForUser { UserId = userId }));
+    }
+
+    [HttpGet]
+    [Route("complete")]
+    [ProducesResponseType(typeof(int),
+        StatusCodes.Status200OK)]
+    [ProducesDefaultResponseType]
+    public async Task<IActionResult> GetCompleteTasksForUser(
+        [FromQuery] int userId)
+    {
+        return Ok(await _mediator.Send(
+            new GetCompleteTasksForUser { UserId = userId }));
+    }
+
+    [HttpGet]
+    [Route("uncomplete")]
+    [ProducesResponseType(typeof(int),
+        StatusCodes.Status200OK)]
+    [ProducesDefaultResponseType]
+    public async Task<IActionResult> GetUncompleteTasksForUser(
+        [FromQuery] int userId)
+    {
+        return Ok(await _mediator.Send(
+            new GetUncompleteTasksForUser { UserId = userId }));
+    }
+
+    [HttpGet]
+    [Route("overdue")]
+    [ProducesResponseType(typeof(int),
+        StatusCodes.Status200OK)]
+    [ProducesDefaultResponseType]
+    public async Task<IActionResult> GetOverdueTasksForUser(
+        [FromQuery] int userId)
+    {
+        return Ok(await _mediator.Send(
+            new GetOverdueTasksForUser { UserId = userId }));
+    }
 }

@@ -99,4 +99,24 @@ public class TaskService : ITaskService<int>
             await _unitOfWork.TaskRepository.GetTasksNowOrLaterForUser(userId);
         return _mapper.Map<IEnumerable<Task<int>>>(tasks);
     }
+
+    public System.Threading.Tasks.Task<int> GetTotalTasksForUser(int userId)
+    {
+        return _unitOfWork.TaskRepository.GetTotalTasksForUser(userId);
+    }
+
+    public System.Threading.Tasks.Task<int> GetCompleteTasksForUser(int userId)
+    {
+        return _unitOfWork.TaskRepository.GetCompleteTasksForUser(userId);
+    }
+
+    public System.Threading.Tasks.Task<int> GetUncompleteTasksForUser(int userId)
+    {
+        return _unitOfWork.TaskRepository.GetUncompleteTasksForUser(userId);
+    }
+
+    public System.Threading.Tasks.Task<int> GetOverdueTasksForUser(int userId)
+    {
+        return _unitOfWork.TaskRepository.GetOverdueTasksForUser(userId);
+    }
 }

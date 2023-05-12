@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BugTracker.DataAccessLayer.Entities;
@@ -38,7 +39,7 @@ public class EFTaskRepository : EFRepository<TaskEntity<int>>,
     public async Task<IEnumerable<TaskEntity<int>>> GetTasksForProject(
         int projectId)
     {
-        return await _entities
+        return await _entities.AsQueryable()
             .Where(task => task.ProjectId.Equals(projectId))
             .ToListAsync();
     }
@@ -46,7 +47,7 @@ public class EFTaskRepository : EFRepository<TaskEntity<int>>,
     public async Task<IEnumerable<TaskEntity<int>>> GetTasksForUser(
         int userId)
     {
-        return await _entities
+        return await _entities.AsQueryable()
             .Where(task => task.AssignedId.Equals(userId))
             .ToListAsync();
     }
@@ -63,7 +64,7 @@ public class EFTaskRepository : EFRepository<TaskEntity<int>>,
     public async Task<TaskEntity<int>> GetTaskInFocusForUser(
         int userId)
     {
-        return await _entities
+        return await _entities.AsQueryable()
             .Where(task => task.AssignedId.Equals(userId)
                            && (task.Status == TaskStatus.New ||
                                task.Status == TaskStatus.InProgress)
@@ -86,7 +87,7 @@ public class EFTaskRepository : EFRepository<TaskEntity<int>>,
     public async Task<IEnumerable<TaskEntity<int>>> GetTasksNowOrLaterForUser(
         int userId)
     {
-        return await _entities
+        return await _entities.AsQueryable()
             .Where(task => task.AssignedId.Equals(userId)
                            && (task.Status == TaskStatus.New ||
                                task.Status == TaskStatus.InProgress)
@@ -97,5 +98,45 @@ public class EFTaskRepository : EFRepository<TaskEntity<int>>,
             .ThenBy(task => task.Type)
             .Take(4)
             .ToListAsync();
+    }
+
+    public async Task<int> GetTotalTasksForUser(int userId)
+    {
+        return await _entities.AsQueryable()
+            .Where(task => task.AssignedId.Equals(userId)
+                           && task.Project.Status != ProjectStatus.Closed)
+            .CountAsync();
+    }
+
+    public async Task<int> GetCompleteTasksForUser(int userId)
+    {
+        return await _entities.AsQueryable()
+            .Where(task => task.AssignedId.Equals(userId)
+                           && (task.Status == TaskStatus.InTesting ||
+                               task.Status == TaskStatus.Closed)
+                           && task.Project.Status != ProjectStatus.Closed)
+            .CountAsync();
+    }
+
+    public async Task<int> GetUncompleteTasksForUser(int userId)
+    {
+        return await _entities.AsQueryable()
+            .Where(task => task.AssignedId.Equals(userId)
+                           && (task.Status == TaskStatus.New ||
+                               task.Status == TaskStatus.InProgress)
+                           && task.Project.Status != ProjectStatus.Closed)
+            .CountAsync();
+    }
+
+    public async Task<int> GetOverdueTasksForUser(int userId)
+    {
+        return await _entities.AsQueryable()
+            .Where(task => task.AssignedId.Equals(userId)
+                           && (task.Status == TaskStatus.New ||
+                               task.Status == TaskStatus.InProgress ||
+                               task.Status == TaskStatus.InTesting)
+                           && task.Project.Status != ProjectStatus.Closed)
+            .Where(task => task.Deadline < DateTime.Now)
+            .CountAsync();
     }
 }
