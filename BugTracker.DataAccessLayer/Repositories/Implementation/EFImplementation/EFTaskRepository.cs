@@ -33,7 +33,7 @@ public class EFTaskRepository : EFRepository<TaskEntity<int>>,
                 || task.Description.Contains(searchString)));
         }
 
-        return await result.ToListAsync();
+        return await result.OrderByDescending(task => task.Created).ToListAsync();
     }
 
     public async Task<IEnumerable<TaskEntity<int>>> GetTasksForProject(

@@ -30,6 +30,6 @@ public class EFProjectRepository : EFRepository<ProjectEntity<int>>,
                 || project.Description.Contains(searchString)));
         }
 
-        return await result.ToListAsync();
+        return await result.OrderByDescending(project => project.Created).ToListAsync();
     }
 }
