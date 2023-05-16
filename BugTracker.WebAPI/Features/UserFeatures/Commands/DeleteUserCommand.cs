@@ -1,6 +1,5 @@
 ﻿using System.Threading;
-using BugTracker.DataModel;
-using BugTracker.Services.Abstraction;
+using Bugify.Domain.AggregatesModel.UserAggregate;
 using MediatR;
 
 namespace BugTracker.WebAPI.Features.UserFeatures.Commands;

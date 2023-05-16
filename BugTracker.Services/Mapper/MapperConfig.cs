@@ -1,5 +1,6 @@
-﻿using BugTracker.DataAccessLayer.Entities;
-using BugTracker.DataModel;
+﻿using Bugify.Domain.AggregatesModel.ProjectAggregate;
+using Bugify.Domain.AggregatesModel.TaskAggregate;
+using Bugify.Domain.AggregatesModel.UserAggregate;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BugTracker.Services.Mapper;

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using AutoBogus;
 using BugTracker.WebAPI.Controllers;
 using BugTracker.WebAPI.Features.TaskFeatures.Queries;
@@ -10,6 +9,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
+using ThreadTasks = System.Threading.Tasks;
+using Bugify.Domain.AggregatesModel.TaskAggregate;
 
 namespace BugTracker.API.Tests;
 
@@ -25,10 +26,10 @@ public class TaskControllerTests
     }
 
     [Fact]
-    public async Task GetTaskById_ReturnsOk()
+    public async ThreadTasks.Task GetTaskById_ReturnsOk()
     {
         // arrange
-        var expected = AutoFaker.Generate<DataModel.Task<int>>();
+        var expected = AutoFaker.Generate<Task<int>>();
         _mediator.Setup(x => x.Send(
                 new GetTaskByIdQuery { TaskId = expected.Id },
                 It.IsAny<CancellationToken>()))
@@ -45,10 +46,10 @@ public class TaskControllerTests
     }
 
     [Fact]
-    public async Task GetAllTasks_ReturnsOk()
+    public async ThreadTasks.Task GetAllTasks_ReturnsOk()
     {
         // arrange
-        var expected = AutoFaker.Generate<IEnumerable<DataModel.Task<int>>>();
+        var expected = AutoFaker.Generate<IEnumerable<Task<int>>>();
         _mediator.Setup(x => x.Send(
                 new GetAllTasksQuery(),
                 It.IsAny<CancellationToken>()))
@@ -65,10 +66,10 @@ public class TaskControllerTests
     }
 
     [Fact]
-    public async Task SearchTasks_ReturnsOk()
+    public async ThreadTasks.Task SearchTasks_ReturnsOk()
     {
         // arrange
-        var expected = AutoFaker.Generate<IEnumerable<DataModel.Task<int>>>();
+        var expected = AutoFaker.Generate<IEnumerable<Task<int>>>();
         var searchString = AutoFaker.Generate<string>();
         _mediator.Setup(x => x.Send(
                 new GetTasksBySearchStringQuery
@@ -87,10 +88,10 @@ public class TaskControllerTests
     }
 
     [Fact]
-    public async Task GetTasksForUser_ReturnsOk()
+    public async ThreadTasks.Task GetTasksForUser_ReturnsOk()
     {
         // arrange
-        var expected = AutoFaker.Generate<IEnumerable<DataModel.Task<int>>>();
+        var expected = AutoFaker.Generate<IEnumerable<Task<int>>>();
         var userId = AutoFaker.Generate<int>();
         _mediator.Setup(x => x.Send(
                 new GetTasksByUserQuery { UserId = userId },
@@ -108,10 +109,10 @@ public class TaskControllerTests
     }
 
     [Fact]
-    public async Task GetTasksForProject_ReturnsOk()
+    public async ThreadTasks.Task GetTasksForProject_ReturnsOk()
     {
         // arrange
-        var expected = AutoFaker.Generate<IEnumerable<DataModel.Task<int>>>();
+        var expected = AutoFaker.Generate<IEnumerable<Task<int>>>();
         var projectId = AutoFaker.Generate<int>();
         _mediator.Setup(x => x.Send(
                 new GetTasksByProjectQuery { ProjectId = projectId },

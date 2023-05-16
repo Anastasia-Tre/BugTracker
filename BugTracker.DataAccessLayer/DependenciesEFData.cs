@@ -1,10 +1,12 @@
-﻿using BugTracker.DataAccessLayer.Repositories.Abstraction;
-using BugTracker.DataAccessLayer.Repositories.Implementation.EFImplementation;
-using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
-using BugTracker.DataAccessLayer.UnitOfWork.Implementation;
+﻿using Bugify.Domain.AggregatesModel.ProjectAggregate;
+using Bugify.Domain.AggregatesModel.TaskAggregate;
+using Bugify.Domain.AggregatesModel.UserAggregate;
+using Bugify.Domain.SeedWork;
+using BugTracker.Infrastructure.Repositories.EFImplementation;
+using BugTracker.Infrastructure.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BugTracker.DataAccessLayer;
+namespace BugTracker.Infrastructure;
 
 public static class DependenciesEFData
 {

@@ -1,8 +1,10 @@
-﻿using BugTracker.DataAccessLayer.Configuration;
-using BugTracker.DataAccessLayer.Entities;
+﻿using Bugify.Domain.AggregatesModel.ProjectAggregate;
+using Bugify.Domain.AggregatesModel.TaskAggregate;
+using Bugify.Domain.AggregatesModel.UserAggregate;
+using BugTracker.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugTracker.DataAccessLayer;
+namespace BugTracker.Infrastructure;
 
 public sealed class BugTrackerDbContext : DbContext
 {

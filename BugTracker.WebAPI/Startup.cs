@@ -1,5 +1,5 @@
 using System.Reflection;
-using BugTracker.DataAccessLayer;
+using BugTracker.Infrastructure;
 using BugTracker.Services;
 using BugTracker.Services.Mapper;
 using BugTracker.WebAPI.Behaviors;

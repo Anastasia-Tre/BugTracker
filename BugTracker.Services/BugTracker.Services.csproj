@@ -10,8 +10,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BugTracker.DataAccessLayer\BugTracker.DataAccessLayer.csproj" />
-		<ProjectReference Include="..\BugTracker.DataModel\BugTracker.DataModel.csproj" />
+		<ProjectReference Include="..\Bugify.Domain\Bugify.Domain.csproj" />
+		<ProjectReference Include="..\BugTracker.DataAccessLayer\BugTracker.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>

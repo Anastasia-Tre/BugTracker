@@ -1,4 +1,4 @@
-﻿namespace BugTracker.DataAccessLayer.Configuration;
+﻿namespace BugTracker.Infrastructure.Configuration;
 
 internal class DatabaseConfiguration : ConfigurationBase
 {

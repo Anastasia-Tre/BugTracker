@@ -1,0 +1,29 @@
+﻿using Bugify.Domain.AggregatesModel.ProjectAggregate;
+using Bugify.Domain.AggregatesModel.UserAggregate;
+
+namespace Bugify.Domain.AggregatesModel.TaskAggregate;
+
+public class Task<TKey>
+{
+    public TKey Id { get; set; }
+
+    public string Name { get; set; }
+    public string Description { get; set; }
+
+    public TaskStatus Status { get; set; }
+    public TaskType Type { get; set; }
+    public TaskPriority Priority { get; set; }
+    public int Difficulty { get; set; }
+
+    public TKey AssignedId { get; set; }
+    public User<TKey> Assigned { get; set; }
+
+    public TKey AuthorId { get; set; }
+    //public User<TKey> Author { get; set; }
+
+    public TKey ProjectId { get; set; }
+    public Project<TKey> Project { get; set; }
+
+    public DateTime Deadline { get; set; }
+    //public float Estimate { get; set; }
+}

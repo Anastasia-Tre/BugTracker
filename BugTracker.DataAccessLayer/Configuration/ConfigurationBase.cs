@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
 
-namespace BugTracker.DataAccessLayer.Configuration;
+namespace BugTracker.Infrastructure.Configuration;
 
 public abstract class ConfigurationBase
 {

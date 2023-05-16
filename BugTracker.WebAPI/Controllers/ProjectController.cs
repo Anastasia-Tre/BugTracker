@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BugTracker.DataModel;
+using Bugify.Domain.AggregatesModel.ProjectAggregate;
 using BugTracker.WebAPI.Features.ProjectFeatures.Commands;
 using BugTracker.WebAPI.Features.ProjectFeatures.Queries;
 using BugTracker.WebAPI.Filters;

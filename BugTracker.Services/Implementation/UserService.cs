@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using BugTracker.DataAccessLayer.Entities;
-using BugTracker.DataAccessLayer.UnitOfWork.Abstraction;
-using BugTracker.DataModel;
-using BugTracker.Services.Abstraction;
+using Bugify.Domain.AggregatesModel.UserAggregate;
+using Bugify.Domain.SeedWork;
 
 namespace BugTracker.Services.Implementation;
 

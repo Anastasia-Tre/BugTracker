@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoBogus;
-using BugTracker.DataModel;
+using Bugify.Domain.AggregatesModel.UserAggregate;
 using BugTracker.WebAPI.Controllers;
 using BugTracker.WebAPI.Features.UserFeatures.Queries;
 using FluentAssertions;
