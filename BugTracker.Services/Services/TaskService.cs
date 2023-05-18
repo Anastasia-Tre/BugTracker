@@ -3,7 +3,7 @@ using AutoMapper;
 using Bugify.Domain.AggregatesModel.TaskAggregate;
 using Bugify.Domain.SeedWork;
 
-namespace BugTracker.Services.Implementation;
+namespace BugTracker.Services.Services;
 
 public class TaskService : ITaskService<int>
 {

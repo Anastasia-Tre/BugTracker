@@ -3,7 +3,7 @@ using AutoMapper;
 using Bugify.Domain.AggregatesModel.UserAggregate;
 using Bugify.Domain.SeedWork;
 
-namespace BugTracker.Services.Implementation;
+namespace BugTracker.Services.Services;
 
 public class UserService : IUserService<int>
 {

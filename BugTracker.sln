@@ -5,15 +5,13 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BugTracker.Infrastructure", "BugTracker.DataAccessLayer\BugTracker.Infrastructure.csproj", "{B17CD7A1-4D33-49A4-8637-DC16A39721AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BugTracker.Services", "BugTracker.Services\BugTracker.Services.csproj", "{4F5DEC2C-C689-4658-A116-CBFCD06D30AC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BugTracker.WebAPI", "BugTracker.WebAPI\BugTracker.WebAPI.csproj", "{3CA4A9CF-2C63-43B7-B28B-3EC529471BAE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EDB48B13-E1C7-492F-8C10-D2BCBBF0FF7F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BugTracker.API.Tests", "Tests\BugTracker.API.Tests\BugTracker.API.Tests.csproj", "{FD28F451-E5D6-486D-82A9-5EC4F290452B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bugify.Domain", "Bugify.Domain\Bugify.Domain.csproj", "{8520C224-E635-4068-B678-2516F3D7A6AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bugify.Domain", "Bugify.Domain\Bugify.Domain.csproj", "{8520C224-E635-4068-B678-2516F3D7A6AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{B17CD7A1-4D33-49A4-8637-DC16A39721AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B17CD7A1-4D33-49A4-8637-DC16A39721AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B17CD7A1-4D33-49A4-8637-DC16A39721AB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F5DEC2C-C689-4658-A116-CBFCD06D30AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F5DEC2C-C689-4658-A116-CBFCD06D30AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F5DEC2C-C689-4658-A116-CBFCD06D30AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F5DEC2C-C689-4658-A116-CBFCD06D30AC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3CA4A9CF-2C63-43B7-B28B-3EC529471BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3CA4A9CF-2C63-43B7-B28B-3EC529471BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CA4A9CF-2C63-43B7-B28B-3EC529471BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU

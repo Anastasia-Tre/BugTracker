@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BugTracker.WebAPI.Controllers.ProjectController">
+    <Position X="3.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAIAgAAAAAAAAAAAgAIAAAACIA=</HashCode>
+      <FileName>Controllers\ProjectController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BugTracker.WebAPI.Controllers.TaskController">
+    <Position X="3.5" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAABCApAAAAQAACAAAAAAQAAABAAAABAAgAAEAAAAIY=</HashCode>
+      <FileName>Controllers\TaskController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BugTracker.WebAPI.Controllers.UserController">
+    <Position X="3.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQAAAAAEAAAAAAAAAQAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BugTracker.WebAPI.Filters.ExceptionFilter">
+    <Position X="0.5" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Filters\ExceptionFilterAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BugTracker.WebAPI.Behaviors.LoggingBehavior&lt;TRequest, TResponse&gt;">
+    <Position X="0.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Behaviors\LoggingBehavior.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BugTracker.WebAPI.Startup">
+    <Position X="0.5" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

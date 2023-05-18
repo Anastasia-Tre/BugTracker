@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Bugify.Domain.SeedWork.BaseEntity&lt;TKey&gt;">
+    <Position X="4.75" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>SeedWork\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bugify.Domain.AggregatesModel.ProjectAggregate.Project&lt;TKey&gt;">
+    <Position X="4.25" Y="7.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAgAAAAgAAAAAQAAAAAAAAAABEAAAAAAAA=</HashCode>
+      <FileName>AggregatesModel\ProjectAggregate\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bugify.Domain.AggregatesModel.ProjectAggregate.ProjectEntity&lt;TKey&gt;">
+    <Position X="9.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAgAAAAgAAAAAQAAAAAAAAAABEAAAAAAAA=</HashCode>
+      <FileName>AggregatesModel\ProjectAggregate\ProjectEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bugify.Domain.AggregatesModel.ProjectAggregate.UserProjectEntity&lt;TKey&gt;">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgABgAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>AggregatesModel\ProjectAggregate\UserProjectEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bugify.Domain.AggregatesModel.TaskAggregate.Task&lt;TKey&gt;">
+    <Position X="9.25" Y="7.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAgAQAEAAAACAQABAAAAAAAAREgAAAAAgA=</HashCode>
+      <FileName>AggregatesModel\TaskAggregate\Task.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bugify.Domain.AggregatesModel.TaskAggregate.TaskEntity&lt;TKey&gt;">
+    <Position X="3.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAgAQAEAAAACAQABAAAAAAAAREgAAAAAgA=</HashCode>
+      <FileName>AggregatesModel\TaskAggregate\TaskEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bugify.Domain.AggregatesModel.UserAggregate.User&lt;TKey&gt;">
+    <Position X="7" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAAEAACAAAAAAAAAAAAAACAAAAIAAAAAg=</HashCode>
+      <FileName>AggregatesModel\UserAggregate\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bugify.Domain.AggregatesModel.UserAggregate.UserEntity&lt;TKey&gt;">
+    <Position X="6" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAEAACAAAAAAAAAAAAAACAAAAIAAAAQg=</HashCode>
+      <FileName>AggregatesModel\UserAggregate\UserEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Bugify.Domain.SeedWork.IRepository&lt;T, TKey&gt;">
+    <Position X="13.5" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAIA=</HashCode>
+      <FileName>SeedWork\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Bugify.Domain.SeedWork.IUnitOfWork&lt;TKey&gt;">
+    <Position X="17" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAIAAIAAAAAAAAAQAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>SeedWork\IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Bugify.Domain.AggregatesModel.ProjectAggregate.IProjectRepository&lt;TKey&gt;">
+    <Position X="17" Y="5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>AggregatesModel\ProjectAggregate\IProjectRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Bugify.Domain.AggregatesModel.ProjectAggregate.IProjectService&lt;TKey&gt;">
+    <Position X="22" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAgAAAAAAAAAAQAAIAAAACAA=</HashCode>
+      <FileName>AggregatesModel\ProjectAggregate\IProjectService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Bugify.Domain.AggregatesModel.ProjectAggregate.IUserProjectRepository&lt;TKey&gt;">
+    <Position X="17" Y="7" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>AggregatesModel\ProjectAggregate\IUserProjectRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Bugify.Domain.AggregatesModel.TaskAggregate.ITaskRepository&lt;TKey&gt;">
+    <Position X="12.25" Y="0.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAoAAAAQAACAAAAAAAAAAAAAAAAAAAAAEAAgAAY=</HashCode>
+      <FileName>AggregatesModel\TaskAggregate\ITaskRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Bugify.Domain.AggregatesModel.TaskAggregate.ITaskService&lt;TKey&gt;">
+    <Position X="22" Y="5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAIBCApAAAAQAACAAAAAAQAAABAAAABAAAAAEAAAAAY=</HashCode>
+      <FileName>AggregatesModel\TaskAggregate\ITaskService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Bugify.Domain.AggregatesModel.UserAggregate.IUserRepository&lt;TKey&gt;">
+    <Position X="17" Y="3" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>AggregatesModel\UserAggregate\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Bugify.Domain.AggregatesModel.UserAggregate.IUserService&lt;TKey&gt;">
+    <Position X="22" Y="2.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAQAAAAAEAAAAAAAAAQAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>AggregatesModel\UserAggregate\IUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Bugify.Domain.AggregatesModel.ProjectAggregate.ProjectStatus">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAACAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>AggregatesModel\ProjectAggregate\ProjectStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Bugify.Domain.AggregatesModel.TaskAggregate.TaskPriority">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAgIAAAAAAAAAAAAACA=</HashCode>
+      <FileName>AggregatesModel\TaskAggregate\TaskPriority.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Bugify.Domain.AggregatesModel.TaskAggregate.TaskStatus">
+    <Position X="2.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAEAAAAAAAAAAAAAAAAABCAAAA=</HashCode>
+      <FileName>AggregatesModel\TaskAggregate\TaskStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Bugify.Domain.AggregatesModel.TaskAggregate.TaskType">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAAAAA=</HashCode>
+      <FileName>AggregatesModel\TaskAggregate\TaskType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

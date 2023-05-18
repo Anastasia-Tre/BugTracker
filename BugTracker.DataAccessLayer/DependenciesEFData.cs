@@ -3,6 +3,7 @@ using Bugify.Domain.AggregatesModel.TaskAggregate;
 using Bugify.Domain.AggregatesModel.UserAggregate;
 using Bugify.Domain.SeedWork;
 using BugTracker.Infrastructure.Repositories.EFImplementation;
+using BugTracker.Infrastructure.Services;
 using BugTracker.Infrastructure.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +22,16 @@ public static class DependenciesEFData
             .AddScoped<IUserProjectRepository<int>,
                 EFUserProjectRepository>();
         services.AddScoped<IUnitOfWork<int>, EFUnitOfWork>();
+
+        return services;
+    }
+
+    public static IServiceCollection SetServices(
+        this IServiceCollection services)
+    {
+        services.AddScoped<ITaskService<int>, TaskService>();
+        services.AddScoped<IUserService<int>, UserService>();
+        services.AddScoped<IProjectService<int>, ProjectService>();
 
         return services;
     }

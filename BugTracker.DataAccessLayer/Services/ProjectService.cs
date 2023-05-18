@@ -3,7 +3,7 @@ using AutoMapper;
 using Bugify.Domain.AggregatesModel.ProjectAggregate;
 using Bugify.Domain.SeedWork;
 
-namespace BugTracker.Services.Implementation;
+namespace BugTracker.Infrastructure.Services;
 
 public class ProjectService : IProjectService<int>
 {

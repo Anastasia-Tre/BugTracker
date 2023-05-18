@@ -1,7 +1,7 @@
 ﻿using Bugify.Domain.AggregatesModel.ProjectAggregate;
 using Bugify.Domain.AggregatesModel.TaskAggregate;
 using Bugify.Domain.AggregatesModel.UserAggregate;
-using BugTracker.Services.Implementation;
+using BugTracker.Services.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BugTracker.Services;
