@@ -15,7 +15,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Bugify.Domain\Bugify.Domain.csproj" />
-		<ProjectReference Include="..\BugTracker.DataAccessLayer\BugTracker.Infrastructure.csproj" />
+		<ProjectReference Include="..\BugTracker.DataAccessLayer\Bugify.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>

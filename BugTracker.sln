@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BugTracker.Infrastructure", "BugTracker.DataAccessLayer\BugTracker.Infrastructure.csproj", "{B17CD7A1-4D33-49A4-8637-DC16A39721AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bugify.Infrastructure", "BugTracker.DataAccessLayer\Bugify.Infrastructure.csproj", "{B17CD7A1-4D33-49A4-8637-DC16A39721AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BugTracker.WebAPI", "BugTracker.WebAPI\BugTracker.WebAPI.csproj", "{3CA4A9CF-2C63-43B7-B28B-3EC529471BAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bugify.WebAPI", "BugTracker.WebAPI\Bugify.WebAPI.csproj", "{3CA4A9CF-2C63-43B7-B28B-3EC529471BAE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EDB48B13-E1C7-492F-8C10-D2BCBBF0FF7F}"
 EndProject

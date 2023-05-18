@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BugTracker.Infrastructure;
 
-public static class DependenciesEFData
+public static class DependenciesInfrastructure
 {
     public static IServiceCollection SetEFDataDependencies(
         this IServiceCollection services)

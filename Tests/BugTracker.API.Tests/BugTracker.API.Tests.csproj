@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\BugTracker.WebAPI\BugTracker.WebAPI.csproj" />
+		<ProjectReference Include="..\..\BugTracker.WebAPI\Bugify.WebAPI.csproj" />
 	</ItemGroup>
 
 </Project>
