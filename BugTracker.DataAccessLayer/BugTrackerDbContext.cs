@@ -1,10 +1,10 @@
 ﻿using Bugify.Domain.AggregatesModel.ProjectAggregate;
 using Bugify.Domain.AggregatesModel.TaskAggregate;
 using Bugify.Domain.AggregatesModel.UserAggregate;
-using BugTracker.Infrastructure.Configuration;
+using Bugify.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugTracker.Infrastructure;
+namespace Bugify.Infrastructure;
 
 public sealed class BugTrackerDbContext : DbContext
 {

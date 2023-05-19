@@ -1,7 +1,7 @@
 using System.Reflection;
-using BugTracker.Infrastructure;
-using BugTracker.Infrastructure.Mapper;
-using BugTracker.WebAPI.Behaviors;
+using Bugify.Infrastructure;
+using Bugify.Infrastructure.Mapper;
+using Bugify.WebAPI.Behaviors;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace BugTracker.WebAPI;
+namespace Bugify.WebAPI;
 
 public class Startup
 {

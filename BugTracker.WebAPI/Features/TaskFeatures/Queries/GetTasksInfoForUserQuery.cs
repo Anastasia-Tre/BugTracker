@@ -2,7 +2,7 @@
 using Bugify.Domain.AggregatesModel.TaskAggregate;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.TaskFeatures.Queries;
+namespace Bugify.WebAPI.Features.TaskFeatures.Queries;
 
 public class GetTotalTasksForUser : IRequest<int>
 {

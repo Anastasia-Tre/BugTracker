@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace BugTracker.WebAPI.Behaviors;
+namespace Bugify.WebAPI.Behaviors;
 
 public class
     LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest,

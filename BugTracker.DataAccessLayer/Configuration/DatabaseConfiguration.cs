@@ -1,4 +1,4 @@
-﻿namespace BugTracker.Infrastructure.Configuration;
+﻿namespace Bugify.Infrastructure.Configuration;
 
 internal class DatabaseConfiguration : ConfigurationBase
 {

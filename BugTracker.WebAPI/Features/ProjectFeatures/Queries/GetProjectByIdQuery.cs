@@ -2,7 +2,7 @@
 using Bugify.Domain.AggregatesModel.ProjectAggregate;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.ProjectFeatures.Queries;
+namespace Bugify.WebAPI.Features.ProjectFeatures.Queries;
 
 public class GetProjectByIdQuery : IRequest<Project<int>>
 {

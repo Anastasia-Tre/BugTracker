@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Bugify.Domain.AggregatesModel.UserAggregate;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugTracker.Infrastructure.Repositories.EFImplementation;
+namespace Bugify.Infrastructure.Repositories.EFImplementation;
 
 public class EFUserRepository : EFRepository<UserEntity<int>>,
     IUserRepository<int>

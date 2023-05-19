@@ -2,7 +2,7 @@
 using Bugify.Domain.AggregatesModel.UserAggregate;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.UserFeatures.Queries;
+namespace Bugify.WebAPI.Features.UserFeatures.Queries;
 
 public class GetUserByIdQuery : IRequest<User<int>>
 {

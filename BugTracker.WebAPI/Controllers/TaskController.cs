@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
-using Bugify.Domain.AggregatesModel.TaskAggregate;
-using BugTracker.WebAPI.Features.TaskFeatures.Commands;
-using BugTracker.WebAPI.Features.TaskFeatures.Queries;
-using BugTracker.WebAPI.Filters;
+using Bugify.WebAPI.Features.TaskFeatures.Commands;
+using Bugify.WebAPI.Features.TaskFeatures.Queries;
+using Bugify.WebAPI.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ThreadTasks = System.Threading.Tasks;
 
-namespace BugTracker.WebAPI.Controllers;
+namespace Bugify.WebAPI.Controllers;
 
 [Route("/[controller]")]
 [ApiController]
@@ -23,7 +22,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(Task<int>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Domain.AggregatesModel.TaskAggregate.Task<int>), StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
     public async ThreadTasks.Task<IActionResult> GetById(int id)
     {
@@ -32,7 +31,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<Task<int>>),
+    [ProducesResponseType(typeof(IEnumerable<Domain.AggregatesModel.TaskAggregate.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
     public async ThreadTasks.Task<IActionResult> GetAll()
@@ -42,7 +41,7 @@ public class TaskController : ControllerBase
 
     [HttpGet]
     [Route("search")]
-    [ProducesResponseType(typeof(IEnumerable<Task<int>>),
+    [ProducesResponseType(typeof(IEnumerable<Domain.AggregatesModel.TaskAggregate.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
     public async ThreadTasks.Task<IActionResult> SearchTasks(
@@ -54,7 +53,7 @@ public class TaskController : ControllerBase
 
     [HttpGet]
     [Route("forUser")]
-    [ProducesResponseType(typeof(IEnumerable<Task<int>>),
+    [ProducesResponseType(typeof(IEnumerable<Domain.AggregatesModel.TaskAggregate.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
     public async ThreadTasks.Task<IActionResult> GetTasksForUser([FromQuery] int userId)
@@ -65,7 +64,7 @@ public class TaskController : ControllerBase
 
     [HttpGet]
     [Route("forProject")]
-    [ProducesResponseType(typeof(IEnumerable<Task<int>>),
+    [ProducesResponseType(typeof(IEnumerable<Domain.AggregatesModel.TaskAggregate.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
     public async ThreadTasks.Task<IActionResult> GetTasksForProject(
@@ -77,7 +76,7 @@ public class TaskController : ControllerBase
 
     [HttpPut]
     [Route("assign")]
-    [ProducesResponseType(typeof(Task<int>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Domain.AggregatesModel.TaskAggregate.Task<int>), StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
     public async ThreadTasks.Task<IActionResult> AssignTaskToUser([FromQuery] int bugId,
         int userId)
@@ -89,10 +88,10 @@ public class TaskController : ControllerBase
 
     [HttpPost]
     [Route("create")]
-    [ProducesResponseType(typeof(Task<int>),
+    [ProducesResponseType(typeof(Domain.AggregatesModel.TaskAggregate.Task<int>),
         StatusCodes.Status201Created)]
     [ProducesDefaultResponseType]
-    public async ThreadTasks.Task<IActionResult> CreateTask(Task<int> task)
+    public async ThreadTasks.Task<IActionResult> CreateTask(Domain.AggregatesModel.TaskAggregate.Task<int> task)
     {
         var actionName = nameof(CreateTask);
         return CreatedAtAction(actionName, await _mediator.Send(
@@ -102,10 +101,10 @@ public class TaskController : ControllerBase
 
     [HttpPost]
     [Route("{id}")]
-    [ProducesResponseType(typeof(Task<int>),
+    [ProducesResponseType(typeof(Domain.AggregatesModel.TaskAggregate.Task<int>),
         StatusCodes.Status201Created)]
     [ProducesDefaultResponseType]
-    public async ThreadTasks.Task<IActionResult> UpdateTask(Task<int> task)
+    public async ThreadTasks.Task<IActionResult> UpdateTask(Domain.AggregatesModel.TaskAggregate.Task<int> task)
     {
         var actionName = nameof(UpdateTask);
         return CreatedAtAction(actionName, await _mediator.Send(
@@ -115,10 +114,10 @@ public class TaskController : ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
-    [ProducesResponseType(typeof(Task<int>),
+    [ProducesResponseType(typeof(Domain.AggregatesModel.TaskAggregate.Task<int>),
         StatusCodes.Status201Created)]
     [ProducesDefaultResponseType]
-    public async ThreadTasks.Task<IActionResult> DeleteTask(Task<int> task)
+    public async ThreadTasks.Task<IActionResult> DeleteTask(Domain.AggregatesModel.TaskAggregate.Task<int> task)
     {
         return Ok(await _mediator.Send(new DeleteTaskCommand
             { Task = task }));
@@ -126,7 +125,7 @@ public class TaskController : ControllerBase
 
     [HttpGet]
     [Route("inFocus")]
-    [ProducesResponseType(typeof(Task<int>),
+    [ProducesResponseType(typeof(Domain.AggregatesModel.TaskAggregate.Task<int>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
     public async ThreadTasks.Task<IActionResult> GetTaskInFocusForUser(
@@ -138,7 +137,7 @@ public class TaskController : ControllerBase
 
     [HttpGet]
     [Route("nowOrLater")]
-    [ProducesResponseType(typeof(IEnumerable<Task<int>>),
+    [ProducesResponseType(typeof(IEnumerable<Domain.AggregatesModel.TaskAggregate.Task<int>>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
     public async ThreadTasks.Task<IActionResult> GetTasksNowOrLaterForUser(

@@ -3,7 +3,7 @@ using Bugify.Domain.AggregatesModel.TaskAggregate;
 using Bugify.Domain.AggregatesModel.UserAggregate;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BugTracker.Infrastructure.Mapper;
+namespace Bugify.Infrastructure.Mapper;
 
 public static class MapperConfig
 {

@@ -5,7 +5,7 @@ using Bugify.Domain.AggregatesModel.ProjectAggregate;
 using Bugify.Domain.AggregatesModel.UserAggregate;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugTracker.Infrastructure.Repositories.EFImplementation;
+namespace Bugify.Infrastructure.Repositories.EFImplementation;
 
 public class EFUserProjectRepository : EFRepository<UserProjectEntity<int>>,
     IUserProjectRepository<int>

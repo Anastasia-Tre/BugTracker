@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Bugify.Domain.AggregatesModel.ProjectAggregate.Project&lt;TKey&gt;">
-    <Position X="4.25" Y="7.75" Width="2.25" />
+    <Position X="8.75" Y="7.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAACAAAEAAAgAAAAgAAAAAQAAAAAAAAAABEAAAAAAAA=</HashCode>
       <FileName>AggregatesModel\ProjectAggregate\Project.cs</FileName>
@@ -29,7 +29,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Bugify.Domain.AggregatesModel.TaskAggregate.Task&lt;TKey&gt;">
-    <Position X="9.25" Y="7.75" Width="2.25" />
+    <Position X="13.75" Y="7.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAACAAAEAAAgAQAEAAAACAQABAAAAAAAAREgAAAAAgA=</HashCode>
       <FileName>AggregatesModel\TaskAggregate\Task.cs</FileName>
@@ -43,7 +43,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Bugify.Domain.AggregatesModel.UserAggregate.User&lt;TKey&gt;">
-    <Position X="7" Y="7.75" Width="1.75" />
+    <Position X="11.5" Y="7.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAACAEAAACAAAEAACAAAAAAAAAAAAAACAAAAIAAAAAg=</HashCode>
       <FileName>AggregatesModel\UserAggregate\User.cs</FileName>
@@ -127,7 +127,7 @@
     </TypeIdentifier>
   </Enum>
   <Enum Name="Bugify.Domain.AggregatesModel.TaskAggregate.TaskPriority">
-    <Position X="0.5" Y="5.75" Width="1.5" />
+    <Position X="4" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAgIAAAAAAAAAAAAACA=</HashCode>
       <FileName>AggregatesModel\TaskAggregate\TaskPriority.cs</FileName>
@@ -141,7 +141,7 @@
     </TypeIdentifier>
   </Enum>
   <Enum Name="Bugify.Domain.AggregatesModel.TaskAggregate.TaskType">
-    <Position X="2.25" Y="5.75" Width="1.5" />
+    <Position X="5.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAAAAA=</HashCode>
       <FileName>AggregatesModel\TaskAggregate\TaskType.cs</FileName>

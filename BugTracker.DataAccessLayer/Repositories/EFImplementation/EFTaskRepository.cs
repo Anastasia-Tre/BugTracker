@@ -7,7 +7,7 @@ using Bugify.Domain.AggregatesModel.TaskAggregate;
 using Microsoft.EntityFrameworkCore;
 using TaskStatus = Bugify.Domain.AggregatesModel.TaskAggregate.TaskStatus;
 
-namespace BugTracker.Infrastructure.Repositories.EFImplementation;
+namespace Bugify.Infrastructure.Repositories.EFImplementation;
 
 public class EFTaskRepository : EFRepository<TaskEntity<int>>,
     ITaskRepository<int>

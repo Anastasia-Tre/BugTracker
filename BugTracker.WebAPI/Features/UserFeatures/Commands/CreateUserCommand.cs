@@ -2,7 +2,7 @@
 using Bugify.Domain.AggregatesModel.UserAggregate;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.UserFeatures.Commands;
+namespace Bugify.WebAPI.Features.UserFeatures.Commands;
 
 public class CreateUserCommand : IRequest<User<int>>
 {

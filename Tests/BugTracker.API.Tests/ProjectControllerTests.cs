@@ -3,8 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoBogus;
 using Bugify.Domain.AggregatesModel.ProjectAggregate;
-using BugTracker.WebAPI.Controllers;
-using BugTracker.WebAPI.Features.ProjectFeatures.Queries;
+using Bugify.WebAPI.Controllers;
+using Bugify.WebAPI.Features.ProjectFeatures.Queries;
 using FluentAssertions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
 
-namespace BugTracker.API.Tests;
+namespace Bugify.API.Tests;
 
 public class ProjectControllerTests
 {

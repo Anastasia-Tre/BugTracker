@@ -9,9 +9,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bugify.WebAPI", "BugTracker
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EDB48B13-E1C7-492F-8C10-D2BCBBF0FF7F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BugTracker.API.Tests", "Tests\BugTracker.API.Tests\BugTracker.API.Tests.csproj", "{FD28F451-E5D6-486D-82A9-5EC4F290452B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bugify.API.Tests", "Tests\BugTracker.API.Tests\Bugify.API.Tests.csproj", "{FD28F451-E5D6-486D-82A9-5EC4F290452B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bugify.Domain", "Bugify.Domain\Bugify.Domain.csproj", "{8520C224-E635-4068-B678-2516F3D7A6AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DBBAB8AA-5C88-4734-A520-830E2A1AAED9}"
+	ProjectSection(SolutionItems) = preProject
+		diagrams\Architecture view for BugTracker.png = diagrams\Architecture view for BugTracker.png
+		diagrams\Type Dependencies Diagram for ConfigurationBase and other elements.png = diagrams\Type Dependencies Diagram for ConfigurationBase and other elements.png
+		diagrams\Type Dependencies Diagram for DependenciesInfrastructure and other elements.png = diagrams\Type Dependencies Diagram for DependenciesInfrastructure and other elements.png
+		diagrams\Type Dependencies Diagram for IProjectRepository and other elements.png = diagrams\Type Dependencies Diagram for IProjectRepository and other elements.png
+		diagrams\Type Dependencies Diagram for LoggingBehavior and other elements.png = diagrams\Type Dependencies Diagram for LoggingBehavior and other elements.png
+		diagrams\Type Dependencies Diagram for Project and other elements.png = diagrams\Type Dependencies Diagram for Project and other elements.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Bugify.Domain.AggregatesModel.ProjectAggregate;
-using BugTracker.WebAPI.Features.ProjectFeatures.Commands;
-using BugTracker.WebAPI.Features.ProjectFeatures.Queries;
-using BugTracker.WebAPI.Filters;
+using Bugify.WebAPI.Features.ProjectFeatures.Commands;
+using Bugify.WebAPI.Features.ProjectFeatures.Queries;
+using Bugify.WebAPI.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BugTracker.WebAPI.Controllers;
+namespace Bugify.WebAPI.Controllers;
 
 [Route("/[controller]")]
 [ApiController]

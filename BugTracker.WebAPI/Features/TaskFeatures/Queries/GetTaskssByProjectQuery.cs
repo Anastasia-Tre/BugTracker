@@ -3,7 +3,7 @@ using System.Threading;
 using Bugify.Domain.AggregatesModel.TaskAggregate;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.TaskFeatures.Queries;
+namespace Bugify.WebAPI.Features.TaskFeatures.Queries;
 
 public class GetTasksByProjectQuery : IRequest<IEnumerable<Task<int>>>
 {

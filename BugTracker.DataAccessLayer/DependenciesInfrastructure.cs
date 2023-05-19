@@ -2,12 +2,12 @@
 using Bugify.Domain.AggregatesModel.TaskAggregate;
 using Bugify.Domain.AggregatesModel.UserAggregate;
 using Bugify.Domain.SeedWork;
-using BugTracker.Infrastructure.Repositories.EFImplementation;
-using BugTracker.Infrastructure.Services;
-using BugTracker.Infrastructure.UnitOfWork;
+using Bugify.Infrastructure.Repositories.EFImplementation;
+using Bugify.Infrastructure.Services;
+using Bugify.Infrastructure.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BugTracker.Infrastructure;
+namespace Bugify.Infrastructure;
 
 public static class DependenciesInfrastructure
 {

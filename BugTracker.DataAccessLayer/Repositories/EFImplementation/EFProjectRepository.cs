@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Bugify.Domain.AggregatesModel.ProjectAggregate;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugTracker.Infrastructure.Repositories.EFImplementation;
+namespace Bugify.Infrastructure.Repositories.EFImplementation;
 
 public class EFProjectRepository : EFRepository<ProjectEntity<int>>,
     IProjectRepository<int>

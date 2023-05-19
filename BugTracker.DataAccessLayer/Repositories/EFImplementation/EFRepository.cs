@@ -2,7 +2,7 @@
 using Bugify.Domain.SeedWork;
 using Microsoft.EntityFrameworkCore;
 
-namespace BugTracker.Infrastructure.Repositories.EFImplementation;
+namespace Bugify.Infrastructure.Repositories.EFImplementation;
 
 public class EFRepository<T> : IRepository<T, int> where T : BaseEntity<int>
 {

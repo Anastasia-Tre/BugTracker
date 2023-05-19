@@ -3,7 +3,7 @@ using System.Threading;
 using Bugify.Domain.AggregatesModel.ProjectAggregate;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.ProjectFeatures.Queries;
+namespace Bugify.WebAPI.Features.ProjectFeatures.Queries;
 
 public class GetProjectsBySearchString : IRequest<IEnumerable<Project<int>>>
 {

@@ -3,7 +3,7 @@ using System.Threading;
 using Bugify.Domain.AggregatesModel.UserAggregate;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.UserFeatures.Queries;
+namespace Bugify.WebAPI.Features.UserFeatures.Queries;
 
 public class GetAllUsersQuery : IRequest<IEnumerable<User<int>>>
 {

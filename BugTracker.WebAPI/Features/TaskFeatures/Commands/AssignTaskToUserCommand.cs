@@ -2,7 +2,7 @@
 using Bugify.Domain.AggregatesModel.TaskAggregate;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.TaskFeatures.Commands;
+namespace Bugify.WebAPI.Features.TaskFeatures.Commands;
 
 public class AssignTaskToUserCommand : IRequest<Task<int>>
 {

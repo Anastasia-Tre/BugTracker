@@ -4,7 +4,7 @@ using Bugify.Domain.AggregatesModel.TaskAggregate;
 using Bugify.Domain.AggregatesModel.UserAggregate;
 using Bugify.Domain.SeedWork;
 
-namespace BugTracker.Infrastructure.UnitOfWork;
+namespace Bugify.Infrastructure.UnitOfWork;
 
 public class EFUnitOfWork : IUnitOfWork<int>
 {

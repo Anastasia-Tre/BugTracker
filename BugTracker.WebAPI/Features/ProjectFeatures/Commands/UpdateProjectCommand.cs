@@ -2,7 +2,7 @@
 using Bugify.Domain.AggregatesModel.ProjectAggregate;
 using MediatR;
 
-namespace BugTracker.WebAPI.Features.ProjectFeatures.Commands;
+namespace Bugify.WebAPI.Features.ProjectFeatures.Commands;
 
 public class UpdateProjectCommand : IRequest<Project<int>>
 {

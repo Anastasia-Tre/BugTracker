@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace BugTracker.WebAPI;
+namespace Bugify.WebAPI;
 
 public class Program
 {

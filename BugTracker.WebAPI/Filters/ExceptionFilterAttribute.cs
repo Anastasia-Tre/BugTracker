@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Hosting;
 
-namespace BugTracker.WebAPI.Filters;
+namespace Bugify.WebAPI.Filters;
 
 public class ExceptionFilter : IExceptionFilter
 {
