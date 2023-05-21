@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Bugify.Domain.AggregatesModel.ProjectAggregate.Project&lt;TKey&gt;">
-    <Position X="8.75" Y="7.5" Width="2.25" />
+    <Position X="9" Y="7.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAACAAAEAAAgAAAAgAAAAAQAAAAAAAAAABEAAAAAAAA=</HashCode>
       <FileName>AggregatesModel\ProjectAggregate\Project.cs</FileName>
@@ -29,7 +29,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Bugify.Domain.AggregatesModel.TaskAggregate.Task&lt;TKey&gt;">
-    <Position X="13.75" Y="7.5" Width="2.25" />
+    <Position X="13.5" Y="7.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAACAAAEAAAgAQAEAAAACAQABAAAAAAAAREgAAAAAgA=</HashCode>
       <FileName>AggregatesModel\TaskAggregate\Task.cs</FileName>
@@ -57,21 +57,21 @@
     </TypeIdentifier>
   </Class>
   <Interface Name="Bugify.Domain.SeedWork.IRepository&lt;T, TKey&gt;">
-    <Position X="13.5" Y="4.75" Width="2" />
+    <Position X="13.5" Y="0.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAIA=</HashCode>
       <FileName>SeedWork\IRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Bugify.Domain.SeedWork.IUnitOfWork&lt;TKey&gt;">
-    <Position X="17" Y="0.5" Width="3.5" />
+    <Position X="22" Y="8.75" Width="3.5" />
     <TypeIdentifier>
       <HashCode>gAAAAIAAIAAAAAAAAAQAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>SeedWork\IUnitOfWork.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Bugify.Domain.AggregatesModel.ProjectAggregate.IProjectRepository&lt;TKey&gt;">
-    <Position X="17" Y="5" Width="3.75" />
+    <Position X="17" Y="2" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>AggregatesModel\ProjectAggregate\IProjectRepository.cs</FileName>
@@ -85,14 +85,14 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="Bugify.Domain.AggregatesModel.ProjectAggregate.IUserProjectRepository&lt;TKey&gt;">
-    <Position X="17" Y="7" Width="4" />
+    <Position X="17" Y="3.5" Width="4" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
       <FileName>AggregatesModel\ProjectAggregate\IUserProjectRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Bugify.Domain.AggregatesModel.TaskAggregate.ITaskRepository&lt;TKey&gt;">
-    <Position X="12.25" Y="0.5" Width="4.5" />
+    <Position X="12.25" Y="3.75" Width="4.5" />
     <TypeIdentifier>
       <HashCode>AAAACAoAAAAQAACAAAAAAAAAAAAAAAAAAAAAEAAgAAY=</HashCode>
       <FileName>AggregatesModel\TaskAggregate\ITaskRepository.cs</FileName>
@@ -106,7 +106,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="Bugify.Domain.AggregatesModel.UserAggregate.IUserRepository&lt;TKey&gt;">
-    <Position X="17" Y="3" Width="3.75" />
+    <Position X="17" Y="0.5" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>AggregatesModel\UserAggregate\IUserRepository.cs</FileName>

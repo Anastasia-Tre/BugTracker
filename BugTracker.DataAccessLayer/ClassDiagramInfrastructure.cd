@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="BugTracker.Infrastructure.Configuration.ConfigurationBase">
+  <Class Name="Bugify.Infrastructure.Configuration.ConfigurationBase">
     <Position X="11.5" Y="4.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAABAAAAA=</HashCode>
       <FileName>Configuration\ConfigurationBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BugTracker.Infrastructure.Configuration.DatabaseConfiguration">
+  <Class Name="Bugify.Infrastructure.Configuration.DatabaseConfiguration">
     <Position X="11.5" Y="6" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Configuration\DatabaseConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BugTracker.Infrastructure.Repositories.EFImplementation.EFProjectRepository">
+  <Class Name="Bugify.Infrastructure.Repositories.EFImplementation.EFProjectRepository">
     <Position X="7" Y="4.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
@@ -22,7 +22,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BugTracker.Infrastructure.Repositories.EFImplementation.EFRepository&lt;T&gt;">
+  <Class Name="Bugify.Infrastructure.Repositories.EFImplementation.EFRepository&lt;T&gt;">
     <Position X="6" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQBAAAAAAAIAAAAAAAAAAAAAAEAAEAAAAAAAAAAAIA=</HashCode>
@@ -30,7 +30,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BugTracker.Infrastructure.Repositories.EFImplementation.EFTaskRepository">
+  <Class Name="Bugify.Infrastructure.Repositories.EFImplementation.EFTaskRepository">
     <Position X="2.25" Y="4.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAACAoAAAAQAACAAAAAAAAAAAAAAAAAAAAAEAAgAAY=</HashCode>
@@ -38,7 +38,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BugTracker.Infrastructure.Repositories.EFImplementation.EFUserProjectRepository">
+  <Class Name="Bugify.Infrastructure.Repositories.EFImplementation.EFUserProjectRepository">
     <Position X="4.75" Y="4.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
@@ -46,7 +46,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BugTracker.Infrastructure.Repositories.EFImplementation.EFUserRepository">
+  <Class Name="Bugify.Infrastructure.Repositories.EFImplementation.EFUserRepository">
     <Position X="9" Y="4.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
@@ -54,15 +54,15 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BugTracker.Infrastructure.UnitOfWork.EFUnitOfWork" BaseTypeListCollapsed="true">
-    <Position X="11.5" Y="0.5" Width="2" />
+  <Class Name="Bugify.Infrastructure.UnitOfWork.EFUnitOfWork" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="4.25" Width="2" />
     <TypeIdentifier>
       <HashCode>gAABAIAAICAAAAAAAAQAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>UnitOfWork\EFUnitOfWork.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="BugTracker.Infrastructure.BugTrackerDbContext">
+  <Class Name="Bugify.Infrastructure.BugTrackerDbContext">
     <Position X="13.75" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AACAACAAAQAAAAAAAAAAAAAAEABAAAAIAAAIAAAAAQA=</HashCode>
@@ -76,5 +76,9 @@
       <FileName>DependenciesEFData.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Interface Name="Bugify.Domain.SeedWork.IUnitOfWork&lt;TKey&gt;">
+    <Position X="15" Y="4.25" Width="2" />
+    <TypeIdentifier />
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
