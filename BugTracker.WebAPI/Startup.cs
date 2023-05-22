@@ -32,7 +32,10 @@ public class Startup
             options.AddPolicy("AllowLocalhost",
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000")
+                    builder.WithOrigins(
+                            "http://localhost:3000",
+                            "http://localhost:8080"
+                            )
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
