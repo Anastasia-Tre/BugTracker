@@ -25,7 +25,7 @@ public class ProjectControllerTests
         _target = new ProjectController(_mediator.Object);
     }
 
-    [Fact]
+    [Fact] 
     public async Task GetProjectById_ReturnsOk()
     {
         // arrange
