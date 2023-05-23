@@ -34,7 +34,8 @@ public class Startup
                 {
                     builder.WithOrigins(
                             "http://localhost:3000",
-                            "http://localhost:8080"
+                            "http://localhost:8080",
+                            "https://bugifyclient.azurewebsites.net"
                             )
                         .AllowAnyHeader()
                         .AllowAnyMethod();
