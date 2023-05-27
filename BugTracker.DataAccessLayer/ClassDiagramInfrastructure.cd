@@ -69,13 +69,6 @@
       <FileName>BugTrackerDbContext.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BugTracker.Infrastructure.DependenciesEFData">
-    <Position X="16.25" Y="0.5" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>DependenciesEFData.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Interface Name="Bugify.Domain.SeedWork.IUnitOfWork&lt;TKey&gt;">
     <Position X="15" Y="4.25" Width="2" />
     <TypeIdentifier />

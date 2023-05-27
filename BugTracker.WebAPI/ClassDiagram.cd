@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bugify.Infrastructure.Configuration.ConfigurationBase">
+    <Position X="9.75" Y="1.25" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Bugify.Infrastructure.Repositories.EFImplementation.EFProjectRepository">
+    <Position X="8.75" Y="5.25" Width="1.75" />
+    <InheritanceLine Type="Bugify.Infrastructure.Repositories.EFImplementation.EFRepository&lt;T&gt;" ManuallyRouted="true">
+      <Path>
+        <Point X="8.25" Y="4.267" />
+        <Point X="8.25" Y="4.712" />
+        <Point X="9.625" Y="4.712" />
+        <Point X="9.625" Y="5.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bugify.Infrastructure.Repositories.EFImplementation.EFRepository&lt;T&gt;">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bugify.Infrastructure.Repositories.EFImplementation.EFTaskRepository">
+    <Position X="3.75" Y="5.25" Width="2.25" />
+    <InheritanceLine Type="Bugify.Infrastructure.Repositories.EFImplementation.EFRepository&lt;T&gt;" ManuallyRouted="true">
+      <Path>
+        <Point X="8.25" Y="4.267" />
+        <Point X="8.25" Y="4.712" />
+        <Point X="4.875" Y="4.712" />
+        <Point X="4.875" Y="5.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bugify.Infrastructure.Repositories.EFImplementation.EFUserProjectRepository">
+    <Position X="6.25" Y="5.25" Width="2" />
+    <InheritanceLine Type="Bugify.Infrastructure.Repositories.EFImplementation.EFRepository&lt;T&gt;" ManuallyRouted="true">
+      <Path>
+        <Point X="8.25" Y="4.267" />
+        <Point X="8.25" Y="4.721" />
+        <Point X="7.25" Y="4.721" />
+        <Point X="7.25" Y="5.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bugify.Infrastructure.Repositories.EFImplementation.EFUserRepository">
+    <Position X="11" Y="5.25" Width="2" />
+    <InheritanceLine Type="Bugify.Infrastructure.Repositories.EFImplementation.EFRepository&lt;T&gt;" ManuallyRouted="true">
+      <Path>
+        <Point X="8.25" Y="4.267" />
+        <Point X="8.25" Y="4.684" />
+        <Point X="12" Y="4.684" />
+        <Point X="12" Y="5.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bugify.Infrastructure.UnitOfWork.EFUnitOfWork" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="1" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Bugify.Infrastructure.BugTrackerDbContext">
+    <Position X="5" Y="1" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Bugify.Domain.SeedWork.BaseEntity&lt;TKey&gt;">
+    <Position X="5.5" Y="13.25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Bugify.Domain.AggregatesModel.ProjectAggregate.ProjectEntity&lt;TKey&gt;">
+    <Position X="10" Y="8.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Bugify.Domain.AggregatesModel.ProjectAggregate.UserProjectEntity&lt;TKey&gt;">
+    <Position X="1.25" Y="8.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Bugify.Domain.AggregatesModel.TaskAggregate.TaskEntity&lt;TKey&gt;">
+    <Position X="4" Y="8.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Bugify.Domain.AggregatesModel.UserAggregate.UserEntity&lt;TKey&gt;">
+    <Position X="6.75" Y="8.5" Width="3" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Bugify.WebAPI.Behaviors.LoggingBehavior&lt;TRequest, TResponse&gt;">
+    <Position X="1.25" Y="15.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Behaviors\LoggingBehavior.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bugify.WebAPI.Startup">
+    <Position X="1.25" Y="17.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bugify.WebAPI.Controllers.ProjectController">
+    <Position X="6.5" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAIAgAAAAAAAAAAAgAIAAAACIA=</HashCode>
+      <FileName>Controllers\ProjectController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bugify.WebAPI.Controllers.UserController">
+    <Position X="8.25" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQAAAAAEAAAAAAAAAQAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bugify.WebAPI.Controllers.TaskController">
+    <Position X="4" Y="15.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAABCApAAAAQAACAAAAAAQAAABAAAABAAgAAEAAAAIY=</HashCode>
+      <FileName>Controllers\TaskController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bugify.WebAPI.Filters.ExceptionFilter">
+    <Position X="10.25" Y="15.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Filters\ExceptionFilterAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Bugify.Domain.SeedWork.IUnitOfWork&lt;TKey&gt;">
+    <Position X="1.25" Y="5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
